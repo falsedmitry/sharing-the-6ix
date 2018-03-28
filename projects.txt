@@ -1,0 +1,28 @@
+MVP:
+x As a user, I want to see all the tools
+x As a user, I want to register for an account
+x As a user, I want to be able to contact someone to borrow a tool
+x As a user, I want to create a list of tools that I own
+
+
+WANT TO HAVE
+x As a user, I want to add reviews of users and borrowers
+x As a user, I want to add rating of a review
+x As a user, I want to add reviews of tools
+x As a visitor, I want to search tools by attribute
+x As a user, I want to show/edit/delete a tool that I own
+x As a user, I want to view a tool's history
+
+
+HAPPY TO HAVE
+x As a user, I want to have chat with another user
+x As a user, I want to reset my password
+
+Five main things:
+1. See some mockups
+2. Finish user stories
+3. Database model
+4. Schedule
+5. Git workflow
+// 6. Research APIs
+// 7. Photo uploads
