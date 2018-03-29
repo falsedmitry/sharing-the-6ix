@@ -19,6 +19,7 @@ x As a user, I can view a tool's show page:
 
 
 WANT TO HAVE
+x As a user, I can upload my tool's images through imgur, and use the link to add to their profile
 x As a user, I can see another user's profile
 x As a user, I can add reviews of users and borrowers
 x As a user, I can add reviews of tools I've borrowed
