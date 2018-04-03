@@ -1,0 +1,16 @@
+<h1>Tools Available</h1>
+<%= link_to 'Add Tool', new_tool_path %>
+
+<% @tools.each do |tool| %>
+
+  <div class=“tools”>
+
+   <p><%= link_to(tool.name, tool_path(tool)) %></p>
+   <strong><p><%= tool.name %></p></strong>
+   <p>On Loan: <%= tool.on_loan %></p>
+   <p>Loan Length: <%= tool.loan_length %></p>
+   <p>Condition: <%= tool.condition %></p>
+   <p>Description: <%= tool.description %></p>
+   <hr>
+  </div>
+<% end %>
