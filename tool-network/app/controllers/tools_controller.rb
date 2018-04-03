@@ -1,5 +1,7 @@
 class ToolsController < ApplicationController
+  before_action :load_tool, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except:[:index]
+  before_action :require_user_authority, only: [:edit, :update, :destroy]
 
   def index
     @tools = Tool.all
@@ -27,11 +29,10 @@ class ToolsController < ApplicationController
     end
 
   def edit
-    @tool = Tool.find(params[:id])
+
   end
 
   def update
-    @tool = Tool.find(params[:id])
     @tool.name = params[:tool][:name]
     @tool.description = params[:tool][:description]
     @tool.condition = params[:tool][:condiitons]
@@ -46,13 +47,23 @@ class ToolsController < ApplicationController
 
 
   def show
-    @tool = Tool.find(params[:id])
+
   end
 
   def destroy
-    @tool = Tool.find(params[:id])
     @tool.destroy
     flash[:notice] = "You have successfully deleted this tool."
     redirect_to tools_url
+  end
+
+  def load_tool
+    @tool = Tool.find(params[:id])
+  end
+
+  def require_user_authority
+    unless current_user == @tool.owner
+      flash[:alert] = "You are not authorized to modify this tool."
+      redirect_to login_url
+    end
   end
 end
