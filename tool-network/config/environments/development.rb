@@ -13,6 +13,7 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
+
   if Rails.root.join('tmp/caching-dev.txt').exist?
     config.action_controller.perform_caching = true
 
@@ -40,6 +41,7 @@ Rails.application.configure do
   #
   #  host = 'localhost:3000'                     # Local server
   #  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+
 
   # Don't care if the mailer can't send.
 
