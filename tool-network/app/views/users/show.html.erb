@@ -1,0 +1,29 @@
+<% unless @user == current_user %>
+  <p><%= @user.name %>'s Profile:</p>
+<% end %>
+
+<%= @user.photo %>
+
+<p>Name: <%= @user.name %></p>
+<p>Email: <%= @user.email %></p>
+<p>Location: <%= @user.location %></p>
+
+<hr>
+
+<% if @user == current_user %>
+  <p>My Inventory:</p>
+<% else %>
+  <p><%= @user.name %>'s Inventory:</p>
+<% end %>
+
+<ul>
+  <% @owned_tools.each do |tool| %>
+    <li class="tools">
+     <p><strong><%= tool.name %></strong></p>
+     <p>On Loan: <%= tool.on_loan %></p>
+     <p>Loan Length: <%= tool.loan_length %></p>
+     <p>Condition: <%= tool.condition %></p>
+     <p>Description: <%= tool.description %></p>
+   </li>
+  <% end %>
+</ul>

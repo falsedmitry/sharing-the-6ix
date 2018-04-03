@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  def index
-  end
+
+  before_action :load_user, only: [:show, :edit, :update, :destroy]
 
   def new
     @user = User.new
@@ -21,24 +21,31 @@ class UsersController < ApplicationController
       render :new
     end
   end
-  
-  def show
-  end
 
-  def update
+  def show
+    @owned_tools = @user.owned_tools
   end
 
   def edit
-
   end
 
-  def destroy
+  def update
+    @user.email = params[:user][:email]
+    @user.photo = params[:user][:photo]
+    @user.location = params[:user][:location]
+
+    if @user.save
+      redirect_to user_url
+    else
+      render :edit
+    end
   end
 
-  # private
-  # def load_user
-  #   @user = User.find(params[:user_id])
-  # end
-  #
+  private
+  
+  def load_user
+    @user = User.find(params[:id])
+  end
+
 
 end
