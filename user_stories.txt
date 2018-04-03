@@ -1,0 +1,49 @@
+MVP:
+x As a user/visitor, I can see all the tools that are available for loan
+x As a user/visitor, I can contact someone to borrow a tool
+x As a visitor, I can register for an account
+x As a user, can log in and log out
+x As a user, I can see my profile page
+x As a user, when I go to my profile page, I can see:
+    - The tools I have in my inventory
+    - My reviews and rating (only visible after, say, 5 reviews)
+
+x As a user, I can add a tool to my inventory
+x As a user, I can show/edit/delete a tool that I own
+x As a user, I can view a tool's show page:
+    - Whether the tool is out on loan
+    - The current condition of the tool
+    - Any special notes ("battery dies quickly", etc.)
+    - The list of pictures of the tool taken by previous borrowers
+    - The tool's reviews(?)
+
+
+WANT TO HAVE
+x As a user, I can upload my tool's images through imgur, and use the link to add to their profile
+x As a user, I can see another user's profile
+x As a user, I can add reviews of users and borrowers
+x As a user, I can add reviews of tools I've borrowed
+  - the above will only become visible after both lender and borrower submit their reviews, AirBnB-style
+  - (?) borrowers should be required to submit a review before borrowing another item
+x As a user, I can add rating to a review
+x As a visitor, I can search tools by attribute:
+    - Name of the tool
+    - Maximum distance from my current location
+    - Condition of the tool
+    - Lender rating
+  The search results could appear alongside a mini-map, with the exact locations somehow obscured
+
+HAPPY TO HAVE
+x As a user,
+x As a user, I can chat with another user
+x As a user, I can reset my password
+x As a user, if a certain tool is important to me, I can set it so that only users with ratings above a certain number can see the tool in their search results
+
+Five main things:
+1. See some mockups
+2. Finish user stories
+3. Database model
+4. Schedule
+5. Git workflow
+// 6. Research APIs
+// 7. Photo uploads
