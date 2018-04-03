@@ -13,33 +13,35 @@ Rails.application.configure do
   config.consider_all_requests_local = true
 
   # Enable/disable caching. By default caching is disabled.
-  # if Rails.root.join('tmp/caching-dev.txt').exist?
-  #   config.action_controller.perform_caching = true
-  #
-  #   config.cache_store = :memory_store
-  #   config.public_file_server.headers = {
-  #     'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
-  #   }
-  # else
-  #   config.action_controller.perform_caching = false
-  #
-  #   config.cache_store = :null_store
-  # end
-  #
+
+  if Rails.root.join('tmp/caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
+
+    config.cache_store = :memory_store
+    config.public_file_server.headers = {
+      'Cache-Control' => "public, max-age=#{2.days.seconds.to_i}"
+    }
+  else
+    config.action_controller.perform_caching = false
+
+    config.cache_store = :null_store
+  end
+
   # config.action_mailer.delivery_method = :smtp
   #  config.action_mailer.smtp_settings = {
-  #  address:              ‘smtp.gmail.com’,
+  #  address:              'smtp.gmail.com',
   #  port:                 587,
-  #  user_name:            ‘toolnetwork2018@gmail.com’,
-  #  password:             ENV[“GMAIL_KEY”],
-  #  authentication:       ‘plain’,
+  #  user_name:            'toolnetwork2018@gmail.com',
+  #  password:             ENV["GMAIL_KEY"],
+  #  authentication:       'plain',
   #  enable_starttls_auto: true  }
   #  config.action_mailer.perform_deliveries = true
   #  config.action_mailer.raise_delivery_errors = true
-  #  config.action_mailer.default_options = {from: ‘toolnetwork2018@gmail.com’}
+  #  config.action_mailer.default_options = {from: 'toolnetwork2018@gmail.com'}
   #
-  #  host = ‘localhost:3000’                     # Local server
-  #  config.action_mailer.default_url_options = { host: host, protocol: ‘http’ }
+  #  host = 'localhost:3000'                     # Local server
+  #  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+
 
   # Don't care if the mailer can't send.
 
