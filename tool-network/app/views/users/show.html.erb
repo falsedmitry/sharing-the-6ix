@@ -2,7 +2,12 @@
   <p><%= @user.name %>'s Profile:</p>
 <% end %>
 
-<%= @user.photo %>
+<%= @user.photo %></br>
+<% if @user.rating == 0 %>
+  <p>Rating: not enough history</p>
+<% else %>
+  <p>Rating: <%= @user.rating %></p>
+<% end %>
 
 <p>Name: <%= @user.name %></p>
 <p>Email: <%= @user.email %></p>
