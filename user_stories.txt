@@ -2,7 +2,7 @@ MVP:
 x As a user/visitor, I can see all the tools that are available for loan
 x As a user/visitor, I can contact someone to borrow a tool
 x As a visitor, I can register for an account
-x As a user, can log in and log out
+x As a user, I can log in and log out
 x As a user, I can see my profile page
 x As a user, when I go to my profile page, I can see:
     - The tools I have in my inventory

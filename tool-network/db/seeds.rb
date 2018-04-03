@@ -39,15 +39,3 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "test", pass
     )
   end
 end
-
-
-
-# 20.times do
-#   tool = Tool.all.sample
-#
-#   Pledge.create!(
-#     user: User.all[1..-1].sample,
-#     tool: tool,
-#     dollar_amount: tool.rewards.sample.dollar_amount + rand(10)+1
-#   )
-# end
