@@ -9,6 +9,26 @@
   </head>
 
   <body>
+
+    <% flash.each do |key, message| %>
+      <div class="flash-<%= key %>"><%= message %></div>
+    <% end %>
+
+    <header class="site-header">
+      <h1 class="logo"><a href = "/">Toronto Tool Network</a></h1>
+
+      <nav class="site-nav">
+        <% if current_user %>
+          <%= link_to "My Profile", user_path(current_user) %> |
+          <%= link_to "Logout", :logout, method: :delete %>
+        <% else %>
+          <%= link_to "Register", new_user_path %> |
+          <%= link_to "Login", :login %>
+        <% end %>
+      </nav>
+    </header>
+
+
     <%= yield %>
   </body>
 </html>
