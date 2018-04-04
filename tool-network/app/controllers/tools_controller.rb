@@ -16,7 +16,7 @@ class ToolsController < ApplicationController
 
     @tool.name = params[:tool][:name]
     @tool.description = params[:tool][:description]
-    @tool.condition = params[:tool][:condiitons]
+    @tool.condition = params[:tool][:conditons]
     @tool.loan_length = params[:tool][:loan_length]
     @tool.on_loan = false
     @tool.user_id = current_user.id
@@ -36,7 +36,7 @@ class ToolsController < ApplicationController
   def update
     @tool.name = params[:tool][:name]
     @tool.description = params[:tool][:description]
-    @tool.condition = params[:tool][:condiitons]
+    @tool.condition = params[:tool][:conditons]
     @tool.loan_length = params[:tool][:loan_length]
 
       if @tool.save
