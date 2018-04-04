@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resource :loan, only: %i(new create)
 end

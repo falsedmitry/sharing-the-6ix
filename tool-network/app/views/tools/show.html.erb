@@ -1,9 +1,10 @@
-
 <p><strong><%= @tool.name %></strong></p>
 
-    <% @tool.owner_images.each do |image| %>
-    <%= image_tag("/owner_images/#{image.file_name}", size: "220x200") %>
-    <% end %>
+<%= link_to("Lend This Tool", new_loan_path) %>
+
+<% @tool.owner_images.each do |image| %>
+  <%= image_tag("/owner_images/#{image.file_name}", size: "220x200") %>
+<% end %>
 
 <p>On Loan: <%= @tool.on_loan %></p>
 <p>Loan Length: <%= @tool.loan_length %></p>
