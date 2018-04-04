@@ -18,7 +18,6 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "test", pass
 # Image.create(:category_name => 'sports')
 # Image.create(:category_name => 'food')
 
-
 10.times do
   tool = Tool.create!(
               name: Faker::App.name,
@@ -26,7 +25,6 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "test", pass
               condition: rand(10),
               owner: User.first,
               on_loan: false,
-
             )
             # tool.categories = [Image.first]
 

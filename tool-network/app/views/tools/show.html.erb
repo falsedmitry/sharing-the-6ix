@@ -1,5 +1,6 @@
-
 <p><strong><%= @tool.name %></strong></p>
+
+<%= link_to("Lend This Tool", new_loan_path) %>
 
 <p>On Loan: <%= @tool.on_loan %></p>
 <p>Loan Length: <%= @tool.loan_length %></p>
