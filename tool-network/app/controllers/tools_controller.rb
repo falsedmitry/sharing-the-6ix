@@ -4,7 +4,7 @@ class ToolsController < ApplicationController
   before_action :require_user_authority, only: [:edit, :update, :destroy]
 
   def index
-    @tools = Tool.all
+    @tools = Tool.all.order(updated_at: :desc)
   end
 
   def new
@@ -22,6 +22,7 @@ class ToolsController < ApplicationController
     @tool.user_id = current_user.id
 
       if @tool.save
+        upload_pictures
         redirect_to tools_url
       else
         render :new
@@ -39,6 +40,7 @@ class ToolsController < ApplicationController
     @tool.loan_length = params[:tool][:loan_length]
 
       if @tool.save
+        upload_pictures
         redirect_to tools_url
       else
         render :edit
@@ -66,4 +68,21 @@ class ToolsController < ApplicationController
       redirect_to login_url
     end
   end
+
+  def upload_pictures
+     unless params[:tool][:picture] == nil
+       uploaded_ios = params[:tool][:picture]
+       uploaded_ios.each do |uploaded_io|
+         File.open(Rails.root.join('public', 'owner_images', uploaded_io.original_filename), 'wb') do |file|
+           file.write(uploaded_io.read)
+         end
+         picture = OwnerImage.new
+         picture.file_name = uploaded_io.original_filename
+         picture.tool_id = @tool.id
+         if !picture.save
+           flash[:alert] = "The picture #{picture.file_name} is failed in uploading to the server."
+         end
+       end
+     end
+   end
 end
