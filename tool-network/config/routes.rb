@@ -7,11 +7,12 @@ Rails.application.routes.draw do
 
 
   resources :tools do
+    resource :loan, only: %i(new create)
+    
     resources :reviews do
       resources :images
     end
   end
 
   resources :users
-  resource :loan, only: %i(new create)
 end

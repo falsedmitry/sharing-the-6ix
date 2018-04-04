@@ -5,5 +5,15 @@ class Tool < ApplicationRecord
 
   has_many :loans
   has_many :owner_images
-  
+
+  def lend_out
+    self.on_loan = true
+    self.save
+  end
+
+  def get_back
+    self.on_loan = false
+    self.save
+  end
+
 end
