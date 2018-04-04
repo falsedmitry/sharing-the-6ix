@@ -6,7 +6,9 @@
   <div class=“tools”>
 
    <p><%= link_to(tool.name, tool_path(tool)) %></p>
-   <strong><p><%= tool.name %></p></strong>
+   <% if tool.owner_images[0] %>
+     <%= image_tag("/owner_images/#{tool.owner_images[0].file_name}", size: "120x100", alt: "No Image") %>
+   <% end %>
    <p>On Loan: <%= tool.on_loan %></p>
    <p>Loan Length: <%= tool.loan_length %></p>
    <p>Condition: <%= tool.condition %></p>

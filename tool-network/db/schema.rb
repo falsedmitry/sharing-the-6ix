@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404143846) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,16 +26,6 @@ ActiveRecord::Schema.define(version: 20180404143846) do
     t.index ["tool_id"], name: "index_images_on_tool_id"
   end
 
-  create_table "loans", force: :cascade do |t|
-    t.date "due_date"
-    t.date "start_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "tool_id"
-    t.bigint "user_id"
-    t.index ["tool_id"], name: "index_loans_on_tool_id"
-    t.index ["user_id"], name: "index_loans_on_user_id"
-  end
 
   create_table "reviews", force: :cascade do |t|
     t.datetime "date"
