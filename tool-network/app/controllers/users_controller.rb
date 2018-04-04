@@ -24,6 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @owned_tools = @user.owned_tools
+    @borrowed_tools = @user.borrowed_tools
   end
 
   def edit
@@ -42,7 +43,7 @@ class UsersController < ApplicationController
   end
 
   private
-  
+
   def load_user
     @user = User.find(params[:id])
   end

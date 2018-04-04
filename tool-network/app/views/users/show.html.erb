@@ -15,10 +15,26 @@
 <%= link_to 'Add Tool', new_tool_path %>
 <hr>
 
-<% if @user == current_user %>
-  <p>My Inventory:</p>
-<% else %>
-  <p><%= @user.name %>'s Inventory:</p>
+<% if @user == current_user && !@borrowed_tools.empty? %>
+  <p>My Borrowed Tools:</p>
+  <ul>
+    <% @borrowed_tools.each do |tool| %>
+      <li class="tools">
+        <p>Tool: <%= tool.name %></p>
+        <p>Owner: <%= tool.owner.name %></p>
+        <p>Borrowed on: <%= get_loan(@user, tool).start_date %></p>
+        <p>Due: <%= get_loan(@user, tool).due_date %></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if !@owned_tools.empty? %>
+  <% if @user == current_user %>
+    <p>My Inventory:</p>
+  <% else %>
+    <p><%= @user.name %>'s Inventory:</p>
+  <% end %>
 <% end %>
 
 <ul>
