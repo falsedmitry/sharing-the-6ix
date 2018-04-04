@@ -11,11 +11,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def get_loan(user, tool)
-    Loan.find_by(user_id: user.id, tool_id: tool.id)
-  end
-
-  helper_method :current_user, :get_loan
+  helper_method :current_user
 
   private
   def not_authenticated

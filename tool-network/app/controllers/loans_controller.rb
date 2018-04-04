@@ -12,9 +12,11 @@ class LoansController < ApplicationController
 
     @tool = Tool.find_by(name: params[:loan][:tool])
     @loan.tool = @tool
+    @loan.active = true
 
     if @loan.save
       @tool.lend_out
+
       flash[:notice] = "Tool successfully lended!"
       redirect_to tool_url(@tool)
     else

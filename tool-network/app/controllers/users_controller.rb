@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   def show
     @owned_tools = @user.owned_tools
     @borrowed_tools = @user.borrowed_tools
+    @tools_out_on_loan = @user.tools_out_on_loan
   end
 
   def edit

@@ -7,6 +7,18 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  def tools_out_on_loan
+    out_on_loan = []
+
+    owned_tools.each do |tool|
+      if tool.on_loan == true
+        out_on_loan << tool
+      end
+    end
+
+    out_on_loan
+  end
+
   def rating
     rating = 0.0
     number_of_reviews = 0
