@@ -1,6 +1,7 @@
 class LoansController < ApplicationController
   def new
     @loan = Loan.new
+    @tool = Tool.find(params[:tool_id])
   end
 
   def create
@@ -13,6 +14,7 @@ class LoansController < ApplicationController
     @loan.tool = @tool
 
     if @loan.save
+      @tool.lend_out
       flash[:notice] = "Tool successfully lended!"
       redirect_to tool_url(@tool)
     else

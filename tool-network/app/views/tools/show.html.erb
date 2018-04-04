@@ -1,6 +1,10 @@
 <p><strong><%= @tool.name %></strong></p>
 
-<%= link_to("Lend This Tool", new_loan_path) %>
+<button type="button" name="lend-tool">
+  <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
+</button>
+
+<button type="button" name="get-tool-back">Get Back Tool</button>
 
 <% @tool.owner_images.each do |image| %>
   <%= image_tag("/owner_images/#{image.file_name}", size: "220x200") %>

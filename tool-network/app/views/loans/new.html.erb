@@ -1,20 +1,25 @@
 <h3>New Loan Form</h3>
-<%= form_for @loan, url: {action: "create"} do |f| %>
+
+<%= form_for(@loan, url: {action: "create"}) do |f| %>
   <div class="field">
     <%= f.label :tool_name %><br />
-    <%= f.text_field :tool %>
+    <%= f.text_field :tool, value: "#{@tool.name}" %>
   </div>
+
   <div class="field">
     <%= f.label :borrower %><br />
     <%= f.text_field :borrower %>
   </div>
+
   <div class="field">
     <%= f.label :start_date %><br />
     <%= f.date_field :start_date %>
   </div>
+
   <div class="field">
     <%= f.label :due_date %><br />
     <%= f.date_field :due_date %>
   </div>
+  
   <%= f.submit %>
 <% end %>
