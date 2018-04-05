@@ -20,10 +20,10 @@
 <hr>
 
 <h2>Reviews</h2>
-<%= render "/reviews/error", review: @review %>
-<%= render '/reviews/form', review: @review %>
+<%= render "shared/error", object: @review %>
+<%= render 'reviews/form', review: @review %>
 <hr>
 
 <% @reviews.each do |review| %>
-  <%= render '/reviews/review', review: review %>
+  <%= render 'reviews/review', review: review %>
 <% end %>
