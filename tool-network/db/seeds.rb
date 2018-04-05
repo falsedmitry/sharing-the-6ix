@@ -5,13 +5,13 @@ Tool.destroy_all
 
 User.destroy_all
 
-dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "test", password_confirmation: "test", location: "Dundas", photo: "no photo")
+dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Dundas", photo: "no photo")
 
-alex = User.create(name: "Alex", email: "alex@gmail.com", password: "test", password_confirmation: "test", location: "King", photo: "no photo")
+alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "King", photo: "no photo")
 
-debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "test", password_confirmation: "test", location: "Junction", photo: "no photo")
+debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", photo: "no photo")
 
-bill = User.create(name: "Bill", email: "bill@gmail.com", password: "test", password_confirmation: "test", location: "Markham", photo: "no photo")
+bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Markham", photo: "no photo")
 
 # Image.create(:category_name => 'technology')
 # Image.create(:category_name =>'art')
@@ -25,6 +25,7 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "test", pass
               condition: rand(10),
               owner: User.first,
               on_loan: false,
+              loan_length: rand(30)+1
             )
             # tool.categories = [Image.first]
 
