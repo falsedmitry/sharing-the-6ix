@@ -16,7 +16,7 @@ class ToolsController < ApplicationController
 
     @tool.name = params[:tool][:name]
     @tool.description = params[:tool][:description]
-    @tool.condition = params[:tool][:condiitons]
+    @tool.condition = params[:tool][:conditions]
     @tool.loan_length = params[:tool][:loan_length]
     @tool.on_loan = false
     @tool.user_id = current_user.id
@@ -36,7 +36,7 @@ class ToolsController < ApplicationController
   def update
     @tool.name = params[:tool][:name]
     @tool.description = params[:tool][:description]
-    @tool.condition = params[:tool][:condiitons]
+    @tool.condition = params[:tool][:conditions]
     @tool.loan_length = params[:tool][:loan_length]
 
       if @tool.save
@@ -46,7 +46,6 @@ class ToolsController < ApplicationController
         render :edit
       end
     end
-
 
   def show
     @tool = Tool.find(params[:id])
@@ -79,9 +78,11 @@ class ToolsController < ApplicationController
          File.open(Rails.root.join('public', 'owner_images', uploaded_io.original_filename), 'wb') do |file|
            file.write(uploaded_io.read)
          end
+
          picture = OwnerImage.new
          picture.file_name = uploaded_io.original_filename
          picture.tool_id = @tool.id
+
          if !picture.save
            flash[:alert] = "The picture #{picture.file_name} is failed in uploading to the server."
          end
