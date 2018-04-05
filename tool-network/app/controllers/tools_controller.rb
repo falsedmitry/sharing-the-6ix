@@ -5,6 +5,10 @@ class ToolsController < ApplicationController
 
   def index
     @tools = Tool.all.order(updated_at: :desc)
+    if params[:search] and params[:search] != "" 
+      @tools = Tool.where("name ILIKE ? ", params[:search])
+    end
+  #  @tools = Tool.search(params[:term])
   end
 
   def new

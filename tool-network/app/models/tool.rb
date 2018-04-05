@@ -26,6 +26,11 @@ class Tool < ApplicationRecord
     end
   end
 
+  def self.search(search)
+    #Tool.where("name ILIKE ?", "%#{search}%")
+    #Tool.where("content ILIKE ?", "%#{search}%")
+  end
+
   def current_borrower
     if self.on_loan == true
       Loan.find_by(tool_id: self.id, active: true).borrower
