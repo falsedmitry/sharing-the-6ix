@@ -6,7 +6,7 @@ class Tool < ApplicationRecord
 
   has_many :owner_images
 
-  validates :name, :on_loan, :condition, :description, :loan_length, presence: true
+  validates :name, :condition, :description, :loan_length, presence: true
   validates :condition, numericality: { only_integer: true, greater_than: 0, less_than: 11 }
 
 

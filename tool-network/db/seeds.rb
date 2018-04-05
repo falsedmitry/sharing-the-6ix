@@ -22,7 +22,7 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", 
   tool = Tool.create!(
               name: Faker::App.name,
               description: Faker::Lorem.paragraph,
-              condition: rand(10),
+              condition: rand(10)+1,
               owner: User.first,
               on_loan: false,
               loan_length: rand(30)+1
@@ -32,7 +32,7 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", 
   5.times do
     tool.reviews.create!(
       comment: Faker::Lorem.paragraph,
-      rating: rand(5),
+      rating: rand(5)+1,
       user: User.first,
       tool: Tool.first
     )
