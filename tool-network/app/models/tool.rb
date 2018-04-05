@@ -21,11 +21,15 @@ class Tool < ApplicationRecord
   end
 
   def active_loan
-    Loan.find_by(user_id: self.current_borrower.id, tool_id: self.id, active: true)
+    if self.on_loan == true
+      Loan.find_by(user_id: self.current_borrower.id, tool_id: self.id, active: true)
+    end
   end
 
   def current_borrower
-    Loan.find_by(tool_id: self.id, active: true).borrower
+    if self.on_loan == true
+      Loan.find_by(tool_id: self.id, active: true).borrower
+    end
   end
 
 end
