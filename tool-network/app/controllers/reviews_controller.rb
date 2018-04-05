@@ -27,7 +27,6 @@ class ReviewsController < ApplicationController
     @review.rating = params[:review][:rating]
 
     if @review.save
-      upload_pictures
       redirect_to tool_url(params[:tool_id])
     else
       flash[:alert] = "Comment cannot be empty!"

@@ -7,6 +7,11 @@ class User < ApplicationRecord
 
   has_secure_password
 
+  validates :name, :email, :location, :photo, presence: true
+  validates :password, length: { minimum: 8 }
+  validates :email, uniqueness: true
+
+
   def tools_out_on_loan
     out_on_loan = []
 
