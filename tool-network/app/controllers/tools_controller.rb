@@ -50,6 +50,9 @@ class ToolsController < ApplicationController
 
   def show
     @tool = Tool.find(params[:id])
+    @review = Review.new
+    @reviews = @tool.reviews.order(created_at: :desc)
+
   end
 
   def destroy
