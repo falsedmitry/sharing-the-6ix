@@ -17,3 +17,11 @@
 <p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
 <%= link_to("Back to Tools", tools_path) %> | <%= link_to("Edit", edit_tool_path(@tool)) %> | <%= link_to("Delete", tool_path(@tool), method: :delete, data: {confirm: "Are you sure you want to delete this tool?"})  %>
 <hr>
+
+<h2>Reviews</h2>
+<%= render '/reviews/form', review: @review %>
+<hr>
+
+<% @reviews.each do |review| %>
+  <%= render '/reviews/review', review: review %>
+<% end %>

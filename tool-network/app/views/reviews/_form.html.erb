@@ -1,0 +1,22 @@
+<%= form_for([@tool, @review]) do |f| %>
+
+<div>
+  <%= f.label :comment %>
+  <%= f.text_area :comment %>
+</div>
+
+<div>
+  <%= f.label :rating %>
+  <%= f.range_field(:rating, in: 0..5, step: 1) %>
+</div>
+
+<div>
+  <%= f.label :picture %>
+  <%= f.file_field :picture, multiple: true %>
+</div>
+
+<div>
+  <%= f.submit %>
+</div>
+
+<% end %>
