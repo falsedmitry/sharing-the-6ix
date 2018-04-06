@@ -26,7 +26,11 @@ class Tool < ApplicationRecord
     end
   end
 
-  def self.search(search)
+  def self.search(search_term, neighbourhood)
+    if search_term && neighbourhood
+      where('name iLIKE ?', "%#{search_term}%").joins(:neighbourhoods)
+    end
+
     #Tool.where("name ILIKE ?", "%#{search}%")
     #Tool.where("content ILIKE ?", "%#{search}%")
   end

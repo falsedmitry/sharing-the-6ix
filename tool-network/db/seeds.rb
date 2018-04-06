@@ -1,17 +1,22 @@
-
+Neighbourhood.destroy_all
 Image.destroy_all
 Review.destroy_all
 Loan.destroy_all
 Tool.destroy_all
 User.destroy_all
 
-dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Dundas", photo: "no photo")
+dundas_west = Neighbourhood.create(name: "Dundas West")
+junction = Neighbourhood.create(name: "Junction")
+downtown = Neighbourhood.create(name: "Downtown")
+beaches = Neighbourhood.create(name: "Beaches")
 
-alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "King", photo: "no photo")
+dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Dundas", photo: "no photo", neighbourhood: dundas_west)
 
-debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", photo: "no photo")
+alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "King", photo: "no photo", neighbourhood: downtown)
 
-bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Markham", photo: "no photo")
+debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", photo: "no photo", neighbourhood: junction)
+
+bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Markham", photo: "no photo", neighbourhood: beaches)
 
 # Image.create(:category_name => 'technology')
 # Image.create(:category_name =>'art')
