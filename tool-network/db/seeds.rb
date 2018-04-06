@@ -1,8 +1,8 @@
 
 Image.destroy_all
 Review.destroy_all
+Loan.destroy_all
 Tool.destroy_all
-
 User.destroy_all
 
 dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Dundas", photo: "no photo")

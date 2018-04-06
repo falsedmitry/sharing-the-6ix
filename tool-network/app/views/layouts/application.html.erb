@@ -25,7 +25,11 @@
           <%= link_to "Register", new_user_path %> |
           <%= link_to "Login", :login %>
         <% end %>
-      </nav>
+        <%= form_tag(tools_path, :method => "get", id: "search-form") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Tools" %>
+        <%= submit_tag "Search" %>
+        <% end %>
+          </nav>
     </header>
 
 

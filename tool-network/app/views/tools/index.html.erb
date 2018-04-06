@@ -2,7 +2,6 @@
 <%= link_to 'Add Tool', new_tool_path %>
 
 <% @tools.each do |tool| %>
-
   <div class=“tools”>
 
    <p><%= link_to(tool.name, tool_path(tool)) %></p>
@@ -15,4 +14,4 @@
    <p>Description: <%= tool.description %></p>
    <hr>
   </div>
-<% end %>
+<% end %> 
