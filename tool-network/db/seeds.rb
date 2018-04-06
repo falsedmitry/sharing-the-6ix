@@ -1,9 +1,9 @@
-Neighbourhood.destroy_all
 Image.destroy_all
 Review.destroy_all
 Loan.destroy_all
 Tool.destroy_all
 User.destroy_all
+Neighbourhood.destroy_all
 
 dundas_west = Neighbourhood.create(name: "Dundas West")
 junction = Neighbourhood.create(name: "Junction")

@@ -46,3 +46,25 @@ Five main things:
 5. Git workflow
 // 6. Research APIs
 // 7. Photo uploads
+
+Annex
+Parkdale
+Junction
+Little Italy
+Beaches
+Dundas West
+Yorkdale
+Downtown
+Kensington Market
+Chinatown
+Roncesvalles
+Yonge & Eglinton
+East York
+Danforth
+Cabbagetown
+King West
+Liberty Village
+Leslieville
+North York
+Scarborough
+Etobicoke
