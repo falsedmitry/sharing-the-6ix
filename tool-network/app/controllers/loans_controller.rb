@@ -4,6 +4,10 @@ class LoansController < ApplicationController
     @tool = Tool.find(params[:tool_id])
   end
 
+  def show
+    redirect_to new_tool_loan_url
+  end
+
   def create
     @loan = Loan.new
     @loan.start_date = params[:loan][:start_date]
@@ -20,7 +24,6 @@ class LoansController < ApplicationController
       flash[:notice] = "Tool successfully lended!"
       redirect_to tool_url(@tool)
     else
-      flash[:error] = "Something went wrong"
       render :new
     end
   end

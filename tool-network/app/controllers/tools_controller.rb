@@ -21,13 +21,19 @@ class ToolsController < ApplicationController
     @tool.on_loan = false
     @tool.user_id = current_user.id
 
+
+    if params[:tool][:picture] != nil
       if @tool.save
         upload_pictures
-        redirect_to tools_url
+        redirect_to tool_url(@tool)
       else
         render :new
       end
+    else
+      @tool.errors[:tool] << "must contain at least one photo"
+      render :new
     end
+  end
 
   def edit
 
@@ -102,7 +108,7 @@ class ToolsController < ApplicationController
 
          picture = OwnerImage.new
          picture.file_name = img_file
-         picture.tool_id = @tool.id
+         picture.tool = @tool
 
          if !picture.save
            flash[:alert] = "The picture #{picture.file_name} is failed in uploading to the server."

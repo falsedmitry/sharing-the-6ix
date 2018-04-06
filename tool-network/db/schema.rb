@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180404204557) do
+ActiveRecord::Schema.define(version: 20180405200639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "images", force: :cascade do |t|
-    t.datetime "date"
     t.text "description"
     t.string "url"
     t.datetime "created_at", null: false
@@ -41,13 +40,13 @@ ActiveRecord::Schema.define(version: 20180404204557) do
 
   create_table "owner_images", force: :cascade do |t|
     t.string "file_name"
-    t.integer "tool_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "tool_id"
+    t.index ["tool_id"], name: "index_owner_images_on_tool_id"
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.datetime "date"
     t.integer "rating"
     t.text "comment"
     t.datetime "created_at", null: false
@@ -84,6 +83,7 @@ ActiveRecord::Schema.define(version: 20180404204557) do
   add_foreign_key "images", "tools"
   add_foreign_key "loans", "tools"
   add_foreign_key "loans", "users"
+  add_foreign_key "owner_images", "tools"
   add_foreign_key "reviews", "tools"
   add_foreign_key "reviews", "users"
   add_foreign_key "tools", "users"

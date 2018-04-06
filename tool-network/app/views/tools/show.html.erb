@@ -1,3 +1,4 @@
+
 <p><strong><%= @tool.name %></strong></p>
 
 <% @tool.owner_images.each do |image| %>
@@ -27,10 +28,11 @@
 
 <h2>Reviews</h2>
 <% if current_user == @tool.owner || (@tool.borrowers && @tool.borrowers.include?(current_user)) %>
-  <%= render '/reviews/form', review: @review %>
+  <%= render "shared/error", object: @review %>
+  <%= render 'reviews/form', review: @review %>
 <% end %>
 <hr>
 
 <% @reviews.each do |review| %>
-  <%= render '/reviews/review', review: review %>
+  <%= render 'reviews/review', review: review %>
 <% end %>

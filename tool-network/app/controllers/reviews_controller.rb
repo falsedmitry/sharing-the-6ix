@@ -2,6 +2,8 @@ class ReviewsController < ApplicationController
   before_action :load_review, only: [:edit, :update, :destroy]
 
   def create
+    @tool = Tool.find(params[:tool_id])
+    @reviews = @tool.reviews.order(created_at: :desc)
     @review = Review.new
 
     @review.comment = params[:review][:comment]
@@ -9,11 +11,15 @@ class ReviewsController < ApplicationController
     @review.tool_id = params[:tool_id]
     @review.user_id = current_user.id
 
-    if @review.save
-      upload_pictures
-      redirect_to tool_url(params[:tool_id])
+    if params[:review][:picture] != nil
+      if @review.save
+        upload_pictures
+        redirect_to tool_url(params[:tool_id])
+      else
+        render "/tools/show.html.erb"
+      end
     else
-      flash[:alert] = "Comment cannot be empty!"
+      flash[:alert] = "Please upload at least 1 photo"
       redirect_to tool_url(params[:tool_id])
     end
   end
@@ -23,6 +29,9 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @tool = Tool.find(params[:tool_id])
+    @reviews = @tool.reviews.order(created_at: :desc)
+
     @review.comment = params[:review][:comment]
     @review.rating = params[:review][:rating]
 
@@ -31,8 +40,7 @@ class ReviewsController < ApplicationController
       upload_pictures
       redirect_to tool_url(params[:tool_id])
     else
-      flash[:alert] = "Comment cannot be empty!"
-      redirect_to tool_url(params[:tool_id])
+      render "/tools/show.html.erb"
     end
   end
 
@@ -79,8 +87,7 @@ class ReviewsController < ApplicationController
           picture.date = Time.now
           picture.url = img_file
           picture.tool_id = params[:tool_id]
-          picture.review_id = @review.id
-          
+          picture.review = @review
           if !picture.save
             flash[:alert] = "The picture #{picture.file_name} is failed in uploading to the server."
           end

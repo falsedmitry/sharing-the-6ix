@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
 
   resources :tools do
-    resource :loan, only: %i(new create)
-    
+    resource :loan, only: %i(new show create)
+
     resources :reviews do
       resources :images
     end
