@@ -26,13 +26,35 @@ class Tool < ApplicationRecord
     end
   end
 
-  def self.search(search_term, neighbourhood)
-    if search_term && neighbourhood
-      where('name iLIKE ? AND neighbourhood = ?', "%#{search_term}%", "#{neighbourhood}")
-    end
+  def self.search(tool_name, neighbourhood_name)
+    if tool_name != "" && neighbourhood_name != ""
+      tools = []
 
-    #Tool.where("name ILIKE ?", "%#{search}%")
-    #Tool.where("content ILIKE ?", "%#{search}%")
+      where('name iLIKE ?', "%#{tool_name}%").each do |tool|
+        if tool.owner.neighbourhood.name == neighbourhood_name
+          tools << tool
+        end
+      end
+
+      return tools
+
+    elsif tool_name != ""
+      where('name iLIKE ?', "%#{tool_name}%")
+
+    elsif neighbourhood_name != ""
+      tools = []
+
+      all.each do |tool|
+        if tool.owner.neighbourhood.name == neighbourhood_name
+          tools << tool
+        end
+      end
+
+      return tools
+
+    else
+      all
+    end
   end
 
   def current_borrower

@@ -4,10 +4,7 @@ class ToolsController < ApplicationController
   before_action :require_user_authority, only: [:edit, :update, :destroy]
 
   def index
-    @tools = Tool.all.order(updated_at: :desc)
-    if params[:search] and params[:search] != ""
-      @tools = Tool.where("name iLIKE ? ", "%#{params[:search]}%")
-    end
+    @tools = Tool.search(params[:tool], params[:nbhd])
   end
 
   def new
