@@ -1,22 +1,42 @@
 <%= form_for([@tool, @review]) do |f| %>
 
-<div>
-  <%= f.label :comment %>
-  <%= f.text_area :comment %>
-</div>
+  <div>
+    <%= f.text_area :comment %>
+  </div>
 
-<div>
-  <%= f.label :rating %>
-  <%= f.range_field(:rating, in: 0..5, step: 1) %>
-</div>
+  <div>
+    <fieldset>
+      <legend>Rating</legend>
+      <%= f.label "1 Star" %>
+      <%= f.radio_button(:rating, value="1") %>
+      <%= f.label "2 Stars" %>
+      <%= f.radio_button(:rating, value="2") %>
+      <%= f.label "3 Stars" %>
+      <%= f.radio_button(:rating, value="3") %>
+      <%= f.label "4 Stars" %>
+      <%= f.radio_button(:rating, value="4") %>
+      <%= f.label "5 Stars" %>
+      <%= f.radio_button(:rating, value="5") %>
+    </fieldset>
+  </div>
 
-<div>
-  <%= f.label :picture %>
-  <%= f.file_field :picture, multiple: true %>
-</div>
+  <div>
+    <%= f.label :picture %>
+    <%= f.file_field :picture, multiple: true %>
+  </div>
 
-<div>
-  <%= f.submit %>
-</div>
+  <div>
+    <p>
+      Select pictures to be deleted:-
+      <br>
+      <%= f.collection_check_boxes(:image_ids, @review.images, :id, :url, checked: false) do |b| %>
+        <%= image_tag("/images/#{b.object.url}", size: "220x200") + b.check_box%>
+      <% end %>
+    </p>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
 
 <% end %>

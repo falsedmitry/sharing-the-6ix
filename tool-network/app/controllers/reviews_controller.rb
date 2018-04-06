@@ -36,6 +36,7 @@ class ReviewsController < ApplicationController
     @review.rating = params[:review][:rating]
 
     if @review.save
+      remove_pictures
       upload_pictures
       redirect_to tool_url(params[:tool_id])
     else
@@ -44,6 +45,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    remove_picture_files
     @review.destroy
     flash[:notice] = "You have successfully deleted the comment!"
     redirect_to tool_url(params[:tool_id])
@@ -54,16 +56,36 @@ class ReviewsController < ApplicationController
       @review = Review.find(params[:id])
     end
 
+    def remove_pictures
+      params[:review][:image_ids].each do |image_id|
+        unless image_id == ""
+          @image = Image.find(image_id)
+          File.delete(@@review_image_path.join(@image.url))
+          @image.destroy
+        end
+      end
+    end
+
+    def remove_picture_files
+      @review.images.each do |image|
+        @image = Image.find(image.id)
+        File.delete(@@review_image_path.join(image.url))
+        @image.destroy
+      end
+    end
+
     def upload_pictures
       unless params[:review][:picture] == nil
         uploaded_ios = params[:review][:picture]
         uploaded_ios.each do |uploaded_io|
-          File.open(Rails.root.join('public', 'images', uploaded_io.original_filename), 'wb') do |file|
+          img_file = @@prefix + uploaded_io.original_filename
+          File.open(@@review_image_path.join(img_file), 'wb') do |file|
             file.write(uploaded_io.read)
           end
+
           picture = Image.new
           picture.date = Time.now
-          picture.url = uploaded_io.original_filename
+          picture.url = img_file
           picture.tool_id = params[:tool_id]
           picture.review = @review
           if !picture.save

@@ -1,32 +1,43 @@
 <%= form_for(@tool) do |f| %>
 
-<div>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-</div>
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
 
-<div>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
-</div>
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
 
-<div>
-  <%= f.label :loan_length %>
-  <%= f.number_field :loan_length %>
-</div>
+  <div>
+    <%= f.label :loan_length %>
+    <%= f.number_field :loan_length %>
+  </div>
 
-<div>
-  <%= f.label :condition %>
-  <%= f.number_field :condition %>
-</div>
+  <div>
+    <%= f.label :condition %>
+    <%= f.number_field :condition %>
+  </div>
 
-<div>
-  <%= f.label :picture %>
-  <%= f.file_field :picture, multiple: true %>
-</div>
+  <div>
+    <%= f.label :picture %>
+    <%= f.file_field :picture, multiple: true %>
+  </div>
 
-<div>
-  <%= f.submit %>
-</div>
+  <div>
+    <p>
+      Select pictures to be deleted:-
+      <br>
+      <%= f.collection_check_boxes(:image_ids, @tool.owner_images, :id, :file_name, checked: false) do |b| %>
+        <%= image_tag("/owner_images/#{b.object.file_name}", size: "220x200") + b.check_box%>
+      <% end %>
+    </p>
+  </div>
+
+  <div>
+    <%= f.submit %>
+  </div>
 
 <% end %>
+<hr>

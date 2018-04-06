@@ -1,14 +1,17 @@
 
 <p><strong><%= @tool.name %></strong></p>
 
-<button type="button" name="lend-tool">
-  <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
-</button>
-
-<button type="button" name="get-tool-back">Get Back Tool</button>
-
 <% @tool.owner_images.each do |image| %>
-  <%= image_tag("/owner_images/#{image.file_name}", size: "220x200") %>
+<%= image_tag("/owner_images/#{image.file_name}", size: "220x200") %>
+<% end %>
+<br>
+
+<% if current_user == @tool.owner %>
+  <button type="button" name="lend-tool">
+    <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
+  </button>
+
+  <button type="button" name="get-tool-back">Get Back Tool</button>
 <% end %>
 
 <p>On Loan: <%= @tool.on_loan %></p>
@@ -16,12 +19,18 @@
 <p>Condition: <%= @tool.condition %></p>
 <p>Description: <%= @tool.description %></p>
 <p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
-<%= link_to("Back to Tools", tools_path) %> | <%= link_to("Edit", edit_tool_path(@tool)) %> | <%= link_to("Delete", tool_path(@tool), method: :delete, data: {confirm: "Are you sure you want to delete this tool?"})  %>
+<%= link_to("Back to Tools", tools_path) %>
+
+<% if current_user == @tool.owner %>
+  | <%= link_to("Edit", edit_tool_path(@tool)) %> | <%= link_to("Delete", tool_path(@tool), method: :delete, data: {confirm: "Are you sure you want to delete this tool?"}) %>
+<% end %>
 <hr>
 
 <h2>Reviews</h2>
-<%= render "shared/error", object: @review %>
-<%= render 'reviews/form', review: @review %>
+<% if current_user == @tool.owner || (@tool.borrowers && @tool.borrowers.include?(current_user)) %>
+  <%= render "shared/error", object: @review %>
+  <%= render 'reviews/form', review: @review %>
+<% end %>
 <hr>
 
 <% @reviews.each do |review| %>
