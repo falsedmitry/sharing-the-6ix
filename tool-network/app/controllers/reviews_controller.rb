@@ -84,12 +84,11 @@ class ReviewsController < ApplicationController
           end
 
           picture = Image.new
-          picture.date = Time.now
           picture.url = img_file
           picture.tool_id = params[:tool_id]
           picture.review = @review
           if !picture.save
-            flash[:alert] = "The picture #{picture.file_name} is failed in uploading to the server."
+            flash[:alert] = "The picture #{img_file} is failed in uploading to the server."
           end
         end
       end
