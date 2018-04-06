@@ -1,0 +1,9 @@
+<h2><%= @neighbourhood.name %></h2>
+
+<ul>
+  <% @neighbourhood.tools.each do |tool| %>
+    <li>
+      <%= link_to("#{tool.name}", tool_url(tool)) %>
+    </li>
+  <% end %>
+</ul>

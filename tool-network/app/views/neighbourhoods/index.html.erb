@@ -1,0 +1,9 @@
+<h2>Browse by Neighbourhood:</h2>
+
+<ul>
+  <% @neighbourhoods.each do |nbhd| %>
+    <li>
+      <%= link_to "#{nbhd.name}", neighbourhood_url(nbhd) %>
+    </li>
+  <% end %>
+</ul>

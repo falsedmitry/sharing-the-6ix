@@ -4,6 +4,9 @@ class NeighbourhoodsController < ApplicationController
   end
 
   def show
+    @neighbourhood = Neighbourhood.find(params[:id])
+
+    @tools = @neighbourhood.tools
 
   end
 end
