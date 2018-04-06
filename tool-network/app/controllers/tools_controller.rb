@@ -111,7 +111,7 @@ class ToolsController < ApplicationController
          picture.tool = @tool
 
          if !picture.save
-           flash[:alert] = "The picture #{picture.file_name} is failed in uploading to the server."
+           flash[:alert] = "The picture #{img_file} is failed in uploading to the server."
          end
        end
      end
