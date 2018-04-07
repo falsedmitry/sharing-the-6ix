@@ -3,8 +3,7 @@
   <head>
     <title>Sharing the 6ix</title>
     <%= csrf_meta_tags %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
   </head>
@@ -15,10 +14,9 @@
       <div class="flash-<%= key %>"><%= message %></div>
     <% end %>
 
-
+      <div class="wrapper">
         <nav class="site-nav">
-          <header class="site-header">
-            <h1 class="logo"><a href = "/">Sharing the 6ix</a></h1>
+            <h1 class="logo"><a href = "/images/app/assets/images/sharingthe6.svg">Sharing the 6ix</a></h1>
           <% if current_user %>
             <%= link_to "My Profile", user_path(current_user) %> |
             <%= link_to 'Add Tool', new_tool_path %> |
@@ -29,7 +27,7 @@
           <% end %>
 
         </nav>
-      </header>
+      </div>
 
       <div class = "search-bar">
         <%= form_tag(tools_path, :method => "get", id: "search-form") do %>

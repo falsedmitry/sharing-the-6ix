@@ -7,15 +7,22 @@ body {
   font-family: 'Raleway', 'Helvetica Neue', Helvetica, Arial, serif;
 }
 
+.wrapper {
+  width:100%;
+  position:relative;
+  left:0;
+  top:0;
+}
+
 .site-nav {
   overflow: hidden;
-  background-color: #333;
+  background-color: #FFE180;
 }
 
 .site-nav a {
   float: left;
   display: block;
-  color: #f2f2f2;
+  color: #282828;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -23,22 +30,31 @@ body {
 }
 
 .site-nav a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #C03F49;
+  color: #F0F4F1;
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #F0F4F1;
   color: white;
 }
 
 
 @media screen and (max-width: 600px) {
   .site-nav a:not(:first-child) {display: none;}
+  .site-nav a.icon {
+    float: right;
+    display: block;
+  }
 }
 
 @media screen and (max-width: 600px) {
   .site-nav.responsive {position: relative;}
+  .site-nav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
   .site-nav.responsive a {
     float: none;
     display: block;
