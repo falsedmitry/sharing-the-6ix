@@ -1,9 +1,11 @@
 
+Loan.destroy_all
 Image.destroy_all
 Review.destroy_all
 Tool.destroy_all
 
 User.destroy_all
+Category.destroy_all
 
 dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Dundas", photo: "no photo")
 
@@ -38,3 +40,12 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", 
     )
   end
 end
+
+Category.create(:category_name => 'Tools')
+Category.create(:category_name =>'Auto')
+Category.create(:category_name => 'Outdoor home')
+Category.create(:category_name => 'Indoor home')
+Category.create(:category_name => 'Audio')
+Category.create(:category_name => 'Video')
+Category.create(:category_name => 'Sports')
+Category.create(:category_name => 'Healths')
