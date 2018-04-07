@@ -13,17 +13,16 @@ class ToolsController < ApplicationController
 
   def create
     @tool = Tool.new
-
     @tool.name = params[:tool][:name]
     @tool.description = params[:tool][:description]
     @tool.condition = params[:tool][:condition]
     @tool.loan_length = params[:tool][:loan_length]
     @tool.on_loan = false
     @tool.user_id = current_user.id
-
-
     if params[:tool][:picture] != nil
       if @tool.save
+        @tool_cat_ids = []
+        write_tool_category
         upload_pictures
         redirect_to tool_url(@tool)
       else
@@ -36,7 +35,6 @@ class ToolsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -44,8 +42,13 @@ class ToolsController < ApplicationController
     @tool.description = params[:tool][:description]
     @tool.condition = params[:tool][:condition]
     @tool.loan_length = params[:tool][:loan_length]
-
+    if params[:tool][:image_ids].count > @tool.owner_images.count && params[:tool][:picture] == nil
+      @tool.errors[:tool] << "must contain at least one photo"
+      render :edit
+    else
       if @tool.save
+        remove_categories
+        write_tool_category
         remove_pictures
         upload_pictures
         redirect_to tools_url
@@ -53,6 +56,7 @@ class ToolsController < ApplicationController
         render :edit
       end
     end
+  end
 
   def show
     @tool = Tool.find(params[:id])
@@ -76,6 +80,26 @@ class ToolsController < ApplicationController
     unless current_user == @tool.owner
       flash[:alert] = "You are not authorized to modify this tool."
       redirect_to login_url
+    end
+  end
+
+  def remove_categories
+    @tool_cat_ids = @tool.categories.ids.map {|x| x.to_s }
+    remove_list = @tool_cat_ids - params[:tool][:category_ids]
+    remove_list.each do |cat_id|
+      @tool_category = Categorization.find_by(category_id: cat_id.to_i)
+      @tool.categories.delete(cat_id.to_i)
+    end
+  end
+
+  def write_tool_category
+    params[:tool][:category_ids].each do |cat_id|
+      unless cat_id == "" || @tool_cat_ids.include?(cat_id)
+        @tool_category = Categorization.new
+        @tool_category.tool_id = @tool.id
+        @tool_category.category_id = cat_id
+        @tool_category.save
+      end
     end
   end
 

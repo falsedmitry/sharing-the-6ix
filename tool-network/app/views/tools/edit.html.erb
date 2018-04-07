@@ -2,4 +2,5 @@
 
 <p> <%= link_to("Back", "/tools/#{@tool.id}") %></p>
 
+<%= render 'shared/error', object: @tool %>
 <%= render 'form', tool: @tool %>

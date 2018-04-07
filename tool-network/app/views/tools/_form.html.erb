@@ -21,6 +21,13 @@
   </div>
 
   <div>
+    <p>
+      Select Categories:-
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id,  :category_name) %>
+    </p>
+  </div>
+
+  <div>
     <%= f.label :picture %>
     <%= f.file_field :picture, multiple: true %>
   </div>
