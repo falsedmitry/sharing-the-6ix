@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'tools#index'
+  root 'neighbourhoods#index'
 
   get 'login' => 'sessions#new', :as => :login
   delete 'logout' => 'sessions#destroy', :as => :logout
@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :neighbourhoods
 end

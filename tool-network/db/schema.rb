@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406153706) do
+ActiveRecord::Schema.define(version: 20180406153727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,12 @@ ActiveRecord::Schema.define(version: 20180406153706) do
     t.boolean "active"
     t.index ["tool_id"], name: "index_loans_on_tool_id"
     t.index ["user_id"], name: "index_loans_on_user_id"
+  end
+
+  create_table "neighbourhoods", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "owner_images", force: :cascade do |t|
@@ -87,6 +93,8 @@ ActiveRecord::Schema.define(version: 20180406153706) do
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "neighbourhood_id"
+    t.index ["neighbourhood_id"], name: "index_users_on_neighbourhood_id"
   end
 
   add_foreign_key "images", "reviews"
@@ -97,4 +105,5 @@ ActiveRecord::Schema.define(version: 20180406153706) do
   add_foreign_key "reviews", "tools"
   add_foreign_key "reviews", "users"
   add_foreign_key "tools", "users"
+  add_foreign_key "users", "neighbourhoods"
 end

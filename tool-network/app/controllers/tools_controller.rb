@@ -4,7 +4,7 @@ class ToolsController < ApplicationController
   before_action :require_user_authority, only: [:edit, :update, :destroy]
 
   def index
-    @tools = Tool.all.order(updated_at: :desc)
+    @tools = Tool.search(params[:tool], params[:nbhd])
   end
 
   def new

@@ -20,7 +20,9 @@
   <ul>
     <% @borrowed_tools.each do |tool| %>
       <li class="tools">
-        <p>Tool: <%= tool.name %></p>
+        <% if tool.active_loan.overdue? %>
+          (OVERDUE)
+        <% end %>
         <p>Owner: <%= tool.owner.name %></p>
         <p>Borrowed on: <%= tool.active_loan.start_date %></p>
         <p>Due: <%= tool.active_loan.due_date %></p>
@@ -34,7 +36,12 @@
   <ul>
     <% @tools_out_on_loan.each do |tool| %>
       <li>
-        <p>Tool: <%= tool.name %></p>
+        <p>
+          <strong><%= tool.name %></strong>
+          <% if tool.active_loan.overdue? %>
+            (OVERDUE)
+          <% end %>
+        </p>
         <p>Borrower: <%= tool.current_borrower.name %></p>
         <p>Lent on: <%= tool.active_loan.start_date %></p>
         <p>Due on: <%= tool.active_loan.due_date %></p>
@@ -42,7 +49,6 @@
     <% end %>
   </ul>
 <% end %>
-
 
 <% if !@owned_tools.empty? %>
   <% if @user == current_user %>
