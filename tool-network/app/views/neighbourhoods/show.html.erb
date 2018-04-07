@@ -1,9 +1,19 @@
 <h2><%= @neighbourhood.name %></h2>
 
+<h4>Popular tools in <%= @neighbourhood.name %>:</h4>
 <ul>
   <% @neighbourhood.tools.each do |tool| %>
     <li>
       <%= link_to("#{tool.name}", tool_url(tool)) %>
+    </li>
+  <% end %>
+</ul>
+
+<h4>Users in <%= @neighbourhood.name %>:</h4>
+<ul>
+  <% @users.each do |user| %>
+    <li>
+      <%= user.name %>
     </li>
   <% end %>
 </ul>

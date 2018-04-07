@@ -27,7 +27,7 @@
 <hr>
 
 <h2>Reviews</h2>
-<% if current_user == @tool.owner || (@tool.borrowers && @tool.borrowers.include?(current_user)) %>
+<% if current_user != @tool.owner && (@tool.borrowers && @tool.borrowers.include?(current_user)) %>
   <%= render "shared/error", object: @review %>
   <%= render 'reviews/form', review: @review %>
 <% end %>
