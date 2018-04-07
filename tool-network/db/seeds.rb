@@ -47,7 +47,7 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", 
 end
 
 Category.create(:category_name => 'Tools')
-Category.create(:category_name =>'Auto')
+Category.create(:category_name => 'Auto')
 Category.create(:category_name => 'Outdoor home')
 Category.create(:category_name => 'Indoor home')
 Category.create(:category_name => 'Audio')
