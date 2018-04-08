@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   </head>
 
   <body>
@@ -16,13 +16,15 @@
 
       <div class="wrapper">
         <nav class="site-nav">
-            <h1 class="logo"><a href = "/images/app/assets/images/sharingthe6.svg">Sharing the 6ix</a></h1>
+
+       <header class="site-header">
+        <h1 class="logo"><a href = "/">Sharing the 6ix</a></h1>
           <% if current_user %>
-            <%= link_to "My Profile", user_path(current_user) %> |
-            <%= link_to 'Add Tool', new_tool_path %> |
+            <%= link_to "My Profile", user_path(current_user) %>
+            <%= link_to 'Add Tool', new_tool_path %>
             <%= link_to "Logout", :logout, method: :delete %>
           <% else %>
-            <%= link_to "Register", new_user_path %> |
+            <%= link_to "Register", new_user_path %>
             <%= link_to "Login", :login %>
           <% end %>
 
