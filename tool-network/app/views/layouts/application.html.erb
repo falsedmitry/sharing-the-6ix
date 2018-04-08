@@ -4,8 +4,15 @@
     <title>Sharing the 6ix</title>
     <%= csrf_meta_tags %>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
   </head>
 
   <body>
@@ -31,10 +38,10 @@
           <%= text_field_tag :nbhd, params[:nbhd], placeholder: "Neighbourhood" %>
         <%= submit_tag "Find tool" %>
         <% end %>
-          </nav>
+      </nav>
     </header>
 
-
     <%= yield %>
+
   </body>
 </html>

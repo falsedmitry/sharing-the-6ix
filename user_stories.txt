@@ -53,7 +53,7 @@ Junction
 Little Italy
 Beaches
 Dundas West
-Yorkdale
+Yorkville
 Downtown
 Kensington Market
 Chinatown
@@ -68,3 +68,5 @@ Leslieville
 North York
 Scarborough
 Etobicoke
+
+Google Maps API key: AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM
