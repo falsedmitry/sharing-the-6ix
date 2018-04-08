@@ -13,12 +13,10 @@
     <% flash.each do |key, message| %>
       <div class="flash-<%= key %>"><%= message %></div>
     <% end %>
-
-      <div class="wrapper">
-        <nav class="site-nav">
-
-       <header class="site-header">
-        <h1 class="logo"><a href = "/">Sharing the 6ix</a></h1>
+    <header class="site-header">
+      <nav class="site-nav">
+        <a href = "/"><img src = "app/assets/images/sharingthe6-01.png" alt="Sharing the 6ix"</a>
+        <span id="nav-links">
           <% if current_user %>
             <%= link_to "My Profile", user_path(current_user) %>
             <%= link_to 'Add Tool', new_tool_path %>
@@ -27,18 +25,18 @@
             <%= link_to "Register", new_user_path %>
             <%= link_to "Login", :login %>
           <% end %>
-
-        </nav>
-      </div>
-
+        </span>
+      </nav>
+    </header>
+    <div class="container">
       <div class = "search-bar">
-        <%= form_tag(tools_path, :method => "get", id: "search-form") do %>
-        <%= text_field_tag :tool, params[:tool], placeholder: "Tool" %>
-        <%= text_field_tag :nbhd, params[:nbhd], placeholder: "Neighbourhood" %>
-        <%= submit_tag "Find tool" %>
-        <% end %>
+          <%= form_tag(tools_path, :method => "get", id: "search-form") do %>
+          <%= text_field_tag :tool, params[:tool], placeholder: "Tool" %>
+          <%= text_field_tag :nbhd, params[:nbhd], placeholder: "Neighbourhood" %>
+          <%= submit_tag "Find tool" %>
+          <% end %>
       </div>
-
-    <%= yield %>
+      <%= yield %>
+    </div>
   </body>
 </html>

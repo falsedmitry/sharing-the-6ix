@@ -7,16 +7,17 @@ body {
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
 }
 
-.wrapper {
-  width:100%;
-  position:relative;
-  left:0;
-  top:0;
+
+.container {
+  width:50%;
+  margin: 15px auto;
 }
 
 .site-nav {
   overflow: hidden;
   background-color: #FFE180;
+  min-height: 80px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .site-nav a {
@@ -37,4 +38,20 @@ body {
 .active {
   background-color: #F0F4F1;
   color: white;
+}
+
+a:visited {
+  color: #C03F49;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+@media screen only and (max-width: 680px) {
+  #nav-links {
+    display: none !important;
+  }
 }
