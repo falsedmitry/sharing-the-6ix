@@ -5,39 +5,40 @@ User.destroy_all
 Category.destroy_all
 Neighbourhood.destroy_all
 
-annex = Neighbourhood.create(name: "The Annex")
-parkdale = Neighbourhood.create(name: "Parkdale")
-junction = Neighbourhood.create(name: "The Junction")
-little_italy = Neighbourhood.create(name: "Little Italy")
-beaches = Neighbourhood.create(name: "The Beaches")
-dundas_west = Neighbourhood.create(name: "Dundas West")
-yorkville = Neighbourhood.create(name: "Yorkville")
-downtown = Neighbourhood.create(name: "Downtown")
-kensington_market = Neighbourhood.create(name: "Kensington Market")
-chinatown = Neighbourhood.create(name: "Chinatown")
-roncesvalles = Neighbourhood.create(name: "Roncesvalles")
-yonge_eglinton = Neighbourhood.create(name: "Yonge & Eglinton")
-east_york = Neighbourhood.create(name: "East York")
-danforth = Neighbourhood.create(name: "The Danforth")
-cabbagetown = Neighbourhood.create(name: "Cabbagetown")
-liberty_village = Neighbourhood.create(name: "Liberty Village")
-leslieville = Neighbourhood.create(name: "Leslieville")
-north_york = Neighbourhood.create(name: "North York")
-scarborough = Neighbourhood.create(name: "Scarborough")
-etobicoke = Neighbourhood.create(name: "Etobicoke")
+neighbourhood_names = [
+  "The Annex",
+  "Parkdale",
+  "The Junction",
+  "Little Italy",
+  "The Beaches",
+  "Dundas West",
+  "Yorkville",
+  "Downtown",
+  "Kensington Market",
+  "Chinatown",
+  "Roncesvalles",
+  "Yonge & Eglinton",
+  "East York",
+  "The Danforth",
+  "Cabbagetown",
+  "Liberty Village",
+  "Leslieville",
+  "North York",
+  "Scarborough",
+  "Etobicoke"
+]
 
-dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X8", neighbourhood: dundas_west)
+neighbourhood_names.each do |nbhd_name|
+  Neighbourhood.create(name: nbhd_name)
+end
 
-alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X9", neighbourhood: dundas_west)
+dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X8", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
 
-debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", neighbourhood: junction)
+alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X9", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
 
-bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Markham", neighbourhood: beaches)
+debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", neighbourhood: Neighbourhood.find_by(name: "The Junction"))
 
-# Image.create(:category_name => 'technology')
-# Image.create(:category_name =>'art')
-# Image.create(:category_name => 'sports')
-# Image.create(:category_name => 'food')
+bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Markham", neighbourhood: Neighbourhood.find_by(name: "The Beaches"))
 
 10.times do
   tool = Tool.create!(
