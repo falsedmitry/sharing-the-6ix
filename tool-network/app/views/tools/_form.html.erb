@@ -21,6 +21,12 @@
   </div>
 
   <div>
+    <%= f.label :owner_pictures %>
+    <%= f.file_field :owner_pictures, multiple: true %>
+  </div>
+
+
+  <div>
     <p>
       Select Categories:-
       <%= f.collection_check_boxes(:category_ids, Category.all, :id,  :category_name) %>

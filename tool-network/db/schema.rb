@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180406153727) do
+ActiveRecord::Schema.define(version: 20180409154750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20180406153727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.json "owner_pictures"
     t.index ["user_id"], name: "index_tools_on_user_id"
   end
 
@@ -94,6 +95,7 @@ ActiveRecord::Schema.define(version: 20180406153727) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "neighbourhood_id"
+    t.string "avatar"
     t.index ["neighbourhood_id"], name: "index_users_on_neighbourhood_id"
   end
 

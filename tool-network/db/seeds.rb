@@ -1,4 +1,3 @@
-
 Image.destroy_all
 Review.destroy_all
 Loan.destroy_all
@@ -28,15 +27,13 @@ north_york = Neighbourhood.create(name: "North York")
 scarborough = Neighbourhood.create(name: "Scarborough")
 etobicoke = Neighbourhood.create(name: "Etobicoke")
 
+dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X8", neighbourhood: dundas_west)
 
+alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X9", neighbourhood: dundas_west)
 
-dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X8", photo: "no photo", neighbourhood: dundas_west)
+debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", neighbourhood: junction)
 
-alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X9", photo: "no photo", neighbourhood: dundas_west)
-
-debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", photo: "no photo", neighbourhood: junction)
-
-bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Markham", photo: "no photo", neighbourhood: beaches)
+bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Markham", neighbourhood: beaches)
 
 # Image.create(:category_name => 'technology')
 # Image.create(:category_name =>'art')
@@ -50,7 +47,8 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", 
               condition: rand(10)+1,
               owner: User.first,
               on_loan: false,
-              loan_length: rand(30)+1
+              loan_length: rand(30)+1,
+              owner_pictures: nil
             )
             # tool.categories = [Image.first]
 
