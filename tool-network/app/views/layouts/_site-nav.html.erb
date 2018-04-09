@@ -1,0 +1,14 @@
+  <nav class='site-nav'>
+    <a href = "/"><img src = "sharingthe6-01.png" alt="Sharing the 6ix" id="logo"></a>
+    <nav id="nav-links">
+      <% if current_user %>
+        <%= link_to "My Profile", user_path(current_user) %>
+        <%= link_to 'Add Tool', new_tool_path %>
+        <%= link_to "Logout", :logout, method: :delete %>
+      <% else %>
+        <%= link_to "Register", new_user_path %>
+        <%= link_to "Login", :login %>
+      <% end %>
+    </nav>
+  </nav>
+</nav>
