@@ -6,9 +6,7 @@ $offwhite: #F0F4F1;
 $lightblack: #282828;
 $lightyellow: #FFE180;
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
@@ -30,6 +28,10 @@ body {
   background-color: $lightyellow;
   min-height: 80px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+  clear: both;
+  max-height: 0;
+  transition: max-height .2s ease-out;
+
 }
 
 .site-nav a {
@@ -49,11 +51,6 @@ body {
   }
 }
 
-.active {
-  background-color: $offwhite;
-  color: white;
-}
-
 a:visited {
   color: $lightred;
 }
@@ -62,6 +59,86 @@ a:visited {
   display: flex;
   justify-content: center;
   padding: 20px;
+}
+
+/*hamburger menu*/
+
+
+.menu-icon {
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.menu-icon .navicon {
+  background: #333;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+
+.menu-icon .navicon:before,
+.menu-icon .navicon:after {
+  background: #333;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.menu-icon .navicon:before {
+  top: 5px;
+}
+.menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.menu-btn {
+  display: none;
+}
+
+.menu-btn:checked ~ .site-nav {
+  max-height: 240px;
+}
+
+.menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+.menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+
+@media (max-width: 550px) {
+  .site-nav {
+    float: right;
+    max-height: none;
+  }
+
+  #nav-links {
+    display: none;
+    float: left;
+    padding: 20px 30px;
+  }
 }
 
 
@@ -86,14 +163,4 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
-}
-
-
-@media screen and (max-width: 425px) {
-  #nav-links {
-    display: none;
-  }
-  #hamburger {
-    display: block;
-  }
 }
