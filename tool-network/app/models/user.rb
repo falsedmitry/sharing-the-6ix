@@ -7,8 +7,9 @@ class User < ApplicationRecord
   belongs_to :neighbourhood
 
   has_secure_password
+  mount_uploader :avatar, AvatarUploader
 
-  validates :name, :email, :location, :photo, presence: true
+  validates :name, :email, :location, presence: true
   validates :password, length: { minimum: 8 }
   validates :email, uniqueness: true
 
