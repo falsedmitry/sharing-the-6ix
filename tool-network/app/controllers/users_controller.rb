@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user.email = params[:user][:email]
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
-    @user.location = params[:user][:location]
+    @user.postal_code = params[:user][:postal_code]
     @user.neighbourhood = Neighbourhood.find_by(name: params[:user][:neighbourhood])
     @user.avatar = params[:user][:avatar]
 
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def update
     @user.email = params[:user][:email]
     @user.photo = params[:user][:photo]
-    @user.location = params[:user][:location]
+    @user.postal_code = params[:user][:postal_code]
 
     if @user.save
       redirect_to user_url
