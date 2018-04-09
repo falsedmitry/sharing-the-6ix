@@ -1,26 +1,26 @@
 class ReviewsController < ApplicationController
   before_action :load_review, only: [:edit, :update, :destroy]
+  before_action :load_tool
 
   def create
     @tool = Tool.find(params[:tool_id])
     @reviews = @tool.reviews.order(created_at: :desc)
-    @review = Review.new
+    @review = Review.new(params.require(:review).permit(:comment, :rating, {images: []}))
 
-    @review.comment = params[:review][:comment]
-    @review.rating = params[:review][:rating]
     @review.tool_id = params[:tool_id]
     @review.user_id = current_user.id
 
-    if params[:review][:picture] != nil
+    if params[:review][:images] != []
       if @review.save
-        upload_pictures
-        redirect_to tool_url(params[:tool_id])
+        redirect_to tool_url(@tool)
       else
+        puts @tool.errors.full_messages
+        flash[:alert] = "Something went wrong."
         render "/tools/show.html.erb"
       end
     else
       flash[:alert] = "Please upload at least 1 photo"
-      redirect_to tool_url(params[:tool_id])
+      redirect_to tool_url(@tool)
     end
   end
 
@@ -32,28 +32,28 @@ class ReviewsController < ApplicationController
     @tool = Tool.find(params[:tool_id])
     @reviews = @tool.reviews.order(created_at: :desc)
 
-    @review.comment = params[:review][:comment]
-    @review.rating = params[:review][:rating]
+    Review.update(@review.id, params.require(:review).permit(:comment, :rating, {images: []}))
 
     if @review.save
-      remove_pictures
-      upload_pictures
-      redirect_to tool_url(params[:tool_id])
+      redirect_to tool_url(@tool)
     else
       render "/tools/show.html.erb"
     end
   end
 
   def destroy
-    remove_picture_files
     @review.destroy
     flash[:notice] = "You have successfully deleted the comment!"
-    redirect_to tool_url(params[:tool_id])
+    redirect_to tool_url(@tool)
   end
 
   private
     def load_review
       @review = Review.find(params[:id])
+    end
+
+    def load_tool
+      @tool = Tool.find(params[:tool_id])
     end
 
     def remove_pictures
