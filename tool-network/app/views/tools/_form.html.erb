@@ -25,21 +25,10 @@
     <%= f.file_field :owner_pictures, multiple: true %>
   </div>
 
-
   <div>
     <p>
       Select Categories:-
       <%= f.collection_check_boxes(:category_ids, Category.all, :id,  :category_name) %>
-    </p>
-  </div>
-
-  <div>
-    <p>
-      Select pictures to be deleted:-
-      <br>
-      <%= f.collection_check_boxes(:image_ids, @tool.owner_images, :id, :file_name, checked: false) do |b| %>
-        <%= image_tag("/owner_images/#{b.object.file_name}", size: "220x200") + b.check_box%>
-      <% end %>
     </p>
   </div>
 
