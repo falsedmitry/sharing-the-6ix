@@ -24,7 +24,7 @@
         <% if tool.active_loan.overdue? %>
           (OVERDUE)
         <% end %>
-        <p>Owner: <%= tool.owner.name %></p>
+        <p>Owner: <%= link_to("#{tool.owner.name}", user_path(tool.owner)) %></p>
         <p>Borrowed on: <%= tool.active_loan.start_date %></p>
         <p>Due: <%= tool.active_loan.due_date %></p>
       </li>
@@ -33,25 +33,27 @@
 <% end %>
 
 <% if current_user = @user %>
-  <p>Tools Out On Loan</p>
-  <ul>
-    <% @tools_out_on_loan.each do |tool| %>
-      <li>
-        <p>
-          <strong><%= tool.name %></strong>
-          <% if tool.active_loan.overdue? %>
-            (OVERDUE)
-          <% end %>
-        </p>
-        <p>Borrower: <%= tool.current_borrower.name %></p>
-        <p>Lent on: <%= tool.active_loan.start_date %></p>
-        <p>Due on: <%= tool.active_loan.due_date %></p>
-      </li>
-    <% end %>
-  </ul>
+  <% unless @tools_out_on_loan.empty? %>
+    <p>Tools Out On Loan</p>
+    <ul>
+      <% @tools_out_on_loan.each do |tool| %>
+        <li>
+          <p>
+            <strong><%= link_to("#{tool.name}", tool_path(tool)) %></strong>
+            <% if tool.active_loan.overdue? %>
+              (OVERDUE)
+            <% end %>
+          </p>
+          <p>Borrower: <%= link_to("#{tool.current_borrower.name}", user_path(tool.owner)) %></p>
+          <p>Lent on: <%= tool.active_loan.start_date %></p>
+          <p>Due on: <%= tool.active_loan.due_date %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 <% end %>
 
-<% if !@owned_tools.empty? %>
+<% unless @owned_tools.empty? %>
   <% if @user == current_user %>
     <p>My Inventory:</p>
   <% else %>
@@ -62,7 +64,7 @@
 <ul>
   <% @owned_tools.each do |tool| %>
     <li class="tools">
-     <p><strong><%= tool.name %></strong></p>
+     <p><strong><%= link_to("#{tool.name}", tool_path(tool)) %></strong></p>
      <p>Loan Length: <%= tool.loan_length %></p>
      <p>Condition: <%= tool.condition %></p>
      <p>Description: <%= tool.description %></p>

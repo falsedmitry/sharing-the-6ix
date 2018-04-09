@@ -100,41 +100,42 @@ class ToolsController < ApplicationController
     end
   end
 
-  def remove_pictures
-    params[:tool][:image_ids].each do |image_id|
-      unless image_id == ""
-        @image = OwnerImage.find(image_id)
-        File.delete(@@owner_image_path.join(@image.file_name))
-        @image.destroy
-      end
-    end
-  end
-
-  def remove_picture_files
-    @tool.owner_images.each do |image|
-      @image = OwnerImage.find(image.id)
-      File.delete(@@owner_image_path.join(image.file_name))
-      @image.destroy
-    end
-  end
-
-  def upload_pictures
-     unless params[:tool][:picture] == nil
-       uploaded_ios = params[:tool][:picture]
-       uploaded_ios.each do |uploaded_io|
-         img_file = @@prefix + uploaded_io.original_filename
-         File.open(@@owner_image_path.join(img_file), 'wb') do |file|
-           file.write(uploaded_io.read)
-         end
-
-         picture = OwnerImage.new
-         picture.file_name = img_file
-         picture.tool = @tool
-
-         if !picture.save
-           flash[:alert] = "The picture #{img_file} is failed in uploading to the server."
-         end
-       end
-     end
-   end
+  # def remove_pictures
+  #   params[:tool][:image_ids].each do |image_id|
+  #     unless image_id == ""
+  #       @image = OwnerImage.find(image_id)
+  #       File.delete(@@owner_image_path.join(@image.file_name))
+  #       @image.destroy
+  #     end
+  #   end
+  # end
+  #
+  # def remove_picture_files
+  #   @tool.owner_images.each do |image|
+  #     @image = OwnerImage.find(image.id)
+  #     File.delete(@@owner_image_path.join(image.file_name))
+  #     @image.destroy
+  #   end
+  # end
+  #
+  # def upload_pictures
+  #    unless params[:tool][:picture] == nil
+  #      uploaded_ios = params[:tool][:picture]
+  #      uploaded_ios.each do |uploaded_io|
+  #        img_file = @@prefix + uploaded_io.original_filename
+  #        File.open(@@owner_image_path.join(img_file), 'wb') do |file|
+  #          file.write(uploaded_io.read)
+  #        end
+  #
+  #        picture = OwnerImage.new
+  #        picture.file_name = img_file
+  #        picture.tool = @tool
+  #
+  #        if !picture.save
+  #          flash[:alert] = "The picture #{img_file} is failed in uploading to the server."
+  #        end
+  #      end
+  #    end
+  #  end
+  
 end
