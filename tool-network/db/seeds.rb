@@ -7,10 +7,28 @@ User.destroy_all
 Category.destroy_all
 Neighbourhood.destroy_all
 
+annex = Neighbourhood.create(name: "The Annex")
+parkdale = Neighbourhood.create(name: "Parkdale")
+junction = Neighbourhood.create(name: "The Junction")
+little_italy = Neighbourhood.create(name: "Little Italy")
+beaches = Neighbourhood.create(name: "The Beaches")
 dundas_west = Neighbourhood.create(name: "Dundas West")
-junction = Neighbourhood.create(name: "Junction")
+yorkville = Neighbourhood.create(name: "Yorkville")
 downtown = Neighbourhood.create(name: "Downtown")
-beaches = Neighbourhood.create(name: "Beaches")
+kensington_market = Neighbourhood.create(name: "Kensington Market")
+chinatown = Neighbourhood.create(name: "Chinatown")
+roncesvalles = Neighbourhood.create(name: "Roncesvalles")
+yonge_eglinton = Neighbourhood.create(name: "Yonge & Eglinton")
+east_york = Neighbourhood.create(name: "East York")
+danforth = Neighbourhood.create(name: "The Danforth")
+cabbagetown = Neighbourhood.create(name: "Cabbagetown")
+liberty_village = Neighbourhood.create(name: "Liberty Village")
+leslieville = Neighbourhood.create(name: "Leslieville")
+north_york = Neighbourhood.create(name: "North York")
+scarborough = Neighbourhood.create(name: "Scarborough")
+etobicoke = Neighbourhood.create(name: "Etobicoke")
+
+
 
 dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X8", photo: "no photo", neighbourhood: dundas_west)
 

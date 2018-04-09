@@ -11,7 +11,7 @@
 
 <h4>Users in <%= @neighbourhood.name %>:</h4>
 <ul>
-  <% @users.each do |user| %>
+  <% @users_in_neighbourhood.each do |user| %>
     <li>
       <%= user.name %>
     </li>
@@ -28,7 +28,7 @@ function initMap() {
 
   var map = new google.maps.Map(
     document.querySelector('#map'), {
-    zoom: 13,
+    zoom: 14,
     center: postalCode
   });
 
