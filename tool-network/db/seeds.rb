@@ -1,4 +1,3 @@
-Image.destroy_all
 Review.destroy_all
 Loan.destroy_all
 Tool.destroy_all

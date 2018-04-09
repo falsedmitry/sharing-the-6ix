@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409154750) do
+ActiveRecord::Schema.define(version: 20180409195917) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,16 +24,6 @@ ActiveRecord::Schema.define(version: 20180409154750) do
   create_table "categorizations", id: false, force: :cascade do |t|
     t.bigint "category_id", null: false
     t.bigint "tool_id", null: false
-  end
-
-  create_table "images", force: :cascade do |t|
-    t.string "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "tool_id"
-    t.bigint "review_id"
-    t.index ["review_id"], name: "index_images_on_review_id"
-    t.index ["tool_id"], name: "index_images_on_tool_id"
   end
 
   create_table "loans", force: :cascade do |t|
@@ -54,14 +44,6 @@ ActiveRecord::Schema.define(version: 20180409154750) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "owner_images", force: :cascade do |t|
-    t.string "file_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "tool_id"
-    t.index ["tool_id"], name: "index_owner_images_on_tool_id"
-  end
-
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "comment"
@@ -69,6 +51,7 @@ ActiveRecord::Schema.define(version: 20180409154750) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "tool_id"
+    t.json "images"
     t.index ["tool_id"], name: "index_reviews_on_tool_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -99,11 +82,8 @@ ActiveRecord::Schema.define(version: 20180409154750) do
     t.index ["neighbourhood_id"], name: "index_users_on_neighbourhood_id"
   end
 
-  add_foreign_key "images", "reviews"
-  add_foreign_key "images", "tools"
   add_foreign_key "loans", "tools"
   add_foreign_key "loans", "users"
-  add_foreign_key "owner_images", "tools"
   add_foreign_key "reviews", "tools"
   add_foreign_key "reviews", "users"
   add_foreign_key "tools", "users"
