@@ -4,7 +4,7 @@ class Tool < ApplicationRecord
   has_many :loans
   has_many :borrowers, through: :loans, source: :borrower
 
-  has_many :owner_images
+  has_many :owner_images, dependent: :destroy
   has_and_belongs_to_many :categories, :join_table => :categorizations
 
   validates :name, :condition, :description, :loan_length, presence: true

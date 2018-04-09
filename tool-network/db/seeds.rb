@@ -12,9 +12,9 @@ junction = Neighbourhood.create(name: "Junction")
 downtown = Neighbourhood.create(name: "Downtown")
 beaches = Neighbourhood.create(name: "Beaches")
 
-dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Dundas", photo: "no photo", neighbourhood: dundas_west)
+dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X8", photo: "no photo", neighbourhood: dundas_west)
 
-alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "King", photo: "no photo", neighbourhood: downtown)
+alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X9", photo: "no photo", neighbourhood: dundas_west)
 
 debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", photo: "no photo", neighbourhood: junction)
 
