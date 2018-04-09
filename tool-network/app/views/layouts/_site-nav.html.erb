@@ -1,10 +1,7 @@
   <nav class='site-nav'>
-    <a href = "/"><img src = "sharingthe6-01.png" alt="Sharing the 6ix" id="logo"></a>
+    <a href = "/">
+      <img src = "sharingthe6-01.png" alt="Sharing the 6ix" id="logo"></a>
 
-    <input class="menu-btn" type="checkbox" id="menu-btn" />
-    <label class="menu-icon" for="menu-btn">
-      <span class="navicon"></span>
-    </label>
     <nav id="nav-links">
 
       <% if current_user %>
@@ -15,6 +12,6 @@
         <%= link_to "Register", new_user_path %>
         <%= link_to "Login", :login %>
       <% end %>
-
+      <img src = "icon.png" alt="menu" id="hamburger-menu"></a>
     </nav>
   </nav>

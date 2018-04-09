@@ -21,30 +21,26 @@ body {
 
 #logo {
   width: 100px;
+  display: inline-block;
 }
 
 .site-nav {
-  overflow: hidden;
   background-color: $lightyellow;
   min-height: 80px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  clear: both;
   max-height: 0;
-  transition: max-height .2s ease-out;
 
 }
 
-.site-nav a {
-  float: left;
+#nav-links {
+  display: inline-block;
   text-decoration: none;
-  display: block;
   color: $lightblack;
   text-align: center;
-  padding: 14px 16px;
   font-size: 17px;
 }
 
-.site-nav {
+#nav-links {
   & :hover {
   background-color: $lightred;
   color: $offwhite;
@@ -61,83 +57,25 @@ a:visited {
   padding: 20px;
 }
 
-/*hamburger menu*/
-
-
-.menu-icon {
-  cursor: pointer;
+#hamburger-menu {
   display: inline-block;
-  float: right;
-  padding: 28px 20px;
-  position: relative;
-  user-select: none;
+  width: 30px;
 }
 
-.menu-icon .navicon {
-  background: #333;
-  display: block;
-  height: 2px;
-  position: relative;
-  transition: background .2s ease-out;
-  width: 18px;
-}
-
-.menu-icon .navicon:before,
-.menu-icon .navicon:after {
-  background: #333;
-  content: '';
-  display: block;
-  height: 100%;
-  position: absolute;
-  transition: all .2s ease-out;
-  width: 100%;
-}
-
-.menu-icon .navicon:before {
-  top: 5px;
-}
-.menu-icon .navicon:after {
-  top: -5px;
-}
-
-/* menu btn */
-
-.menu-btn {
-  display: none;
-}
-
-.menu-btn:checked ~ .site-nav {
-  max-height: 240px;
-}
-
-.menu-btn:checked ~ .menu-icon .navicon {
-  background: transparent;
-}
-
-.menu-btn:checked ~ .menu-icon .navicon:before {
-  transform: rotate(-45deg);
-}
-
-.menu-btn:checked ~ .menu-icon .navicon:after {
-  transform: rotate(45deg);
-}
-
-.menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
-.menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
-  top: 0;
-}
 
 
 @media (max-width: 550px) {
   .site-nav {
-    float: right;
+    display: block;
     max-height: none;
+  }
+
+  #hamburger-menu {
+    display: block;
   }
 
   #nav-links {
     display: none;
-    float: left;
-    padding: 20px 30px;
   }
 }
 
