@@ -5,16 +5,21 @@ class NeighbourhoodsController < ApplicationController
 
   def show
     @neighbourhood = Neighbourhood.find(params[:id])
-    @users = @neighbourhood.users
+    @users = User.all
 
-    @locations = []
+    @coords = []
     @users.each do |user|
-      @locations << user.location
+      postal_code = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{user.location.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM").body)["results"][0]["geometry"]["location"]
+
+      lat = postal_code["lat"]
+      lng = postal_code["lng"]
+
+      @coords << [lat, lng]
     end
 
     @tools = @neighbourhood.tools
 
-    case @neighbourhood.name
+    case @neighbourhood.name # Just to translate some locations to GoogleMaps API language:
     when "Junction"
       code = "The+Junction,Toronto"
     when "Beaches"
@@ -58,6 +63,6 @@ class NeighbourhoodsController < ApplicationController
     @lat = location["lat"]
     @lng = location["lng"]
 
-
+    # error
   end
 end
