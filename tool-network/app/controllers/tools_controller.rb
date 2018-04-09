@@ -12,26 +12,45 @@ class ToolsController < ApplicationController
   end
 
   def create
-    @tool = Tool.new
-    @tool.name = params[:tool][:name]
-    @tool.description = params[:tool][:description]
-    @tool.condition = params[:tool][:condition]
-    @tool.loan_length = params[:tool][:loan_length]
+    @tool = Tool.new(params.require(:tool).permit(:name, :description, :condition, :loan_length, {owner_pictures: []}, :category_ids, :image_ids))
+    # @tool.name = params[:tool][:name]
+    # @tool.description = params[:tool][:description]
+    # @tool.condition = params[:tool][:condition]
+    # @tool.loan_length = params[:tool][:loan_length]
+
     @tool.on_loan = false
     @tool.user_id = current_user.id
-    if params[:tool][:picture] != nil
-      if @tool.save
+    @tool.owner_pictures = params[:tool][:owner_pictures]
+
+    puts params[:tool][:owner_pictures]
+
+    if params[:tool][:owner_pictures] != nil
+      if @tool.save!
         @tool_cat_ids = []
         write_tool_category
-        upload_pictures
         redirect_to tool_url(@tool)
       else
+        puts @tool.errors.full_messages
         render :new
       end
     else
       @tool.errors[:tool] << "must contain at least one photo"
       render :new
     end
+
+  #   if params[:tool][:picture] != nil
+  #     if @tool.save
+  #       @tool_cat_ids = []
+  #       write_tool_category
+  #       upload_pictures
+  #       redirect_to tool_url(@tool)
+  #     else
+  #       render :new
+  #     end
+  #   else
+  #     @tool.errors[:tool] << "must contain at least one photo"
+  #     render :new
+  #   end
   end
 
   def edit
@@ -42,6 +61,7 @@ class ToolsController < ApplicationController
     @tool.description = params[:tool][:description]
     @tool.condition = params[:tool][:condition]
     @tool.loan_length = params[:tool][:loan_length]
+
     if params[:tool][:image_ids].count > @tool.owner_images.count && params[:tool][:picture] == nil
       @tool.errors[:tool] << "must contain at least one photo"
       render :edit

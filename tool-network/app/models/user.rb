@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_secure_password
   has_many :owned_tools, class_name: "Tool"
   has_many :reviews
   has_many :loans
@@ -12,7 +11,6 @@ class User < ApplicationRecord
   validates :name, :email, :location, presence: true
   validates :password, length: { minimum: 8 }
   validates :email, uniqueness: true
-
 
   def tools_out_on_loan
     out_on_loan = []

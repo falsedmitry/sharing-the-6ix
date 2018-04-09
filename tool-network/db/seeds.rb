@@ -1,4 +1,3 @@
-
 Image.destroy_all
 Review.destroy_all
 Loan.destroy_all
@@ -48,7 +47,8 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", 
               condition: rand(10)+1,
               owner: User.first,
               on_loan: false,
-              loan_length: rand(30)+1
+              loan_length: rand(30)+1,
+              owner_pictures: nil
             )
             # tool.categories = [Image.first]
 
