@@ -5,10 +5,11 @@ class NeighbourhoodsController < ApplicationController
 
   def show
     @neighbourhood = Neighbourhood.find(params[:id])
-    @users = User.all
+    @users_in_neighbourhood = @neighbourhood.users
+    @all_users = User.all
 
     @coords = []
-    @users.each do |user|
+    @all_users.each do |user|
       postal_code = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{user.location.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM").body)["results"][0]["geometry"]["location"]
 
       lat = postal_code["lat"]
@@ -20,9 +21,9 @@ class NeighbourhoodsController < ApplicationController
     @tools = @neighbourhood.tools
 
     case @neighbourhood.name # Just to translate some locations to GoogleMaps API language:
-    when "Junction"
+    when "The Junction"
       code = "The+Junction,Toronto"
-    when "Beaches"
+    when "The Beaches"
       code = "The+Beach,Toronto"
     when "Dundas West"
       code = "Little+Portugal,Toronto"
@@ -34,7 +35,7 @@ class NeighbourhoodsController < ApplicationController
       code = "Midtown+Toronto"
     when "East York"
       code = "East+York"
-    when "Danforth"
+    when "The Danforth"
       code = "Greektown"
     when "Liberty Village"
       code = "Liberty+Village"
