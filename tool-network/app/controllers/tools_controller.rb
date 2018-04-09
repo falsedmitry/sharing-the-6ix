@@ -13,16 +13,9 @@ class ToolsController < ApplicationController
 
   def create
     @tool = Tool.new(params.require(:tool).permit(:name, :description, :condition, :loan_length, {owner_pictures: []}, :category_ids, :image_ids))
-    # @tool.name = params[:tool][:name]
-    # @tool.description = params[:tool][:description]
-    # @tool.condition = params[:tool][:condition]
-    # @tool.loan_length = params[:tool][:loan_length]
 
     @tool.on_loan = false
     @tool.user_id = current_user.id
-    @tool.owner_pictures = params[:tool][:owner_pictures]
-
-    puts params[:tool][:owner_pictures]
 
     if params[:tool][:owner_pictures] != nil
       if @tool.save!
@@ -30,27 +23,13 @@ class ToolsController < ApplicationController
         write_tool_category
         redirect_to tool_url(@tool)
       else
-        puts @tool.errors.full_messages
+        # puts @tool.errors.full_messages
         render :new
       end
     else
       @tool.errors[:tool] << "must contain at least one photo"
       render :new
     end
-
-  #   if params[:tool][:picture] != nil
-  #     if @tool.save
-  #       @tool_cat_ids = []
-  #       write_tool_category
-  #       upload_pictures
-  #       redirect_to tool_url(@tool)
-  #     else
-  #       render :new
-  #     end
-  #   else
-  #     @tool.errors[:tool] << "must contain at least one photo"
-  #     render :new
-  #   end
   end
 
   def edit
@@ -62,16 +41,16 @@ class ToolsController < ApplicationController
     @tool.condition = params[:tool][:condition]
     @tool.loan_length = params[:tool][:loan_length]
 
-    if params[:tool][:image_ids].count > @tool.owner_images.count && params[:tool][:picture] == nil
+    Tool.update(@tool.id, params.require(:tool).permit(:name, :description, :condition, :loan_length, {owner_pictures: []}, :category_ids, :image_ids))
+
+    if params[:tool][:owner_pictures] == nil && @tool.owner_pictures.count == 0
       @tool.errors[:tool] << "must contain at least one photo"
       render :edit
     else
       if @tool.save
         remove_categories
         write_tool_category
-        remove_pictures
-        upload_pictures
-        redirect_to tools_url
+        redirect_to tool_url(@tool)
       else
         render :edit
       end
@@ -82,11 +61,9 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     @review = Review.new
     @reviews = @tool.reviews.order(created_at: :desc)
-
   end
 
   def destroy
-    remove_picture_files
     @tool.destroy
     flash[:notice] = "You have successfully deleted this tool."
     redirect_to tools_url

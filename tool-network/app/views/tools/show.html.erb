@@ -7,6 +7,7 @@
 <% @tool.owner_pictures.each_with_index do |picture, index| %>
   <img src="<%= @tool.owner_pictures[index] %>" alt="", class="avatar">
 <% end %>
+</br>
 
 <% if current_user == @tool.owner %>
   <button type="button" name="lend-tool">
