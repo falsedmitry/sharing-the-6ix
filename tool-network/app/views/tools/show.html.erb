@@ -11,7 +11,7 @@
     <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
   </button>
 
-  <button type="button" name="get-tool-back">Get Back Tool</button>
+  <button type="button" name="get-tool-back" data-toolid="<%= @tool.id %>">Get Back Tool</button>
 <% end %>
 
 <p>On Loan: <%= @tool.on_loan %></p>

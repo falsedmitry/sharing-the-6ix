@@ -5,6 +5,10 @@ class ToolsController < ApplicationController
 
   def index
     @tools = Tool.search(params[:tool], params[:nbhd])
+
+    # respond_to do |format|
+    #   format.text do
+
   end
 
   def new
@@ -36,6 +40,14 @@ class ToolsController < ApplicationController
   end
 
   def update
+
+    respond_to do |format|
+      format.json do
+        render :index
+        # Tool.update(@tool.id, params)
+      end
+    end
+
     @tool.name = params[:tool][:name]
     @tool.description = params[:tool][:description]
     @tool.condition = params[:tool][:condition]
@@ -137,5 +149,5 @@ class ToolsController < ApplicationController
   #      end
   #    end
   #  end
-  
+
 end

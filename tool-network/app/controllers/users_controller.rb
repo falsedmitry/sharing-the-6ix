@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @owned_tools = @user.owned_tools.uniq
+    @current_tools = (@user.owned_tools - @user.tools_out_on_loan).uniq
     @borrowed_tools = @user.borrowed_tools.uniq
     @tools_out_on_loan = @user.tools_out_on_loan.uniq
   end
