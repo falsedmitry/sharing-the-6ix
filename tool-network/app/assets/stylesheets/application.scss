@@ -38,6 +38,7 @@ body {
 }
 
 .nav-links {
+  margin-left: 100px;
   display: inline-block;
   text-decoration: none;
   color: $lightblack;
@@ -47,6 +48,7 @@ body {
 
 .nav-links {
     & a:hover {
+  padding: 14px 16px;
   background-color: $lightred;
   color: $offwhite;
   }
@@ -63,6 +65,7 @@ a:visited {
 }
 
 .dropdown-content {
+  visibility: hidden;
   position: absolute;
   background-color: $lightyellow;
   min-width: 160px;
