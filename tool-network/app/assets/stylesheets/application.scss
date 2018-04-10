@@ -13,6 +13,10 @@ $lightyellow: #FFE180;
 /* mixins, variables, etc. */
 
 body {
+  background-image: url("arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 1250px;
+  background-position: 50% 15%;
   margin: 0;
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
 }
@@ -39,7 +43,6 @@ body {
 
 .nav-links {
   margin-left: 100px;
-  padding: 14px 16px;
   display: inline-block;
   text-decoration: none;
   color: $lightblack;
@@ -61,10 +64,18 @@ a:visited {
   color: $lightred;
 }
 
+.statement {
+  font-family: 'Bitter', serif;
+  text-align: center;
+  padding-top: 50px;
+  line-height: 55px;
+}
+
+
 .search-bar {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 60px;
 }
 
 .dropdown-content {
