@@ -6,19 +6,22 @@
 <% end %>
 </br>
 
-<% if current_user == @tool.owner %>
-  <button type="button" name="lend-tool">
+<% if current_user == @tool.owner%>
+  <button type="button" name="lend-tool", data-loan="<%= @tool.on_loan %>">
     <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
   </button>
 
-  <button type="button" name="get-tool-back" data-toolid="<%= @tool.id %>">Get Back Tool</button>
+  <button type="button" name="get-tool-back" data-toolid="<%= @tool.id %>">
+    Get Back Tool
+  </button>
 <% end %>
 
-<p>Available: <%= !@tool.on_loan %></p>
 <p>Loan Length: <%= @tool.loan_length %></p>
 <p>Condition: <%= @tool.condition %></p>
 <p>Description: <%= @tool.description %></p>
-<p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
+<% unless current_user == @tool.owner %>
+  <p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
+<% end %>
 
 <div id="map">
 </div>

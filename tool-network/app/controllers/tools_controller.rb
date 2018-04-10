@@ -44,38 +44,36 @@ class ToolsController < ApplicationController
   end
 
   def update
-
-    # respond_to do |format|
-    #   format.json do
-    #     render :index
-    #     # Tool.update(@tool.id, params)
-    #   end
-    # end
-
-    @tool.name = params[:tool][:name]
-    @tool.description = params[:tool][:description]
-    @tool.condition = params[:tool][:condition]
-    @tool.loan_length = params[:tool][:loan_length]
-
-    Tool.update(@tool.id, params.require(:tool).permit(:name, :description, :condition, :loan_length, {owner_pictures: []}, :category_ids, :image_ids))
-
-    if params[:tool][:owner_pictures] == nil && @tool.owner_pictures.count == 0
-      @tool.errors[:tool] << "must contain at least one photo"
-      render :edit
+    if request.xhr?
+      Tool.update(@tool.id, on_loan: false)
     else
-      if @tool.save
-        remove_categories
-        write_tool_category
-        redirect_to tool_url(@tool)
-      else
+      @tool.name = params[:tool][:name]
+      @tool.description = params[:tool][:description]
+      @tool.condition = params[:tool][:condition]
+      @tool.loan_length = params[:tool][:loan_length]
+
+      Tool.update(@tool.id, params.require(:tool).permit(:name, :description, :condition, :loan_length, {owner_pictures: []}, :category_ids, :image_ids))
+
+      if params[:tool][:owner_pictures] == nil && @tool.owner_pictures.count == 0
+        @tool.errors[:tool] << "must contain at least one photo"
         render :edit
+      else
+        if @tool.save
+          remove_categories
+          write_tool_category
+          redirect_to tool_url(@tool)
+        else
+          render :edit
+        end
       end
     end
   end
 
   def show
     @tool = Tool.find(params[:id])
-    @chats = Chat.where("user_id = ?", current_user.id).where("tool_id = ?", params[:id])
+    if current_user
+      @chats = Chat.where("user_id = ?", current_user.id).where("tool_id = ?", params[:id])
+    end
     @chat = Chat.new
     @review = Review.new
     @reviews = @tool.reviews.order(created_at: :desc)

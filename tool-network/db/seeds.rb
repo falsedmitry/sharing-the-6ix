@@ -1,8 +1,9 @@
 Review.destroy_all
-Loan.destroy_all
+Category.destroy_all
+Chat.destroy_all
 Tool.destroy_all
 User.destroy_all
-Category.destroy_all
+Loan.destroy_all
 Neighbourhood.destroy_all
 
 neighbourhood_names = [
