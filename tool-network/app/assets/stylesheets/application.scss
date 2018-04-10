@@ -1,0 +1,126 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$lightred: #C03F49;
+$offwhite: #F0F4F1;
+$lightblack: #282828;
+$lightyellow: #FFE180;
+
+* {
+  box-sizing: border-box;
+}
+
+/* mixins, variables, etc. */
+
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif, Helvetica, Arial;
+}
+
+.logo {
+  width: 20px;
+  display: inline-block;
+  padding: 10px;
+  background-color: none;
+}
+
+.header-image {
+  object-fit: contain;
+  width: 100px;
+}
+
+.site-nav {
+  overflow: hidden;
+  background-color: $lightyellow;
+  height: 80px;
+  min-height: 80px;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+.nav-links {
+  margin-left: 100px;
+  display: inline-block;
+  text-decoration: none;
+  color: $lightblack;
+  text-align: center;
+  font-size: 17px;
+}
+
+.nav-links {
+    & a:hover {
+  padding: 14px 16px;
+  background-color: $lightred;
+  color: $offwhite;
+  }
+}
+
+a:visited {
+  color: $lightred;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.dropdown-content {
+  visibility: hidden;
+  position: absolute;
+  background-color: $lightyellow;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 500;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 550px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger-menu {
+    top: 20px;
+    right: 10px;
+    position: fixed;
+    #hamburger-menu {
+      width: 30px;
+      height: 30px;
+      visibility: visible;
+    }
+  }
+}

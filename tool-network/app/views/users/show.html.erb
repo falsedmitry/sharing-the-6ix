@@ -12,7 +12,7 @@
 
 <p>Name: <%= @user.name %></p>
 <p>Email: <%= @user.email %></p>
-<p>Location: <%= @user.location %></p>
+<p>Postal Code: <%= @user.postal_code %></p>
 <%= link_to 'Add Tool', new_tool_path %>
 <hr>
 
@@ -44,7 +44,7 @@
               (OVERDUE)
             <% end %>
           </p>
-          <p>Borrower: <%= link_to("#{tool.current_borrower.name}", user_path(tool.owner)) %></p>
+          <p>Borrower: <%= link_to("#{tool.current_borrower.name}", user_path(tool.current_borrower)) %></p>
           <p>Lent on: <%= tool.active_loan.start_date %></p>
           <p>Due on: <%= tool.active_loan.due_date %></p>
         </li>
@@ -53,7 +53,7 @@
   <% end %>
 <% end %>
 
-<% unless @owned_tools.empty? %>
+<% unless @current_tools.empty? %>
   <% if @user == current_user %>
     <p>My Inventory:</p>
   <% else %>
@@ -62,7 +62,7 @@
 <% end %>
 
 <ul>
-  <% @owned_tools.each do |tool| %>
+  <% @current_tools.each do |tool| %>
     <li class="tools">
      <p><strong><%= link_to("#{tool.name}", tool_path(tool)) %></strong></p>
      <p>Loan Length: <%= tool.loan_length %></p>

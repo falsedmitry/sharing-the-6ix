@@ -6,20 +6,27 @@
 <% end %>
 </br>
 
-<% if current_user == @tool.owner %>
-  <button type="button" name="lend-tool">
+<% if current_user == @tool.owner%>
+  <button type="button" name="lend-tool", data-loan="<%= @tool.on_loan %>">
     <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
   </button>
 
-  <button type="button" name="get-tool-back">Get Back Tool</button>
+  <button type="button" name="get-tool-back" data-toolid="<%= @tool.id %>">
+    Get Back Tool
+  </button>
 <% end %>
 
-<p>On Loan: <%= @tool.on_loan %></p>
 <p>Loan Length: <%= @tool.loan_length %></p>
 <p>Condition: <%= @tool.condition %></p>
 <p>Description: <%= @tool.description %></p>
-<p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
-<%= link_to("Back to Tools", tools_path) %>
+<% unless current_user == @tool.owner %>
+  <p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
+<% end %>
+
+<div id="map">
+</div>
+
+<%= link_to("Back to Browse", tools_path) %>
 
 <% if current_user == @tool.owner %>
   | <%= link_to("Edit", edit_tool_path(@tool)) %> | <%= link_to("Delete", tool_path(@tool), method: :delete, data: {confirm: "Are you sure you want to delete this tool?"}) %>
@@ -49,3 +56,23 @@
 <% @tool.reviews.order(created_at: :desc).each do |review| %>
   <%= render 'reviews/review', review: review %>
 <% end %>
+
+<script>
+function initMap() {
+  var centerOfMap = {lat: <%= @lat %>, lng: <%= @lng %>};
+
+  var map = new google.maps.Map(
+    document.querySelector('#map'), {
+    zoom: 14,
+    center: centerOfMap
+  });
+
+  var marker = new google.maps.Marker({
+    position: centerOfMap,
+    map: map
+  });
+}
+</script>
+
+<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM&callback=initMap">
+</script>
