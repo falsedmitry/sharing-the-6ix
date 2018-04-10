@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_secure_password
   mount_uploader :avatar, AvatarUploader
 
-  validates :name, :email, :location, presence: true
+  validates :name, :email, :postal_code, presence: true
   validates :password, length: { minimum: 8 }
   validates :email, uniqueness: true
 
