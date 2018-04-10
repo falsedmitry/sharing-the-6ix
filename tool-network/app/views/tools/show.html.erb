@@ -26,6 +26,19 @@
 <% end %>
 <hr>
 
+<% if current_user && current_user != @tool.owner %>
+  <h2>Chats</h2>
+  <% @chats.each do |chat| %>
+    <% if chat.owner_reply == true %>
+      <H4><%= @tool.owner.name %></H4>
+    <% else %>
+      <h4>You</h4>
+    <% end %>
+    <%= render '/chats/chat', chat: chat %>
+  <% end %>
+  <%= render '/chats/form', chat: @chat %>
+<% end %>
+
 <h2>Reviews</h2>
 <% if current_user != @tool.owner && (@tool.borrowers && @tool.borrowers.include?(current_user)) %>
   <%= render "shared/error", object: @review %>
@@ -33,6 +46,6 @@
 <% end %>
 <hr>
 
-<% @reviews.each do |review| %>
+<% @tool.reviews.order(created_at: :desc).each do |review| %>
   <%= render 'reviews/review', review: review %>
 <% end %>

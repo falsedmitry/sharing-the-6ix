@@ -1,0 +1,12 @@
+<h1>Chats</h1>
+
+<% @chats.each do |chat| %>
+  <% if chat.owner_reply == true %>
+    <h4>You</h4>
+  <% else %>
+    <H4><%= chat.user.name %></H4>
+  <% end %>
+  <%= render 'chat', chat: chat %>
+<% end %>
+<% @chat.content = nil %>
+<%= render 'form_edit', chat: @chat %>

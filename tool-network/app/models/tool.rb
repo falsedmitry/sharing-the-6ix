@@ -5,6 +5,7 @@ class Tool < ApplicationRecord
   has_many :borrowers, through: :loans, source: :borrower
 
   has_and_belongs_to_many :categories, :join_table => :categorizations
+  has_many :chats
   mount_uploaders :owner_pictures, OwnerImageUploader
 
   validates :name, :condition, :description, :loan_length, presence: true

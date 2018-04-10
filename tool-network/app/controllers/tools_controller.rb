@@ -59,6 +59,8 @@ class ToolsController < ApplicationController
 
   def show
     @tool = Tool.find(params[:id])
+    @chats = Chat.where("user_id = ?", current_user.id).where("tool_id = ?", params[:id])
+    @chat = Chat.new
     @review = Review.new
     @reviews = @tool.reviews.order(created_at: :desc)
   end
