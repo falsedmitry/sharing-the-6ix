@@ -1,6 +1,8 @@
   <nav class='site-nav'>
     <a href = "/">
-      <img src = "sharingthe6-01" alt="Sharing the 6ix" id="logo" />
+      <div class="logo">
+      <%= image_tag "sharingthe6-01.png", class: "header-image" %>
+    </div>
     </a>
       <div class="nav-links">
 
@@ -14,6 +16,17 @@
         <% end %>
     </div>
     <div class="hamburger-menu">
-      <img src = "icon.png" alt="menu" id="hamburger-menu">
+      <%= image_tag "icon.png", id: "hamburger-menu" %>
+    </div>
+      <div class="dropdown-content">
+        <% if current_user %>
+          <%= link_to "My Profile", user_path(current_user) %>
+          <%= link_to 'Add Tool', new_tool_path %>
+          <%= link_to "Logout", :logout, method: :delete %>
+        <% else %>
+          <%= link_to "Register", new_user_path %>
+          <%= link_to "Login", :login %>
+        <% end %>
+      </div>
     </div>
   </nav>

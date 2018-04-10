@@ -17,11 +17,16 @@ body {
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
 }
 
-#logo {
-  width: 100px;
+.logo {
+  width: 20px;
   display: inline-block;
   padding: 10px;
   background-color: none;
+}
+
+.header-image {
+  object-fit: contain;
+  width: 100px;
 }
 
 .site-nav {
@@ -57,9 +62,25 @@ a:visited {
   padding: 20px;
 }
 
-.hamburger-menu {
-    visibility: hidden;
-  }
+.dropdown-content {
+  position: absolute;
+  background-color: $lightyellow;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 500;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+
 /* footer */
 
 footer {
