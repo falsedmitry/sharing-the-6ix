@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :owner_image do
+  factory :chat do
     
   end
 end

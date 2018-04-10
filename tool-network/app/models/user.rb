@@ -1,17 +1,17 @@
 class User < ApplicationRecord
-  has_secure_password
   has_many :owned_tools, class_name: "Tool"
   has_many :reviews
   has_many :loans
-  has_many :borrowed_tools, -> {distinct}, through: :loans, source: :tool
+  has_many :borrowed_tools, through: :loans, source: :tool
   belongs_to :neighbourhood
+  has_many :chats
 
   has_secure_password
+  mount_uploader :avatar, AvatarUploader
 
-  validates :name, :email, :location, :photo, presence: true
+  validates :name, :email, :postal_code, presence: true
   validates :password, length: { minimum: 8 }
   validates :email, uniqueness: true
-
 
   def tools_out_on_loan
     out_on_loan = []

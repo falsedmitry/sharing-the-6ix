@@ -1,6 +1,8 @@
 class Neighbourhood < ApplicationRecord
   has_many :users
 
+  mount_uploader :nbhd_image, NbhdImageUploader
+
   def tools
     tools = []
 

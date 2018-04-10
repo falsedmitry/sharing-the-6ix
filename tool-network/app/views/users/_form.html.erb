@@ -20,13 +20,18 @@
   </div>
 
   <div class="field">
-    <%= f.label :location %><br />
-    <%= f.text_field :location %>
+    <%= f.label :postal_code %><br />
+    <%= f.text_field :postal_code %>
   </div>
 
   <div class="field">
-    <%= f.label :photo %><br />
-    <%= f.text_field :photo %>
+    <%= f.label :neighbourhood %><br />
+    <%= f.text_field :neighbourhood %>
+  </div>
+
+  <div>
+    <%= f.label :profile_photo %>
+    <%= f.file_field :avatar, multiple: false %>
   </div>
 
   <div class="field">
