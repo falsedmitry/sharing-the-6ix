@@ -12,8 +12,6 @@ $lightyellow: #FFE180;
 
 /* mixins, variables, etc. */
 
-
-
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
@@ -22,17 +20,19 @@ body {
 #logo {
   width: 100px;
   display: inline-block;
+  padding: 10px;
+  background-color: none;
 }
 
 .site-nav {
+  overflow: hidden;
   background-color: $lightyellow;
+  height: 80px;
   min-height: 80px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
-  max-height: 0;
-
 }
 
-#nav-links {
+.nav-links {
   display: inline-block;
   text-decoration: none;
   color: $lightblack;
@@ -40,8 +40,8 @@ body {
   font-size: 17px;
 }
 
-#nav-links {
-  & :hover {
+.nav-links {
+    & a:hover {
   background-color: $lightred;
   color: $offwhite;
   }
@@ -57,29 +57,9 @@ a:visited {
   padding: 20px;
 }
 
-#hamburger-menu {
-  display: inline-block;
-  width: 30px;
-}
-
-
-
-@media (max-width: 550px) {
-  .site-nav {
-    display: block;
-    max-height: none;
+.hamburger-menu {
+    visibility: hidden;
   }
-
-  #hamburger-menu {
-    display: block;
-  }
-
-  #nav-links {
-    display: none;
-  }
-}
-
-
 /* footer */
 
 footer {
@@ -101,4 +81,22 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
+}
+
+@media screen and (max-width: 550px) {
+
+  .nav-links {
+    display: none;
+  }
+
+  .hamburger-menu {
+    top: 20px;
+    right: 10px;
+    position: fixed;
+    #hamburger-menu {
+      width: 30px;
+      height: 30px;
+      visibility: visible;
+    }
+  }
 }

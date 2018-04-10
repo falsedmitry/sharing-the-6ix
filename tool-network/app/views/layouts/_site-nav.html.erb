@@ -1,17 +1,19 @@
   <nav class='site-nav'>
     <a href = "/">
-      <img src = "sharingthe6-01.png" alt="Sharing the 6ix" id="logo"></a>
+      <img src = "sharingthe6-01" alt="Sharing the 6ix" id="logo" />
+    </a>
+      <div class="nav-links">
 
-    <nav id="nav-links">
-
-      <% if current_user %>
-        <%= link_to "My Profile", user_path(current_user) %>
-        <%= link_to 'Add Tool', new_tool_path %>
-        <%= link_to "Logout", :logout, method: :delete %>
-      <% else %>
-        <%= link_to "Register", new_user_path %>
-        <%= link_to "Login", :login %>
-      <% end %>
-      <img src = "icon.png" alt="menu" id="hamburger-menu"></a>
-    </nav>
+        <% if current_user %>
+          <%= link_to "My Profile", user_path(current_user) %>
+          <%= link_to 'Add Tool', new_tool_path %>
+          <%= link_to "Logout", :logout, method: :delete %>
+        <% else %>
+          <%= link_to "Register", new_user_path %>
+          <%= link_to "Login", :login %>
+        <% end %>
+    </div>
+    <div class="hamburger-menu">
+      <img src = "icon.png" alt="menu" id="hamburger-menu">
+    </div>
   </nav>
