@@ -24,7 +24,6 @@
 <script>
 function initMap() {
   var postalCode = {lat: <%= @lat %>, lng: <%= @lng %>};
-  var postalCode2 = {lat: (<%= @lat %> + 0.001), lng: (<%= @lng %> + 0.001)};
 
   var map = new google.maps.Map(
     document.querySelector('#map'), {

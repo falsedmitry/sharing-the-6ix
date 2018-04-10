@@ -6,7 +6,7 @@ document.addEventListener('turbolinks:load', function() {
 
     $.ajax({
       url: 'http://localhost:3000/tools/' + toolID,
-      method: 'GET',
+      method: 'PATCH',
       data: {},
       dataType: 'json'
     }).done(function(data) {

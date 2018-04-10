@@ -45,12 +45,12 @@ class ToolsController < ApplicationController
 
   def update
 
-    respond_to do |format|
-      format.json do
-        render :index
-        # Tool.update(@tool.id, params)
-      end
-    end
+    # respond_to do |format|
+    #   format.json do
+    #     render :index
+    #     # Tool.update(@tool.id, params)
+    #   end
+    # end
 
     @tool.name = params[:tool][:name]
     @tool.description = params[:tool][:description]
@@ -79,6 +79,11 @@ class ToolsController < ApplicationController
     @chat = Chat.new
     @review = Review.new
     @reviews = @tool.reviews.order(created_at: :desc)
+
+    owner_location = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{@tool.owner.postal_code.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM").body)["results"][0]["geometry"]["location"]
+
+    @lat = owner_location["lat"]
+    @lng = owner_location["lng"]
   end
 
   def destroy
