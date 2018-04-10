@@ -1,9 +1,9 @@
 Review.destroy_all
 Category.destroy_all
 Chat.destroy_all
+Loan.destroy_all
 Tool.destroy_all
 User.destroy_all
-Loan.destroy_all
 Neighbourhood.destroy_all
 
 neighbourhood_names = [
@@ -152,14 +152,18 @@ debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testt
 bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "Markham", neighbourhood: Neighbourhood.find_by(name: "The Beaches"))
 
 (1..20).to_a.each do |number|
-  User.create(
+  user = User.create(
     name: "User #{number}",
     email: "user#{number}@gmail.com",
     password: "testtest",
     password_confirmation: "testtest",
     postal_code: postal_codes.sample,
-    neighbourhood: Neighbourhood.all.sample
+    neighbourhood: Neighbourhood.all.sample,
   )
+
+  user.avatar = File.new(File.join(Rails.root, "/app/assets/images/icon.png"))
+  user.save
+
 end
 
 10.times do
@@ -170,8 +174,14 @@ end
               owner: User.all.sample,
               on_loan: false,
               loan_length: rand(30)+1,
-              owner_pictures: nil
+              owner_pictures: []
             )
+
+  tool.owner_pictures = [
+    File.new(File.join(Rails.root, "/app/assets/images/icon.png")),
+    File.new(File.join(Rails.root, "/app/assets/images/icon.png"))
+  ]
+  tool.save
 
   5.times do
     tool.reviews.create!(
