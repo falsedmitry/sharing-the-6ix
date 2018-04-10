@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     @user.password = params[:user][:password]
     @user.password_confirmation = params[:user][:password_confirmation]
     @user.postal_code = params[:user][:postal_code]
-    @user.neighbourhood = Neighbourhood.find_by(name: params[:user][:neighbourhood])
+    @user.neighbourhood_id = params[:user][:neighbourhood]
     @user.avatar = params[:user][:avatar]
 
     if @user.save
