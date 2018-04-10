@@ -6,6 +6,7 @@ class Tool < ApplicationRecord
 
   has_many :owner_images
   has_and_belongs_to_many :categories, :join_table => :categorizations
+  has_many :chats
 
   validates :name, :condition, :description, :loan_length, presence: true
   validates :condition, numericality: { only_integer: true, greater_than: 0, less_than: 11 }

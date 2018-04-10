@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :tools do
     resource :loan, only: %i(new show create)
+    resources :chats, only: %i(create)
 
     resources :reviews do
       resources :images
@@ -16,4 +17,5 @@ Rails.application.routes.draw do
 
   resources :users
   resources :neighbourhoods
+  resources :chats, only: %i(index show edit update)
 end

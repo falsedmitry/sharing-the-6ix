@@ -1,10 +1,10 @@
 class User < ApplicationRecord
-  has_secure_password
   has_many :owned_tools, class_name: "Tool"
   has_many :reviews
   has_many :loans
   has_many :borrowed_tools, -> {distinct}, through: :loans, source: :tool
   belongs_to :neighbourhood
+  has_many :chats
 
   has_secure_password
 

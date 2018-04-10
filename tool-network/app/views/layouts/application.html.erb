@@ -20,6 +20,7 @@
       <nav class="site-nav">
         <% if current_user %>
           <%= link_to "My Profile", user_path(current_user) %> |
+          <%= link_to 'Chats', chats_path %> |
           <%= link_to 'Add Tool', new_tool_path %> |
           <%= link_to "Logout", :logout, method: :delete %>
         <% else %>
