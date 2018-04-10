@@ -1,10 +1,10 @@
-
 <p><strong><%= @tool.name %></strong></p>
-
-<% @tool.owner_images.each do |image| %>
-<%= image_tag("/owner_images/#{image.file_name}", size: "220x200") %>
-<% end %>
 <br>
+
+<% @tool.owner_pictures.each_with_index do |picture, index| %>
+  <img src="<%= @tool.owner_pictures[index] %>" alt="", class="avatar">
+<% end %>
+</br>
 
 <% if current_user == @tool.owner %>
   <button type="button" name="lend-tool">
@@ -40,7 +40,7 @@
 <% end %>
 
 <h2>Reviews</h2>
-<% if current_user == @tool.owner || (@tool.borrowers && @tool.borrowers.include?(current_user)) %>
+<% if current_user != @tool.owner && (@tool.borrowers && @tool.borrowers.include?(current_user)) %>
   <%= render "shared/error", object: @review %>
   <%= render 'reviews/form', review: @review %>
 <% end %>

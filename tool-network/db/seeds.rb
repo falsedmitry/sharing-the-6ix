@@ -1,5 +1,3 @@
-
-Image.destroy_all
 Review.destroy_all
 Loan.destroy_all
 Tool.destroy_all
@@ -7,23 +5,40 @@ User.destroy_all
 Category.destroy_all
 Neighbourhood.destroy_all
 
-dundas_west = Neighbourhood.create(name: "Dundas West")
-junction = Neighbourhood.create(name: "Junction")
-downtown = Neighbourhood.create(name: "Downtown")
-beaches = Neighbourhood.create(name: "Beaches")
+neighbourhood_names = [
+  "The Annex",
+  "Parkdale",
+  "The Junction",
+  "Little Italy",
+  "The Beaches",
+  "Dundas West",
+  "Yorkville",
+  "Downtown",
+  "Kensington Market",
+  "Chinatown",
+  "Roncesvalles",
+  "Yonge & Eglinton",
+  "East York",
+  "The Danforth",
+  "Cabbagetown",
+  "Liberty Village",
+  "Leslieville",
+  "North York",
+  "Scarborough",
+  "Etobicoke"
+]
 
-dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Dundas", photo: "no photo", neighbourhood: dundas_west)
+neighbourhood_names.each do |nbhd_name|
+  Neighbourhood.create(name: nbhd_name)
+end
 
-alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "King", photo: "no photo", neighbourhood: downtown)
+dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X8", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
 
-debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", photo: "no photo", neighbourhood: junction)
+alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", location: "M6J 1X9", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
 
-bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Markham", photo: "no photo", neighbourhood: beaches)
+debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Junction", neighbourhood: Neighbourhood.find_by(name: "The Junction"))
 
-# Image.create(:category_name => 'technology')
-# Image.create(:category_name =>'art')
-# Image.create(:category_name => 'sports')
-# Image.create(:category_name => 'food')
+bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", location: "Markham", neighbourhood: Neighbourhood.find_by(name: "The Beaches"))
 
 10.times do
   tool = Tool.create!(
@@ -32,7 +47,8 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", 
               condition: rand(10)+1,
               owner: User.first,
               on_loan: false,
-              loan_length: rand(30)+1
+              loan_length: rand(30)+1,
+              owner_pictures: nil
             )
             # tool.categories = [Image.first]
 
@@ -47,10 +63,10 @@ bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", 
 end
 
 Category.create(:category_name => 'Tools')
-Category.create(:category_name =>'Auto')
+Category.create(:category_name => 'Auto')
 Category.create(:category_name => 'Outdoor home')
 Category.create(:category_name => 'Indoor home')
 Category.create(:category_name => 'Audio')
 Category.create(:category_name => 'Video')
 Category.create(:category_name => 'Sports')
-Category.create(:category_name => 'Healths')
+Category.create(:category_name => 'Health')

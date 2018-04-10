@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+#map {
+  height: 400px;
+  width: 100%;
+}
+
+.avatar {
+  height: 250px;
+}
+
+.review-image {
+  height: 250px;
+}
