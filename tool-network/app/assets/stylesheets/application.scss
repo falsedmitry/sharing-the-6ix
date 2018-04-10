@@ -32,13 +32,14 @@ body {
 .site-nav {
   overflow: hidden;
   background-color: $lightyellow;
-  height: 80px;
+  height: 90px;
   min-height: 80px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
 .nav-links {
   margin-left: 100px;
+  padding: 14px 16px;
   display: inline-block;
   text-decoration: none;
   color: $lightblack;
@@ -49,6 +50,8 @@ body {
 .nav-links {
     & a:hover {
   padding: 14px 16px;
+  text-decoration: none;
+  min-height: 80px;
   background-color: $lightred;
   color: $offwhite;
   }
@@ -67,15 +70,15 @@ a:visited {
 .dropdown-content {
   visibility: hidden;
   position: absolute;
+  right: 0;
   background-color: $lightyellow;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   z-index: 500;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  float: none;
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -83,6 +86,10 @@ a:visited {
   text-align: left;
 }
 
+.dropdown-content a:hover {
+    background-color: $lightred;
+    color: $offwhite;
+}
 
 /* footer */
 
