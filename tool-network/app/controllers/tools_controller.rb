@@ -4,7 +4,11 @@ class ToolsController < ApplicationController
   before_action :require_user_authority, only: [:edit, :update, :destroy]
 
   def index
-    @tools = Tool.search(params[:tool], params[:nbhd])
+    if params[:tool]
+      @tools = Tool.search(params[:tool], params[:nbhd])
+    else
+      @tools = Tool.all
+    end
 
     # respond_to do |format|
     #   format.text do

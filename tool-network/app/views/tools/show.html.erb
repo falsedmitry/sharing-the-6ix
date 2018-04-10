@@ -19,7 +19,7 @@
 <p>Condition: <%= @tool.condition %></p>
 <p>Description: <%= @tool.description %></p>
 <p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
-<%= link_to("Back to Tools", tools_path) %>
+<%= link_to("Back to Browse", tools_path) %>
 
 <% if current_user == @tool.owner %>
   | <%= link_to("Edit", edit_tool_path(@tool)) %> | <%= link_to("Delete", tool_path(@tool), method: :delete, data: {confirm: "Are you sure you want to delete this tool?"}) %>

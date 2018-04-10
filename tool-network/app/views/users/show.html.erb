@@ -44,7 +44,7 @@
               (OVERDUE)
             <% end %>
           </p>
-          <p>Borrower: <%= link_to("#{tool.current_borrower.name}", user_path(tool.owner)) %></p>
+          <p>Borrower: <%= link_to("#{tool.current_borrower.name}", user_path(tool.current_borrower)) %></p>
           <p>Lent on: <%= tool.active_loan.start_date %></p>
           <p>Due on: <%= tool.active_loan.due_date %></p>
         </li>
