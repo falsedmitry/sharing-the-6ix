@@ -1,6 +1,6 @@
 class NeighbourhoodsController < ApplicationController
   def index
-    @neighbourhoods = Neighbourhood.all
+    @neighbourhoods = Neighbourhood.all.sample(8)
   end
 
   def show
