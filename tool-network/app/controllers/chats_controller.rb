@@ -12,7 +12,7 @@ class ChatsController < ApplicationController
     @chat.unread = true
     @chat.owner_reply = false
     if @chat.save
-      UserMailer.owner_chat(@chat).deliver_later
+      UserMailer.owner_chat(@chat).deliver_now
       flash[:notice] = "The message is sent to the owner with email notification."
     else
       flash[:alert] = "The message is failed in sending to the owner."
@@ -22,7 +22,8 @@ class ChatsController < ApplicationController
 
   def edit
     chat = Chat.find(params[:id])
-    @chats = Chat.where("tool_id = ?", chat.tool_id).where("user_id = ?", chat.user.id)
+    Chat.where("tool_id = ?", chat.tool_id).where("user_id = ?", chat.user.id).where("owner_reply = ?", false).update_all(unread: false)
+    @chats = Chat.where("tool_id = ?", chat.tool_id).where("user_id = ?", chat.user.id).order(created_at: :asc)
     @chat = @chats[-1]
   end
 
@@ -35,7 +36,7 @@ class ChatsController < ApplicationController
     @chat.unread = true
     @chat.owner_reply = true
     if @chat.save
-      UserMailer.requester_chat(@chat).deliver_later
+      UserMailer.requester_chat(@chat).deliver_now
       flash[:notice] = "The message is sent to the requester with email notification."
     else
       flash[:alert] = "The message is failed in sending to the requester."

@@ -72,6 +72,8 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
     if current_user
+      Chat.where("tool_id = ?", @tool.id).where("user_id = ?", current_user.id).where("owner_reply = ?", true).update_all(unread: false)
+
       @chats = Chat.where("user_id = ?", current_user.id).where("tool_id = ?", params[:id])
     end
     @chat = Chat.new
