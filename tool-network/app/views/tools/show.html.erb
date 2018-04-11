@@ -34,7 +34,7 @@
 <hr>
 
 <% if current_user && current_user != @tool.owner %>
-  <h2>Chats</h2>
+  <h2>Messages</h2>
   <% @chats.each do |chat| %>
     <% if chat.owner_reply == true %>
       <H4><%= @tool.owner.name %></H4>

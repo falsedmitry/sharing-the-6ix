@@ -1,11 +1,11 @@
-<h1>Chats</h1>
+<h1>Messages</h1>
 <% @chats.each do |chat| %>
   <div class=“chats”>
-   <% if chat.tool.owner_pictures[0] %>
-     <%= image_tag(owner_pictures[0].url, size: "120x100", alt: "No Image") %>
-   <% end %>
-   <p><%= link_to(chat.tool.name, edit_chat_path(chat)) %></p>
-   <p>From: <%= chat.user.name %></p>
-   <hr>
+    <% chat.tool.owner_pictures.each_with_index do |picture, index| %>
+      <img src="<%= chat.tool.owner_pictures[index] %>" alt="", class="avatar">
+    <% end %>
+    <p><%= link_to(chat.tool.name, edit_chat_path(chat)) %></p>
+    <p>From: <%= chat.user.name %></p>
+    <hr>
   </div>
 <% end %>

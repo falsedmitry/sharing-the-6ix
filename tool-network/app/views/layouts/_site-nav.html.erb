@@ -8,6 +8,7 @@
 
         <% if current_user %>
           <%= link_to "My Profile", user_path(current_user) %>
+          <%= link_to 'Messages', chats_path %>
           <%= link_to 'Add Tool', new_tool_path %>
           <%= link_to "Logout", :logout, method: :delete %>
         <% else %>
@@ -21,6 +22,7 @@
       <div class="dropdown-content">
         <% if current_user %>
           <%= link_to "My Profile", user_path(current_user) %>
+          <%= link_to 'Messages', chats_path %>
           <%= link_to 'Add Tool', new_tool_path %>
           <%= link_to "Logout", :logout, method: :delete %>
         <% else %>
