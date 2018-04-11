@@ -7,7 +7,10 @@
       <div class="col-md-3">
         <div class="nbhd-image">
           <%= link_to(neighbourhood_url(nbhd)) do %>
-            <%= image_tag(nbhd.nbhd_image.url, border: 0, class: "img-responsive") %>
+            <%= image_tag(nbhd.nbhd_image.url, border: 0, class: "img-responsive", data: {name: nbhd.name}) %>
+            <div class="nbhd-name">
+              <%= nbhd.name %>
+            </div>
           <% end %>
         </div>
       </div>

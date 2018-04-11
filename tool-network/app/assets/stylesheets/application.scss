@@ -125,6 +125,13 @@ a:visited {
   opacity: 0.5;
 }
 
+.nbhd-name {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  color: black;
+}
+
 /* footer */
 
 footer {
@@ -147,6 +154,7 @@ footer ul li {
   float: left;
   margin-left: 15px;
 }
+
 
 @media screen and (max-width: 550px) {
 
