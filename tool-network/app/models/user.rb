@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :borrowed_tools, through: :loans, source: :tool
   belongs_to :neighbourhood
   has_many :chats
+  has_many :owned_chats, through: :owned_tools, source: :chats
 
   has_secure_password
   mount_uploader :avatar, AvatarUploader
