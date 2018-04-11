@@ -121,16 +121,27 @@ a:visited {
   margin: 8px;
 }
 
-.nbhd-image img:hover {
-  opacity: 0.5;
+.nbhd-image {
+  .nbhd-name {
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    color: black;
+    font-weight: bold;
+  }
+
+  &:hover {
+    img {
+      opacity: 0.5;
+    }
+   .nbhd-name {
+     visibility: visible;
+    }
+  }
 }
 
-.nbhd-name {
-  position: absolute;
-  top: 50%;
-  left: 40%;
-  color: black;
-}
+
+
 
 /* footer */
 
@@ -176,6 +187,17 @@ footer ul li {
       visibility: visible;
     }
   }
+}
+
+@media screen and (min-width: 375px) {
+  .nbhd-image
+    .nbhd-name {
+      visibility: hidden;
+      position: absolute;
+      top: 45%;
+      left: 33%;
+      color: black;
+    }
 }
 
 #map {
