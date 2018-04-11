@@ -5,6 +5,8 @@ $lightred: #C03F49;
 $offwhite: #F0F4F1;
 $lightblack: #282828;
 $lightyellow: #FFE180;
+$hero-height: 60vh;
+
 
 * {
   box-sizing: border-box;
@@ -12,9 +14,30 @@ $lightyellow: #FFE180;
 
 /* mixins, variables, etc. */
 
+
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
+}
+
+
+.hero-section {
+  background: url('toronto1.jpeg') 50% no-repeat;
+  background-size: cover;
+  height: $hero-height;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+
+  .hero-section-text {
+    font-family: 'Bitter', serif;
+    line-height: 70px;
+    font-size: 40px;
+    color: black;
+    text-shadow: 1px 1px 2px $offwhite;
+  }
 }
 
 .logo {
@@ -32,7 +55,7 @@ body {
 .site-nav {
   overflow: hidden;
   background-color: $lightyellow;
-  height: 80px;
+  height: 90px;
   min-height: 80px;
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
 }
@@ -49,6 +72,8 @@ body {
 .nav-links {
     & a:hover {
   padding: 14px 16px;
+  text-decoration: none;
+  min-height: 80px;
   background-color: $lightred;
   color: $offwhite;
   }
@@ -58,24 +83,27 @@ a:visited {
   color: $lightred;
 }
 
+
+
+
 .search-bar {
   display: flex;
   justify-content: center;
-  padding: 20px;
+  padding: 60px;
 }
 
 .dropdown-content {
   visibility: hidden;
   position: absolute;
+  right: 0;
   background-color: $lightyellow;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
   z-index: 500;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  float: none;
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -83,6 +111,10 @@ a:visited {
   text-align: left;
 }
 
+.dropdown-content a:hover {
+    background-color: $lightred;
+    color: $offwhite;
+}
 
 /* footer */
 
