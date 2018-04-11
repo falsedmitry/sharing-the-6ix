@@ -5,9 +5,9 @@ class ToolsController < ApplicationController
 
   def index
     if params[:tool]
-      @tools = Tool.search(params[:tool], params[:nbhd])
+      @tools = Tool.search(params[:tool], params[:nbhd]).where('on_loan = ?', "false")
     else
-      @tools = Tool.all
+      @tools = Tool.where('on_loan = ?', "false")
     end
 
     # respond_to do |format|
@@ -72,6 +72,8 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
     if current_user
+      Chat.where("tool_id = ?", @tool.id).where("user_id = ?", current_user.id).where("owner_reply = ?", true).update_all(unread: false)
+
       @chats = Chat.where("user_id = ?", current_user.id).where("tool_id = ?", params[:id])
     end
     @chat = Chat.new
