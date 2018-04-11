@@ -40,7 +40,7 @@ postal_codes = ["M3A", "M4A", "M5A", "M6A", "M7A", "M9A", "M1B", "M3B", "M4B", "
 
 # Create neighbourhoods
 neighbourhoods.each_with_index do |nbhd, i|
-  neighbourhood = Neighbourhood.create!(name: nbhd[:name])
+  neighbourhood = Neighbourhood.new(name: nbhd[:name])
   neighbourhood.nbhd_image = File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/neighbourhood_images/#{i}.jpg"))
   neighbourhood.save!
 end

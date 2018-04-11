@@ -5,7 +5,7 @@
   <% @neighbourhoods.each do |nbhd| %>
     <li>
       <div class="nbhd-div">
-        <%= link_to(image_tag(nbhd.nbhd_image.url, border: 0, class: "nbhd-image"), neighbourhood_url(nbhd)) %>
+        <%= link_to(image_tag(nbhd.nbhd_image.url, border: 0, class: "nbhd-image", data: {name: nbhd.name}), neighbourhood_path(nbhd)) %>
       </div>
     </li>
   <% end %>
