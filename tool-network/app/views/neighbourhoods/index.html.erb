@@ -5,10 +5,12 @@
   <div class="row">
   <% @neighbourhoods.each do |nbhd| %>
       <div class="col-md-3">
-
-        <%= link_to(image_tag(nbhd.nbhd_image.url, border: 0, class: "nbhd-image", style: "width: 350px; height: 220px; margin-bottom: 5px;"), neighbourhood_url(nbhd)) %>
-
-    </div>
+        <div class="nbhd-image">
+          <%= link_to(neighbourhood_url(nbhd)) do %>
+            <%= image_tag(nbhd.nbhd_image.url, border: 0, class: "img-responsive") %>
+          <% end %>
+        </div>
+      </div>
   <% end %>
   </div>
 </div>

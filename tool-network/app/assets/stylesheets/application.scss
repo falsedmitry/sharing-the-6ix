@@ -112,6 +112,19 @@ a:visited {
     color: $offwhite;
 }
 
+.nbhd-image a img {
+  height: 176px;
+}
+
+.nbhd-image {
+  width: 100%;
+  margin: 8px;
+}
+
+.nbhd-image img:hover {
+  opacity: 0.5;
+}
+
 /* footer */
 
 footer {
@@ -141,6 +154,10 @@ footer ul li {
     display: none;
   }
 
+  .hero-section-text {
+    font-size: 1.5em;
+    line-height: inherit;
+  }
   .hamburger-menu {
     top: 20px;
     right: 10px;
