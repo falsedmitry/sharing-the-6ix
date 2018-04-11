@@ -8,29 +8,29 @@ Tool.destroy_all
 User.destroy_all
 Neighbourhood.destroy_all
 
-neighbourhood_names = [
-  "The Annex",
-  "The Beaches",
-  "Cabbagetown",
-  "Chinatown",
-  "The Danforth",
-  "Distillery District",
-  "Downtown",
-  "Dundas West",
-  "High Park",
-  "The Junction",
-  "Kensington Market",
-  "Leslieville",
-  "Liberty Village",
-  "Little Italy",
-  "North York",
-  "Parkdale",
-  "Roncesvalles",
-  "Scarborough",
-  "Trinity Bellwoods",
-  "Yonge & Eglinton",
-  "Yorkville",
-  "Etobicoke"
+neighbourhoods = [
+  {name: "The Annex", postal_codes: ["M5R", "M5S"]},
+  {name: "The Beaches", postal_codes: ["M4E", "M4L"]},
+  {name: "Cabbagetown", postal_codes: ["M4X"]},
+  {name: "Chinatown", postal_codes: ["M5T"]},
+  {name: "The Danforth", postal_codes: ["M4J", "M4K"]},
+  {name: "Distillery District", postal_codes: ["M5A"]},
+  {name: "Downtown", postal_codes: ["M5G", "M5H", "M5J", "M5K", "M5L", "M6G", "M5V"]},
+  {name: "Dundas West", postal_codes: ["M6J"]},
+  {name: "High Park", postal_codes: ["M6P"]},
+  {name: "The Junction", postal_codes: ["M6N", "M6P"]},
+  {name: "Kensington Market", postal_codes: ["M5T"]},
+  {name: "Leslieville", postal_codes: ["M4J", "M4L"]},
+  {name: "Liberty Village", postal_codes: ["M6K"]},
+  {name: "Little Italy", postal_codes: ["M5S"]},
+  {name: "North York", postal_codes: ["M2H", "M2J", "M2K", "M2L", "M2M", "M2N", "M2P", "M2R", "M3A", "M3B", "M3C", "M3H", "M3J", "M3K", "M3L", "M3M", "M3N", "M4A", "M5M", "M6A", "M6B", "M6L", "M9L", "M9M"]},
+  {name: "Parkdale", postal_codes: ["M6K 2N6", "M6K 2T8"]},
+  {name: "Roncesvalles", postal_codes: ["M6R 1S1", "M6R 1G4"]},
+  {name: "Scarborough", postal_codes: ["M1E", "M1J", "M1L"]},
+  {name: "Trinity Bellwoods", postal_codes: ["M5T 2R7", "M6G 1A5"]},
+  {name: "Yonge & Eglinton", postal_codes: ["M4P 0A2", "M4P 1G7"]},
+  {name: "Yorkville", postal_codes: ["M4W", "M5R"]},
+  {name: "Etobicoke", postal_codes: ["M9A"]}
 ]
 
 user_names = ["Alyx", "Gurjant", "Daniel", "Maneesha", "Harisree", "Melissa", "Connor", "Sean", "Devon", "Natalie", "Niels", "Fred", "Jesse", "Elvis", "Najwa", "Matt", "Sanborn"]
@@ -39,8 +39,8 @@ postal_codes = ["M3A", "M4A", "M5A", "M6A", "M7A", "M9A", "M1B", "M3B", "M4B", "
 
 
 # Create neighbourhoods
-neighbourhood_names.each_with_index do |nbhd, i|
-  neighbourhood = Neighbourhood.create!(name: nbhd)
+neighbourhoods.each_with_index do |nbhd, i|
+  neighbourhood = Neighbourhood.create!(name: nbhd[:name])
   neighbourhood.nbhd_image = File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/neighbourhood_images/#{i}.jpg"))
   neighbourhood.save!
 end
@@ -50,15 +50,19 @@ dmitry = User.create!(name: "Dmitry", email: "dmitry.sbn@gmail.com", password: "
 alex = User.create!(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6G 1B9", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
 debbie = User.create!(name: "Debbie", email: "drosenfeld87@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6P 1Y9", neighbourhood: Neighbourhood.find_by(name: "The Junction"))
 bill = User.create!(name: "Bill", email: "li_bill@ymail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M5V 2T6", neighbourhood: Neighbourhood.find_by(name: "Downtown"))
+
 (0..16).to_a.each_with_index do |number, i|
   name = user_names[i]
+  neighbourhood = Neighbourhood.all.sample
+  postal_code = neighbourhoods.find {|nbhd| nbhd[:name] = neighbourhood.name }[:postal_codes].sample
+
   user = User.create!(
     name: name,
     email: "#{name.downcase}@gmail.com",
     password: "testtest",
     password_confirmation: "testtest",
-    postal_code: postal_codes.sample,
-    neighbourhood: Neighbourhood.all.sample,
+    neighbourhood: neighbourhood,
+    postal_code: postal_code,
     avatar: File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/user_avatars/#{name}.jpg"))
   )
 end
