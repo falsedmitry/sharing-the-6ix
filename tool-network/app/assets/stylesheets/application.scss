@@ -5,6 +5,8 @@ $lightred: #C03F49;
 $offwhite: #F0F4F1;
 $lightblack: #282828;
 $lightyellow: #FFE180;
+$hero-height: 60vh;
+
 
 * {
   box-sizing: border-box;
@@ -12,13 +14,30 @@ $lightyellow: #FFE180;
 
 /* mixins, variables, etc. */
 
+
 body {
-  background-image: url("arrow.svg");
-  background-repeat: no-repeat;
-  background-size: 1250px;
-  background-position: 50% 15%;
   margin: 0;
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
+}
+
+
+.hero-section {
+  background: url('toronto1.jpeg') 50% no-repeat;
+  background-size: cover;
+  height: $hero-height;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+
+  .hero-section-text {
+    font-family: 'Bitter', serif;
+    line-height: 70px;
+    font-size: 40px;
+    color: black;
+    text-shadow: 1px 1px 2px $offwhite;
+  }
 }
 
 .logo {
@@ -64,12 +83,7 @@ a:visited {
   color: $lightred;
 }
 
-.statement {
-  font-family: 'Bitter', serif;
-  text-align: center;
-  padding-top: 50px;
-  line-height: 55px;
-}
+
 
 
 .search-bar {
