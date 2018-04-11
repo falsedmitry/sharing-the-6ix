@@ -21,16 +21,6 @@ body {
 }
 
 
-.hero-section {
-  background: url('toronto1.jpeg') 50% no-repeat;
-  background-size: cover;
-  height: $hero-height;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.7;
-
   .hero-section-text {
     font-family: 'Bitter', serif;
     line-height: 70px;
@@ -38,6 +28,15 @@ body {
     color: black;
     text-shadow: 1px 1px 2px $offwhite;
   }
+  .hero-section {
+  background: url('toronto1.jpeg') 50% no-repeat;
+  background-size: cover;
+  height: $hero-height;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
 }
 
 .logo {
@@ -82,9 +81,6 @@ body {
 a:visited {
   color: $lightred;
 }
-
-
-
 
 .search-bar {
   display: flex;
@@ -168,27 +164,4 @@ footer ul li {
 
 .review-image {
   height: 250px;
-}
-
-.nbhd-div {
-  margin-left: auto;
-  margin-right: auto;
-  width: 35%;
-  height: 4em;
-  float: left;
-  margin: 1em;
-}
-
-.nbhd-image {
-  height: 100%;
-  width: 100%;
-}
-
-ul {
-  list-style-type: none;
-}
-
-.container {
-  margin-left: auto;
-  margin-right: auto;
 }
