@@ -1,150 +1,43 @@
 Review.destroy_all
 Category.destroy_all
 Chat.destroy_all
+Loan.destroy_all
 Tool.destroy_all
 User.destroy_all
-Loan.destroy_all
 Neighbourhood.destroy_all
 
 neighbourhood_names = [
   "The Annex",
-  "Parkdale",
-  "The Junction",
-  "Little Italy",
   "The Beaches",
-  "Dundas West",
-  "Yorkville",
-  "Downtown",
-  "Kensington Market",
-  "Chinatown",
-  "Roncesvalles",
-  "Yonge & Eglinton",
-  "East York",
-  "The Danforth",
   "Cabbagetown",
-  "Liberty Village",
+  "Chinatown",
+  "The Danforth",
+  "Distillery District",
+  "Downtown",
+  "Dundas West",
+  "High Park",
+  "The Junction",
+  "Kensington Market",
   "Leslieville",
+  "Liberty Village",
+  "Little Italy",
   "North York",
+  "Parkdale",
+  "Roncesvalles",
   "Scarborough",
+  "Trinity Bellwoods",
+  "Yonge & Eglinton",
+  "Yorkville",
   "Etobicoke"
 ]
 
-postal_codes = [
-  "M3A",
-  "M4A",
-  "M5A",
-  "M6A",
-  "M7A",
-  "M9A",
-  "M1B",
-  "M3B",
-  "M4B",
-  "M5B",
-  "M6B",
-  "M9B",
-  "M1C",
-  "M3C",
-  "M4C",
-  "M5C",
-  "M6C",
-  "M9C",
-  "M1E",
-  "M4E",
-  "M5E",
-  "M6E",
-  "M1G",
-  "M4G",
-  "M5G",
-  "M6G",
-  "M1H",
-  "M2H",
-  "M3H",
-  "M4H",
-  "M5H",
-  "M6H",
-  "M1J",
-  "M2J",
-  "M3J",
-  "M4J",
-  "M5J",
-  "M6J",
-  "M1K",
-  "M2K",
-  "M3K",
-  "M4K",
-  "M5K",
-  "M6K",
-  "M1L",
-  "M2L",
-  "M3L",
-  "M4L",
-  "M5L",
-  "M6L",
-  "M9L",
-  "M1M",
-  "M2M",
-  "M3M",
-  "M4M",
-  "M5M",
-  "M6M",
-  "M9M",
-  "M1N",
-  "M2N",
-  "M3N",
-  "M4N",
-  "M5N",
-  "M6N",
-  "M9N",
-  "M1P",
-  "M2P",
-  "M3P",
-  "M4P",
-  "M5P",
-  "M6P",
-  "M9P",
-  "M1P",
-  "M2P",
-  "M4P",
-  "M5P",
-  "M6P",
-  "M9P",
-  "M1R",
-  "M2R",
-  "M4R",
-  "M5R",
-  "M6R",
-  "M7R",
-  "M9R",
-  "M1S",
-  "M4S",
-  "M5S",
-  "M6S",
-  "M1T",
-  "M4T",
-  "M5T",
-  "M1V",
-  "M4V",
-  "M5V",
-  "M8V",
-  "M9V",
-  "M1W",
-  "M4W",
-  "M5W",
-  "M8W",
-  "M9W",
-  "M1X",
-  "M4X",
-  "M5X",
-  "M8X",
-  "M4Y",
-  "M7Y",
-  "M8Y",
-  "M8Z"
-]
-
-neighbourhood_names.each do |nbhd_name|
-  Neighbourhood.create(name: nbhd_name)
+neighbourhood_names.each_with_index do |nbhd, i|
+  neighbourhood = Neighbourhood.create!(name: nbhd)
+  neighbourhood.nbhd_image = File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/neighbourhood_images/#{i}.jpg"))
+  neighbourhood.save!
 end
+
+postal_codes = ["M3A", "M4A", "M5A", "M6A", "M7A", "M9A", "M1B", "M3B", "M4B", "M5B", "M6B", "M9B", "M1C", "M3C", "M4C", "M5C", "M6C", "M9C", "M1E", "M4E", "M5E", "M6E", "M1G", "M4G", "M5G", "M6G", "M1H", "M2H", "M3H", "M4H", "M5H", "M6H", "M1J", "M2J", "M3J", "M4J", "M5J", "M6J", "M1K", "M2K", "M3K", "M4K", "M5K", "M6K", "M1L", "M2L", "M3L", "M4L", "M5L", "M6L", "M9L", "M1M", "M2M", "M3M", "M4M", "M5M", "M6M", "M9M", "M1N", "M2N", "M3N", "M4N", "M5N", "M6N", "M9N", "M1P", "M2P", "M3P", "M4P", "M5P", "M6P", "M9P", "M1P", "M2P", "M4P", "M5P", "M6P", "M9P", "M1R", "M2R", "M4R", "M5R", "M6R", "M7R", "M9R", "M1S", "M4S", "M5S", "M6S", "M1T", "M4T", "M5T", "M1V", "M4V", "M5V", "M8V", "M9V", "M1W", "M4W", "M5W", "M8W", "M9W", "M1X", "M4X", "M5X", "M8X", "M4Y", "M7Y", "M8Y", "M8Z"]
 
 dmitry = User.create(name: "Dmitry", email: "dmitry@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6J 1X8", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
 alex = User.create(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6J 1X9", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
@@ -152,14 +45,18 @@ debbie = User.create(name: "Debbie", email: "debbie@gmail.com", password: "testt
 bill = User.create(name: "Bill", email: "bill@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "Markham", neighbourhood: Neighbourhood.find_by(name: "The Beaches"))
 
 (1..20).to_a.each do |number|
-  User.create(
+  user = User.create(
     name: "User #{number}",
     email: "user#{number}@gmail.com",
     password: "testtest",
     password_confirmation: "testtest",
     postal_code: postal_codes.sample,
-    neighbourhood: Neighbourhood.all.sample
+    neighbourhood: Neighbourhood.all.sample,
   )
+
+  user.avatar = File.new(File.join(Rails.root, "/app/assets/images/icon.png"))
+  user.save
+
 end
 
 10.times do
@@ -170,8 +67,14 @@ end
               owner: User.all.sample,
               on_loan: false,
               loan_length: rand(30)+1,
-              owner_pictures: nil
+              owner_pictures: []
             )
+
+  tool.owner_pictures = [
+    File.new(File.join(Rails.root, "/app/assets/images/icon.png")),
+    File.new(File.join(Rails.root, "/app/assets/images/icon.png"))
+  ]
+  tool.save
 
   5.times do
     tool.reviews.create!(

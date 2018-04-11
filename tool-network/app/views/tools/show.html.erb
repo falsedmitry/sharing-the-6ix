@@ -7,11 +7,11 @@
 </br>
 
 <% if current_user == @tool.owner%>
-  <button type="button" name="lend-tool", data-loan="<%= @tool.on_loan %>">
+  <button type="button" name="lend-tool", data-loan="<%= @tool.on_loan %>", style="display:none">
     <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
   </button>
 
-  <button type="button" name="get-tool-back" data-toolid="<%= @tool.id %>">
+  <button type="button" name="get-tool-back" data-toolid="<%= @tool.id %>", style="display:none">
     Get Back Tool
   </button>
 <% end %>
@@ -34,7 +34,7 @@
 <hr>
 
 <% if current_user && current_user != @tool.owner %>
-  <h2>Chats</h2>
+  <h2>Messages</h2>
   <% @chats.each do |chat| %>
     <% if chat.owner_reply == true %>
       <H4><%= @tool.owner.name %></H4>
