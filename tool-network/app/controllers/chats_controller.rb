@@ -13,7 +13,7 @@ class ChatsController < ApplicationController
     @chat.owner_reply = false
     if @chat.save
       UserMailer.owner_chat(@chat).deliver_later
-      flash[:notice] = "The message is sent to the owner."
+      flash[:notice] = "The message is sent to the owner with email notification."
     else
       flash[:alert] = "The message is failed in sending to the owner."
     end
@@ -36,7 +36,7 @@ class ChatsController < ApplicationController
     @chat.owner_reply = true
     if @chat.save
       UserMailer.requester_chat(@chat).deliver_later
-      flash[:notice] = "The message is sent to the requester."
+      flash[:notice] = "The message is sent to the requester with email notification."
     else
       flash[:alert] = "The message is failed in sending to the requester."
     end
