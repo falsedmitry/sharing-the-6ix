@@ -5,9 +5,9 @@ class ToolsController < ApplicationController
 
   def index
     if params[:tool]
-      @tools = Tool.search(params[:tool], params[:nbhd])
+      @tools = Tool.search(params[:tool], params[:nbhd]).where('on_loan = ?', "false")
     else
-      @tools = Tool.all
+      @tools = Tool.where('on_loan = ?', "false")
     end
 
     # respond_to do |format|
