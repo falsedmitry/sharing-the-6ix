@@ -191,7 +191,7 @@ hammer = Tool.create!(
   name: "Hammer",
   description: "Original inspiration for this project. Supreme quality.",
   condition: 10,
-  owner: User.all.sample,
+  owner: User.find_by(name: "Dmitry"),
   on_loan: false,
   loan_length: 1,
   owner_pictures: [

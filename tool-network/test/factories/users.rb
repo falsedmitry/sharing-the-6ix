@@ -5,6 +5,6 @@ FactoryBot.define do
     password "testtest"
     password_confirmation "testtest"
     postal_code "M6J 1X8"
-    neighbourhood Neighbourhood.create(name: "The Annex")
+    neighbourhood { Neighbourhood.create(name: "The Annex") }
   end
 end
