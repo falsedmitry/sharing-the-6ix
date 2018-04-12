@@ -5,7 +5,7 @@ $lightred: #C03F49;
 $offwhite: #F0F4F1;
 $lightblack: #282828;
 $lightyellow: #FFE180;
-$hero-height: 60vh;
+$hero-height: 50vh;
 
 
 * {
@@ -18,8 +18,21 @@ $hero-height: 60vh;
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
+  text-decoration: none;
 }
 
+a {
+  color: $lightblack;
+}
+
+#tool {
+  border-color: #C03F49;
+  border-style: solid;
+  border-width: 4px;
+  padding: 2px;
+  width: 600px;
+  border-radius: 5px;
+}
 
   .hero-section-text {
     font-family: 'Bitter', serif;
@@ -168,6 +181,15 @@ footer ul li {
 
 
 @media screen and (max-width: 550px) {
+
+  #tool {
+    border-color: #C03F49;
+    border-style: solid;
+    border-width: 4px;
+    padding: 2px;
+    width: 75%;
+    border-radius: 5px;
+  }
 
   .nav-links {
     display: none;
