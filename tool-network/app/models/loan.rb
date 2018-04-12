@@ -6,6 +6,7 @@ class Loan < ApplicationRecord
 
   validate :start_date_cannot_be_in_the_past
   validate :due_date_is_after_start_date
+  validate :lender_cannot_be_borrower
 
   def start_date_cannot_be_in_the_past
     if start_date && start_date < Date.today
@@ -21,6 +22,12 @@ class Loan < ApplicationRecord
 
   def overdue?
     due_date < Date.today
+  end
+
+  def lender_cannot_be_borrower
+    if borrower == tool.owner
+      errors[:this] << 'tool is yours'
+    end
   end
 
 end

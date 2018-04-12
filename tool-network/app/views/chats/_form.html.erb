@@ -1,4 +1,5 @@
-<%= form_for([@tool, @chat]) do |f| %>
+
+<%= form_for([@tool, Chat.new]) do |f| %>
   <p id="send_chat_content">
     <%= f.text_area :content %>
   </p>

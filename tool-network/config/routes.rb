@@ -14,6 +14,8 @@ Rails.application.routes.draw do
       resources :images
     end
   end
+  
+  resources :ratings, only: :update
 
   resources :users
   resources :neighbourhoods

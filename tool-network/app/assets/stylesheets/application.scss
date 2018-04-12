@@ -21,16 +21,6 @@ body {
 }
 
 
-.hero-section {
-  background: url('toronto1.jpeg') 50% no-repeat;
-  background-size: cover;
-  height: $hero-height;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.7;
-
   .hero-section-text {
     font-family: 'Bitter', serif;
     line-height: 70px;
@@ -38,6 +28,15 @@ body {
     color: black;
     text-shadow: 1px 1px 2px $offwhite;
   }
+  .hero-section {
+  background: url('toronto1.jpeg') 50% no-repeat;
+  background-size: cover;
+  height: $hero-height;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
 }
 
 .logo {
@@ -83,9 +82,6 @@ a:visited {
   color: $lightred;
 }
 
-
-
-
 .search-bar {
   display: flex;
   justify-content: center;
@@ -116,6 +112,37 @@ a:visited {
     color: $offwhite;
 }
 
+.nbhd-image a img {
+  height: 176px;
+}
+
+.nbhd-image {
+  width: 100%;
+  margin: 8px;
+}
+
+.nbhd-image {
+  .nbhd-name {
+    visibility: hidden;
+    position: absolute;
+    top: 50%;
+    color: black;
+    font-weight: bold;
+  }
+
+  &:hover {
+    img {
+      opacity: 0.5;
+    }
+   .nbhd-name {
+     visibility: visible;
+    }
+  }
+}
+
+
+
+
 /* footer */
 
 footer {
@@ -139,12 +166,17 @@ footer ul li {
   margin-left: 15px;
 }
 
+
 @media screen and (max-width: 550px) {
 
   .nav-links {
     display: none;
   }
 
+  .hero-section-text {
+    font-size: 1.5em;
+    line-height: inherit;
+  }
   .hamburger-menu {
     top: 20px;
     right: 10px;
@@ -157,9 +189,22 @@ footer ul li {
   }
 }
 
+@media screen and (min-width: 375px) {
+  .nbhd-image
+    .nbhd-name {
+      visibility: hidden;
+      position: absolute;
+      top: 45%;
+      left: 33%;
+      color: black;
+    }
+}
+
 #map {
-  height: 400px;
-  width: 100%;
+  height: 300px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto
 }
 
 .avatar {
@@ -170,25 +215,30 @@ footer ul li {
   height: 250px;
 }
 
-.nbhd-div {
-  margin-left: auto;
-  margin-right: auto;
-  width: 35%;
-  height: 4em;
-  float: left;
-  margin: 1em;
+a:hover {
+  text-decoration: none;
 }
 
-.nbhd-image {
-  height: 100%;
-  width: 100%;
+button > a:visited {
+  color: $lightblack;
 }
 
 ul {
-  list-style-type: none;
+  list-style: none
 }
 
-.container {
-  margin-left: auto;
-  margin-right: auto;
+#star {
+  display: inline;
+}
+
+p.rating, div.review-rating {
+  display: inline
+}
+
+.availability, .tool-name-link {
+  display: inline
+}
+
+.tool-index-image {
+  display: block
 }

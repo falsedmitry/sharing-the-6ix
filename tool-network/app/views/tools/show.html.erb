@@ -16,12 +16,16 @@
   </button>
 <% end %>
 
-<p>Loan Length: <%= @tool.loan_length %></p>
-<p>Condition: <%= @tool.condition %></p>
-<p>Description: <%= @tool.description %></p>
+<p>Average rating:</p>
+<div id="star"></div> (<%= pluralize(@tool.reviews.count, "review") %>)
+</br>
+
 <% unless current_user == @tool.owner %>
-  <p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
+<p>Owner: <%= link_to("#{@tool.owner.name}", user_path(@tool.owner)) %></p>
 <% end %>
+<p>Max Loan Length (days): <%= @tool.loan_length %></p>
+<p>Condition: <%= @tool.condition %>/10</p>
+<p>Description: <%= @tool.description %></p>
 
 <div id="map">
 </div>
@@ -42,7 +46,7 @@
       </li>
     <% end %>
   </ul>
-  <%= render '/chats/form', chat: @chat %>
+  <%= render '/chats/form', locals: {:tool => @tool, :chat => @chat} %>
 <% end %>
 
 <h2>Reviews</h2>
@@ -71,6 +75,14 @@ function initMap() {
     map: map
   });
 }
+</script>
+
+<script>
+$('#star').raty({
+  readOnly: true,
+  score: '<%= @tool.average_rating %>',
+  path: '/assets'
+});
 </script>
 
 <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM&callback=initMap">
