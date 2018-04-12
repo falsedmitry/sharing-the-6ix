@@ -83,3 +83,4 @@ production:
   database: tool-network_production
   username: tool-network
   password: <%= ENV['TOOL-NETWORK_DATABASE_PASSWORD'] %>
+  host: localhost
