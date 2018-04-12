@@ -3,7 +3,7 @@
 <% @tools.each do |tool| %>
   <div class=“tools”>
 
-   <p>
+   <p class="tool-name">
      <%= link_to(tool.name, tool_path(tool)) %>
      <% if current_user && tool.chats.where("unread = ?", true).where("owner_reply = ?", true).where("user_id = ?", current_user.id).count > 0 %>
        (<%= tool.chats.where("unread = ?", true).where("owner_reply = ?", true).where("user_id = ?", current_user.id).count %>)
