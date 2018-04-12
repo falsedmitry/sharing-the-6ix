@@ -3,7 +3,8 @@
     <%= image_tag(image.url, class: "review-image") %>
   <% end %>
 
-  <p>Rating: <%= review.rating %></p>
+  <p>Rating</p>
+  <div id="rating<%= review.id %>">Existing review on show page</div>
   <p>User: <%= review.user.name %></p>
   <p><%= review.comment %></p>
   <p><%= review.created_at.localtime %></p>
@@ -13,3 +14,27 @@
   <% end %>
   <hr>
 </div>
+
+<% if review.user == current_user %>
+  <script>
+    $('#rating<%= review.id %>').raty({
+      score: <%= review.rating.score %>,
+      path: '/assets',
+      click: function(score, evt) {
+        $.ajax({
+          url: '/ratings/' + <%= review.rating.id %>,
+          type: 'PATCH',
+          data: { score: score }
+        });
+      }
+    });
+  </script>
+<% else %>
+  <script>
+    $('#rating<%= review.id %>').raty({
+      readOnly: true,
+      score: <%= review.rating.score %>,
+      path: '/assets'
+    });
+  </script>
+<% end %>
