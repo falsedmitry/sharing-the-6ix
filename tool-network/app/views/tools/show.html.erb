@@ -39,16 +39,13 @@
 
 <% if current_user && current_user != @tool.owner %>
   <h2>Messages</h2>
-  <% if @chats %>
+  <ul id="user_chat_box">
     <% @chats.each do |chat| %>
-      <% if chat.owner_reply == true %>
-        <H4><%= @tool.owner.name %></H4>
-      <% else %>
-        <h4>You</h4>
-      <% end %>
-      <%= render '/chats/chat', chat: chat %>
+      <li id="user_chat_detail">
+        <%= render '/chats/chat', chat: chat %>
+      </li>
     <% end %>
-  <% end %>
+  </ul>
   <%= render '/chats/form', locals: {:tool => @tool, :chat => @chat} %>
 <% end %>
 
