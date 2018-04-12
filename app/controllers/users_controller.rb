@@ -21,8 +21,8 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
       redirect_to tools_url
     else
-      puts @user.errors.full_messages
-      flash[:error] = "Something went wrong"
+      # puts @user.errors.full_messages
+      # flash[:error] = "Something went wrong"
       render :new
     end
   end
