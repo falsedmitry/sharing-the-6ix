@@ -1,6 +1,6 @@
 <h1>Edit Review</h1>
 
-<p> <%= link_to("Back", tool_path(@review.tool_id)) %></p>
+<p><%= link_to("Back", tool_path(@review.tool_id), class: "back-button") %></p>
 
 <%= form_for([@tool, @review]) do |f| %>
 
@@ -22,6 +22,19 @@
 <% end %>
 
 <script>
+  var backButton = document.querySelector('.back-button');
+  var oldScore = <%= @rating.score %>;
+
+  backButton.addEventListener('click', function() {
+    $.ajax({
+      url: '/ratings/' + <%= @rating.id %>,
+      method: 'PATCH',
+      data: {score: oldScore}
+    }).done(function(data) {
+      console.log('reverted to old rating');
+    })
+  })
+
   $('#user-new-rating').raty({
     score: <%= @rating.score %>,
     path: '/assets',
