@@ -1,3 +1,5 @@
+require "json"
+
 class ChatsController < ApplicationController
 
   def index
@@ -17,7 +19,22 @@ class ChatsController < ApplicationController
     else
       flash[:alert] = "The message is failed in sending to the owner."
     end
-    redirect_to tool_url(params[:tool_id])
+    if request.xhr?
+      respond_to do |format|
+        format.html do
+          render partial: "chat", locals: {chat: @chat}
+        end
+        format.json do
+          render json: {
+            name: @chat.tool.owner.name,
+            date: @chat.created_at.localtime,
+            content: @chat.content
+          }
+        end
+      end
+    else
+      redirect_to tool_url(params[:tool_id])
+    end
   end
 
   def edit
@@ -41,6 +58,21 @@ class ChatsController < ApplicationController
     else
       flash[:alert] = "The message is failed in sending to the requester."
     end
-    redirect_to edit_chat_url(params[:id])
+    if request.xhr?
+      respond_to do |format|
+        format.html do
+          render partial: "chat", locals: {chat: @chat}
+        end
+        format.json do
+          render json: {
+            name: @chat.tool.owner.name,
+            date: @chat.created_at.localtime,
+            content: @chat.content
+          }
+        end
+      end
+    else
+      redirect_to edit_chat_url(params[:id])
+    end
   end
 end

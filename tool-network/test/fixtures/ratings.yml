@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  score: 1
+  default: MyString
+  0: MyString
+
+two:
+  score: 1
+  default: MyString
+  0: MyString

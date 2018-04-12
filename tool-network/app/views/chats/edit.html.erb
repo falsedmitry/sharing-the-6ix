@@ -1,13 +1,13 @@
 <h1>Messages</h1>
 
-<% @chats.each do |chat| %>
-  <% if chat.owner_reply == true %>
-    <h4>You</h4>
-  <% else %>
-    <H4><%= chat.user.name %></H4>
+<ul id="owner_chat_box">
+  <% @chats.each do |chat| %>
+    <li id="owner_chat_detail">
+      <%= render 'chat', chat: chat %>
+    </li>
   <% end %>
-  <%= render 'chat', chat: chat %>
-<% end %>
+</ul>
+
 <% @chat.content = nil %>
 <%= render 'form_edit', chat: @chat %>
 <%= link_to 'Back', chats_path %>

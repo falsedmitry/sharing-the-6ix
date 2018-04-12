@@ -1,5 +1,10 @@
 <div class="chat">
+  <% if chat.owner_reply == true %>
+    <h4><%= chat.tool.owner.name %></h4>
+  <% else %>
+    <h4><%= chat.user.name %></h4>
+  <% end %>
   <p><%= chat.created_at.localtime %></p>
   <p><%= chat.content %></p>
-  <hr>
+  <br>
 </div>

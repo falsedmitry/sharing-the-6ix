@@ -16,12 +16,16 @@
   </button>
 <% end %>
 
-<p>Loan Length: <%= @tool.loan_length %></p>
-<p>Condition: <%= @tool.condition %></p>
-<p>Description: <%= @tool.description %></p>
+<p>Average rating:</p>
+<div id="star"></div> (<%= pluralize(@tool.reviews.count, "review") %>)
+</br>
+
 <% unless current_user == @tool.owner %>
-  <p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
+<p>Owner: <%= link_to("#{@tool.owner.name}", user_path(@tool.owner)) %></p>
 <% end %>
+<p>Max Loan Length (days): <%= @tool.loan_length %></p>
+<p>Condition: <%= @tool.condition %>/10</p>
+<p>Description: <%= @tool.description %></p>
 
 <div id="map">
 </div>
@@ -35,15 +39,14 @@
 
 <% if current_user && current_user != @tool.owner %>
   <h2>Messages</h2>
-  <% @chats.each do |chat| %>
-    <% if chat.owner_reply == true %>
-      <H4><%= @tool.owner.name %></H4>
-    <% else %>
-      <h4>You</h4>
+  <ul id="user_chat_box">
+    <% @chats.each do |chat| %>
+      <li id="user_chat_detail">
+        <%= render '/chats/chat', chat: chat %>
+      </li>
     <% end %>
-    <%= render '/chats/chat', chat: chat %>
-  <% end %>
-  <%= render '/chats/form', chat: @chat %>
+  </ul>
+  <%= render '/chats/form', locals: {:tool => @tool, :chat => @chat} %>
 <% end %>
 
 <h2>Reviews</h2>
@@ -72,6 +75,14 @@ function initMap() {
     map: map
   });
 }
+</script>
+
+<script>
+$('#star').raty({
+  readOnly: true,
+  score: '<%= @tool.average_rating %>',
+  path: '/assets'
+});
 </script>
 
 <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM&callback=initMap">

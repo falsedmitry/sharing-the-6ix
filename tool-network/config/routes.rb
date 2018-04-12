@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy', :as => :logout
   post 'login' => 'sessions#create'
 
+  get 'about' => 'pages#about'
+  get 'contact' => 'pages#contact'
+  get 'privacy' => 'pages#privacy'
 
   resources :tools do
     resource :loan, only: %i(new show create)
@@ -14,6 +17,8 @@ Rails.application.routes.draw do
       resources :images
     end
   end
+
+  resources :ratings, only: :update
 
   resources :users
   resources :neighbourhoods

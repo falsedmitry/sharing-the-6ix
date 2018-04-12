@@ -256,8 +256,10 @@ footer ul li {
 }
 
 #map {
-  height: 400px;
-  width: 100%;
+  height: 300px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto
 }
 
 .avatar {
@@ -266,4 +268,32 @@ footer ul li {
 
 .review-image {
   height: 250px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+button > a:visited {
+  color: $lightblack;
+}
+
+ul {
+  list-style: none
+}
+
+#star {
+  display: inline;
+}
+
+p.rating, div.review-rating {
+  display: inline
+}
+
+.availability, .tool-name-link {
+  display: inline
+}
+
+.tool-index-image {
+  display: block
 }

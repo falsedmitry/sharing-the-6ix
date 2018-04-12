@@ -5,60 +5,44 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
 
-  test "rating is 0.0 if under 5 reviews" do
+  test "average_rating is 0.0 if one review with 0 rating" do
     user = FactoryBot.create(:user)
-
-    4.times do
-      tool = FactoryBot.create(:tool, user_id: user.id)
-      FactoryBot.create(:review, tool_id: tool.id, user_id: user.id)
-    end
+    tool = FactoryBot.create(:tool, owner: user)
+    review = FactoryBot.create(:review, user: user, tool: tool)
+    rating = FactoryBot.create(:rating, score: 0, review: review)
 
     expected = 0.0
-    actual = user.rating
+    actual = tool.average_rating
     assert_equal(expected, actual)
   end
 
-  test "rating is 1.0 if 5 reviews, all 1 stars" do
+  test "average_rating is 5.0 if two reviews with 5 rating" do
     user = FactoryBot.create(:user)
+    tool = FactoryBot.create(:tool, owner: user)
 
-    5.times do
-      tool = FactoryBot.create(:tool, user_id: user.id)
-      FactoryBot.create(:review, rating: 1, tool_id: tool.id, user_id: user.id)
-    end
+    review1 = FactoryBot.create(:review, user: user, tool: tool)
+    rating1 = FactoryBot.create(:rating, score: 5, review: review1)
 
-    expected = 1.0
-    actual = user.rating
+    review2 = FactoryBot.create(:review, user: user, tool: tool)
+    rating2 = FactoryBot.create(:rating, score: 5, review: review2)
+
+    expected = 5.0
+    actual = tool.average_rating
     assert_equal(expected, actual)
   end
 
-  test "rating is 3.0 if 10 reviews, all 3 stars" do
+  test "average_rating is 2.5 if two reviews with 0, 5 rating" do
     user = FactoryBot.create(:user)
+    tool = FactoryBot.create(:tool, owner: user)
 
-    10.times do
-      tool = FactoryBot.create(:tool, user_id: user.id)
-      FactoryBot.create(:review, rating: 3, tool_id: tool.id, user_id: user.id)
-    end
+    review1 = FactoryBot.create(:review, user: user, tool: tool)
+    rating1 = FactoryBot.create(:rating, score: 0, review: review1)
 
-    expected = 3.0
-    actual = user.rating
-    assert_equal(expected, actual)
-  end
+    review2 = FactoryBot.create(:review, user: user, tool: tool)
+    rating2 = FactoryBot.create(:rating, score: 5, review: review2)
 
-  test "rating is 4.0 if 10 reviews, 5 5 stars, 5 3 stars" do
-    user = FactoryBot.create(:user)
-
-    5.times do
-      tool = FactoryBot.create(:tool, user_id: user.id)
-      FactoryBot.create(:review, rating: 5, tool_id: tool.id, user_id: user.id)
-    end
-
-    5.times do
-      tool = FactoryBot.create(:tool, user_id: user.id)
-      FactoryBot.create(:review, rating: 3, tool_id: tool.id, user_id: user.id)
-    end
-
-    expected = 4.0
-    actual = user.rating
+    expected = 2.5
+    actual = tool.average_rating
     assert_equal(expected, actual)
   end
 

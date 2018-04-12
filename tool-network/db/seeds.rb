@@ -46,10 +46,13 @@ neighbourhoods.each_with_index do |nbhd, i|
 end
 
 # Create users
-dmitry = User.create!(name: "Dmitry", email: "dmitry.sbn@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6J 1X8", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
-alex = User.create!(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6G 1B9", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
-debbie = User.create!(name: "Debbie", email: "drosenfeld87@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6P 1Y9", neighbourhood: Neighbourhood.find_by(name: "The Junction"))
-bill = User.create!(name: "Bill", email: "li_bill@ymail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M5V 2T6", neighbourhood: Neighbourhood.find_by(name: "Downtown"))
+dmitry = User.create!(name: "Dmitry", email: "dmitry.sbn@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6J 1X8", neighbourhood: Neighbourhood.find_by(name: "Dundas West"), avatar: File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/user_avatars/dmitry.jpg")
+
+alex = User.create!(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6G 1B9", neighbourhood: Neighbourhood.find_by(name: "Dundas West"), avatar: File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/user_avatars/alex.jpg")
+
+debbie = User.create!(name: "Debbie", email: "drosenfeld87@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6P 1Y9", neighbourhood: Neighbourhood.find_by(name: "The Junction"), avatar: File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/user_avatars/debbie.jpg")
+
+bill = User.create!(name: "Bill", email: "li_bill@ymail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M5V 2T6", neighbourhood: Neighbourhood.find_by(name: "Downtown"), avatar: File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/user_avatars/bill.jpg")
 
 (0..16).to_a.each_with_index do |number, i|
   name = user_names[i]
@@ -379,193 +382,194 @@ tools_borrowed = [
 ]
 
 tools_borrowed.each do |tool|
+  available_users = User.all - [tool.owner]
   loan = Loan.create!(
     start_date: Date.today,
     due_date: Date.today + rand(5) + 5,
-    borrower: User.all.sample,
+    borrower: available_users.sample,
     tool: tool,
     active: false
   )
 end
 
 # Create reviews
-bbq_review = Review.create!(
+review = Review.create!(
   comment: "The charred steaks were delicious... said no one ever.",
-  rating: 5,
   user: bbq.borrowers.last,
   tool: bbq,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/bbq-review1.jpg"))
   ])
-carjack_review = Review.create!(
+review = Review.create!(
   comment: "Did not help with carjacking.",
-  rating: 1,
   user: carjack.borrowers.last,
   tool: carjack,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/carjack-review1.jpg"))
   ])
-fitbit_review = Review.create!(
+review = Review.create!(
   comment: "My heart rate went through the roof!",
-  rating: 4,
   user: fitbit.borrowers.last,
   tool: fitbit,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/fitbit-review1.jpg")),
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/fitbit-review2.jpg"))
   ])
-folding_chair_review = Review.create!(
+review = Review.create!(
   comment: "Was perfect with the BBQ Grill that I borrowed.",
-  rating: 5,
   user: folding_chair.borrowers.last,
   tool: folding_chair,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/foldingchair-review1.jpg"))
   ])
-food_processor_review = Review.create!(
+review = Review.create!(
   comment: "I've processed the food.",
-  rating: 5,
   user: food_processor.borrowers.last,
   tool: food_processor,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/foodprocessor-review1.jpg"))
   ])
-garden_shears_review = Review.create!(
+review = Review.create!(
   comment: "Perfect for those edges.",
-  rating: 5,
   user: garden_shears.borrowers.first,
   tool: garden_shears,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/gardenshears-review1.jpg"))
   ])
-go_pro_review1 = Review.create!(
+review = Review.create!(
   comment: "Went skiing!",
-  rating: 5,
   user: go_pro.borrowers.first,
   tool: go_pro,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/gopro-review1.jpg"))
   ])
-go_pro_review2 = Review.create!(
+review = Review.create!(
   comment: "Went skiing again!",
-  rating: 5,
   user: go_pro.borrowers.first,
   tool: go_pro,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/gopro-review2.jpg"))
   ])
-go_pro_review3 = Review.create!(
+review = Review.create!(
   comment: "Then I went snowboarding!",
-  rating: 5,
   user: go_pro.borrowers.first,
   tool: go_pro,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/gopro-review3.jpg"))
   ])
-karaoke_review = Review.create!(
+review = Review.create!(
   comment: "The microphone was off.",
-  rating: 5,
   user: karaoke.borrowers.last,
   tool: karaoke,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/karaoke-review1.jpg"))
   ])
-ladder_review = Review.create!(
+review = Review.create!(
   comment: "Almost fell down.",
-  rating: 1,
   user: ladder.borrowers.last,
   tool: ladder,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/ladder-review1.jpg"))
   ])
-lawnmower_review = Review.create!(
+review = Review.create!(
   comment: "Nothing feels better than waking up my neighbours with a combination of noise and gasoline smell at 7am on Saturday! I love being an asshole.",
-  rating: 5,
   user: lawnmower.borrowers.last,
   tool: lawnmower,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/lawnmower-review1.jpg")),
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/lawnmower-review2.jpg"))
   ])
-margarita_mixer_review = Review.create!(
+review = Review.create!(
   comment: "The only thing better than a Margarita is two Margaritas.",
-  rating: 5,
   user: margarita_mixer.borrowers.last,
   tool: margarita_mixer,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/margaritamixer-review1.jpg")),
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/margaritamixer-review2.jpg"))
   ])
-moving_trolley_review = Review.create!(
+review = Review.create!(
   comment: "The trolley was truly moving.",
-  rating: 4,
   user: moving_trolley.borrowers.last,
   tool: moving_trolley,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/movingtrolley-review1.jpg"))
   ])
-outdoor_speaker_review = Review.create!(
+review = Review.create!(
   comment: "Good for drowning out the sound of a lawnmower.",
-  rating: 4,
   user: outdoor_speaker.borrowers.last,
   tool: outdoor_speaker,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/outdoorspeaker-review1.jpg"))
   ])
-pet_carrier_review = Review.create!(
+review = Review.create!(
   comment: "My dog hated this.",
-  rating: 1,
   user: pet_carrier.borrowers.last,
   tool: pet_carrier,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/petcarrier-review1.jpg"))
   ])
-power_drill_review = Review.create!(
+review = Review.create!(
   comment: "I really should have checked for wires behind the drywall first.",
-  rating: 1,
   user: power_drill.borrowers.last,
   tool: power_drill,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/powerdrill-review1.jpg")),
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/powerdrill-review2.jpg"))
   ])
-rollerblades_review = Review.create!(
+review = Review.create!(
   comment: "It was all fun and games until I fell square on my face.",
-  rating: 2,
   user: rollerblades.borrowers.last,
   tool: rollerblades,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/rollerblades-review1.jpg"))
   ])
-stepper_review = Review.create!(
+review = Review.create!(
   comment: "I did not notice the water levels rising until it was too late.",
-  rating: 3,
   user: stepper.borrowers.last,
   tool: stepper,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/stepper-review1.jpg"))
   ])
-tent_review = Review.create!(
+review = Review.create!(
   comment: "The tent no longer has that fresh rubber smell.",
-  rating: 3,
   user: tent.borrowers.last,
   tool: tent,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/tent-review1.jpg"))
   ])
-tire_inflator_review = Review.create!(
+review = Review.create!(
   comment: "The pressure gauge was precise up to 0.1 psi.",
-  rating: 5,
   user: tire_inflator.borrowers.last,
   tool: tire_inflator,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/tireinflator-review1.jpg"))
   ])
-walkie_talkie_review = Review.create!(
+review = Review.create!(
   comment: "I realized too late that only one of these was not enough.",
-  rating: 5,
   user: walkie_talkie.borrowers.last,
   tool: walkie_talkie,
+  rating: Rating.create(score: rand(5) + 1, review: review),
   images: [
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_review_images/walkietalkie-review1.jpg"))
   ])

@@ -9,8 +9,8 @@
         <% if current_user %>
           <%= link_to "My Profile", user_path(current_user) %>
           <%= link_to 'Messages', chats_path %>
-          <% if current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count > 0 %>
-            (<%= current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count %>)
+          <% if current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count + current_user.chats.where("unread = ?", true).where("owner_reply = ?", true).count > 0 %>
+            (<%= current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count + current_user.chats.where("unread = ?", true).where("owner_reply = ?", true).count %>)
           <% end %>
           <%= link_to 'Add Tool', new_tool_path %>
           <%= link_to "Logout", :logout, method: :delete %>
@@ -27,8 +27,8 @@
 
           <%= link_to "My Profile", user_path(current_user) %>
           <%= link_to 'Messages', chats_path %>
-          <% if current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count > 0 %>
-            (<%= current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count %>)
+          <% if current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count + current_user.chats.where("unread = ?", true).where("owner_reply = ?", true).count > 0 %>
+            (<%= current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count + current_user.chats.where("unread = ?", true).where("owner_reply = ?", true).count %>)
           <% end %>
           <%= link_to 'Add Tool', new_tool_path %>
           <%= link_to "Logout", :logout, method: :delete %>

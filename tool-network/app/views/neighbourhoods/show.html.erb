@@ -1,22 +1,24 @@
 <h2><%= @neighbourhood.name %></h2>
 
 <h4>Popular tools in <%= @neighbourhood.name %>:</h4>
-<ul>
+<% if @neighbourhood.tools.any? %>
   <% @neighbourhood.tools.each do |tool| %>
-    <li>
-      <%= link_to("#{tool.name}", tool_url(tool)) %>
-    </li>
+    <%= render '/tools/tool', tool: tool %>
   <% end %>
-</ul>
+<% else %>
+  <p>Be the first to share a tool here!</p>
+<% end %>
 
 <h4>Users in <%= @neighbourhood.name %>:</h4>
-<ul>
+<% if @users_in_neighbourhood.any? %>
   <% @users_in_neighbourhood.each do |user| %>
-    <li>
-      <%= user.name %>
-    </li>
+    <%= link_to(user_path(user)) do %>
+      <%= image_tag(user.avatar.url, border: 1, class: "img-responsive", size: "120x100" ) %>
+    <% end %>
   <% end %>
-</ul>
+<% else %>
+  <p>There are no users here yet.</p>
+<% end %>
 
 <div id="map">
 </div>
@@ -66,7 +68,7 @@ function initMap() {
     fillOpacity: 0.5,
     map: map,
     center: centerOfMap,
-    radius: (<%= (@north - @south) / 2 %>) * 100000
+    radius: (<%= (@north - @south) / 2 %>) * 150000
   })
 }
 </script>
