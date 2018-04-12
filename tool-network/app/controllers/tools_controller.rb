@@ -7,7 +7,7 @@ class ToolsController < ApplicationController
     if params[:tool]
       @tools = Tool.search(params[:tool], params[:nbhd])
     else
-      @tools = Tool.all.where('on_loan = ?', "false")
+      @tools = Tool.all
     end
     @nbhd = Neighbourhood.find_by(name: params[:nbhd])
   end

@@ -31,7 +31,7 @@ class Tool < ApplicationRecord
     if tool_name != "" && neighbourhood_name != ""
       tools = []
 
-      where('name iLIKE ? AND on_loan = ?', '%#{tool_name}%", false').each do |tool|
+      where('name iLIKE ?', "%#{tool_name}%").each do |tool|
         if tool.owner.neighbourhood.name == neighbourhood_name
           tools << tool
         end
@@ -40,12 +40,12 @@ class Tool < ApplicationRecord
       return tools
 
     elsif tool_name != ""
-      where('name iLIKE ? AND on_loan = ?', '%#{tool_name}%", false')
+      where('name iLIKE ?', "%#{tool_name}%")
 
     elsif neighbourhood_name != ""
       tools = []
 
-      where('on_loan = ?', "false").each do |tool|
+      all.each do |tool|
         if tool.owner.neighbourhood.name == neighbourhood_name
           tools << tool
         end
@@ -54,7 +54,7 @@ class Tool < ApplicationRecord
       return tools
 
     else
-      where('on_loan = ?', "false")
+      all
     end
   end
 
