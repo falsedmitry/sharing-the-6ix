@@ -46,10 +46,13 @@ neighbourhoods.each_with_index do |nbhd, i|
 end
 
 # Create users
-dmitry = User.create!(name: "Dmitry", email: "dmitry.sbn@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6J 1X8", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
-alex = User.create!(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6G 1B9", neighbourhood: Neighbourhood.find_by(name: "Dundas West"))
-debbie = User.create!(name: "Debbie", email: "drosenfeld87@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6P 1Y9", neighbourhood: Neighbourhood.find_by(name: "The Junction"))
-bill = User.create!(name: "Bill", email: "li_bill@ymail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M5V 2T6", neighbourhood: Neighbourhood.find_by(name: "Downtown"))
+dmitry = User.create!(name: "Dmitry", email: "dmitry.sbn@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6J 1X8", neighbourhood: Neighbourhood.find_by(name: "Dundas West"), avatar: File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/user_avatars/dmitry.jpg")
+
+alex = User.create!(name: "Alex", email: "alex@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6G 1B9", neighbourhood: Neighbourhood.find_by(name: "Dundas West"), avatar: File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/user_avatars/alex.jpg")
+
+debbie = User.create!(name: "Debbie", email: "drosenfeld87@gmail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M6P 1Y9", neighbourhood: Neighbourhood.find_by(name: "The Junction"), avatar: File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/user_avatars/debbie.jpg")
+
+bill = User.create!(name: "Bill", email: "li_bill@ymail.com", password: "testtest", password_confirmation: "testtest", postal_code: "M5V 2T6", neighbourhood: Neighbourhood.find_by(name: "Downtown"), avatar: File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/user_avatars/bill.jpg")
 
 (0..16).to_a.each_with_index do |number, i|
   name = user_names[i]

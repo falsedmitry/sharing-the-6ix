@@ -16,15 +16,16 @@
   </button>
 <% end %>
 
-<p>Average rating</p>
-<div id="star"></div>(<%= pluralize(@tool.reviews.count, "review") %>)
+<p>Average rating:</p>
+<div id="star"></div> (<%= pluralize(@tool.reviews.count, "review") %>)
+</br>
 
+<% unless current_user == @tool.owner %>
+<p>Owner: <%= link_to("#{@tool.owner.name}", user_path(@tool.owner)) %></p>
+<% end %>
 <p>Max Loan Length (days): <%= @tool.loan_length %></p>
 <p>Condition: <%= @tool.condition %>/10</p>
 <p>Description: <%= @tool.description %></p>
-<% unless current_user == @tool.owner %>
-  <p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
-<% end %>
 
 <div id="map">
 </div>

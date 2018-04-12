@@ -2,26 +2,20 @@
 
 <h4>Popular tools in <%= @neighbourhood.name %>:</h4>
 <% if @neighbourhood.tools.any? %>
-  <ul>
-    <% @neighbourhood.tools.each do |tool| %>
-      <li>
-        <%= link_to("#{tool.name}", tool_url(tool)) %>
-      </li>
-    <% end %>
-  </ul>
+  <% @neighbourhood.tools.each do |tool| %>
+    <%= render '/tools/tool', tool: tool %>
+  <% end %>
 <% else %>
   <p>Be the first to share a tool here!</p>
 <% end %>
 
 <h4>Users in <%= @neighbourhood.name %>:</h4>
 <% if @users_in_neighbourhood.any? %>
-  <ul>
-    <% @users_in_neighbourhood.each do |user| %>
-      <li>
-        <%= user.name %>
-      </li>
+  <% @users_in_neighbourhood.each do |user| %>
+    <%= link_to(user_path(user)) do %>
+      <%= image_tag(user.avatar.url, border: 1, class: "img-responsive", size: "120x100" ) %>
     <% end %>
-  </ul>
+  <% end %>
 <% else %>
   <p>There are no users here yet.</p>
 <% end %>
