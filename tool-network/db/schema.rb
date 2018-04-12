@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180409211523) do
+ActiveRecord::Schema.define(version: 20180411230052) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,8 +57,15 @@ ActiveRecord::Schema.define(version: 20180409211523) do
     t.string "nbhd_image"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "review_id"
+    t.index ["review_id"], name: "index_ratings_on_review_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
-    t.integer "rating"
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -99,6 +106,7 @@ ActiveRecord::Schema.define(version: 20180409211523) do
   add_foreign_key "chats", "users"
   add_foreign_key "loans", "tools"
   add_foreign_key "loans", "users"
+  add_foreign_key "ratings", "reviews"
   add_foreign_key "reviews", "tools"
   add_foreign_key "reviews", "users"
   add_foreign_key "tools", "users"

@@ -4,23 +4,18 @@
 
 <img src="<%= @user.avatar %>" alt="" class="avatar">
 
-<% if @user.rating == 0 %>
-  <p>Rating: not enough history</p>
-<% else %>
-  <p>Rating: <%= @user.rating %></p>
-<% end %>
-
 <p>Name: <%= @user.name %></p>
 <p>Email: <%= @user.email %></p>
 <p>Postal Code: <%= @user.postal_code %></p>
 <%= link_to 'Add Tool', new_tool_path %>
 <hr>
 
-<% if @user == current_user && !@borrowed_tools.empty? %>
+<% if @user == current_user && !@currently_borrowed_tools.empty? %>
   <p>Active Loans</p>
   <ul>
-    <% @borrowed_tools.each do |tool| %>
+    <% @currently_borrowed_tools.each do |tool| %>
       <li class="tools">
+        <p><strong><%= link_to("#{tool.name}", tool_path(tool)) %></strong></p>
         <% if tool.active_loan.overdue? %>
           (OVERDUE)
         <% end %>

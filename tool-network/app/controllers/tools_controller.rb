@@ -9,10 +9,6 @@ class ToolsController < ApplicationController
     else
       @tools = Tool.where('on_loan = ?', "false")
     end
-
-    # respond_to do |format|
-    #   format.text do
-
   end
 
   def new
@@ -31,7 +27,6 @@ class ToolsController < ApplicationController
         write_tool_category
         redirect_to tool_url(@tool)
       else
-        # puts @tool.errors.full_messages
         render :new
       end
     else
@@ -71,14 +66,21 @@ class ToolsController < ApplicationController
 
   def show
     @tool = Tool.find(params[:id])
+
     if current_user
       Chat.where("tool_id = ?", @tool.id).where("user_id = ?", current_user.id).where("owner_reply = ?", true).update_all(unread: false)
-
       @chats = Chat.where("user_id = ?", current_user.id).where("tool_id = ?", params[:id])
     end
+
     @chat = Chat.new
+
     @review = Review.new
     @reviews = @tool.reviews.order(created_at: :desc)
+
+    @rating = Rating.where(review: @review).first
+    unless @rating
+      @rating = Rating.create(review: @review, score: 0)
+    end
 
     owner_location = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{@tool.owner.postal_code.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM").body)["results"][0]["geometry"]["location"]
 

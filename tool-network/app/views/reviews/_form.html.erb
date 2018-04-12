@@ -4,21 +4,7 @@
     <%= f.text_area :comment %>
   </div>
 
-  <div>
-    <fieldset>
-      <legend>Rating</legend>
-      <%= f.label "1 Star" %>
-      <%= f.radio_button(:rating, value="1") %>
-      <%= f.label "2 Stars" %>
-      <%= f.radio_button(:rating, value="2") %>
-      <%= f.label "3 Stars" %>
-      <%= f.radio_button(:rating, value="3") %>
-      <%= f.label "4 Stars" %>
-      <%= f.radio_button(:rating, value="4") %>
-      <%= f.label "5 Stars" %>
-      <%= f.radio_button(:rating, value="5") %>
-    </fieldset>
-  </div>
+  <div id="user-new-rating">New rating</div>
 
   <div>
     <%= f.label :images %>
@@ -30,3 +16,11 @@
   </div>
 
 <% end %>
+
+<script>
+  $('#user-new-rating').raty({
+    score: <%= @rating.score %>,
+    path: '/assets',
+    click: function(score, evt) {}
+  });
+</script>

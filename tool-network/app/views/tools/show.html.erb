@@ -16,7 +16,9 @@
   </button>
 <% end %>
 
-<p>Loan Length: <%= @tool.loan_length %></p>
+<p>Average rating</p>
+<div id="star"></div>
+<p>Max Loan Length (days): <%= @tool.loan_length %></p>
 <p>Condition: <%= @tool.condition %></p>
 <p>Description: <%= @tool.description %></p>
 <% unless current_user == @tool.owner %>
@@ -35,15 +37,17 @@
 
 <% if current_user && current_user != @tool.owner %>
   <h2>Messages</h2>
-  <% @chats.each do |chat| %>
-    <% if chat.owner_reply == true %>
-      <H4><%= @tool.owner.name %></H4>
-    <% else %>
-      <h4>You</h4>
+  <% if @chats %>
+    <% @chats.each do |chat| %>
+      <% if chat.owner_reply == true %>
+        <H4><%= @tool.owner.name %></H4>
+      <% else %>
+        <h4>You</h4>
+      <% end %>
+      <%= render '/chats/chat', chat: chat %>
     <% end %>
-    <%= render '/chats/chat', chat: chat %>
   <% end %>
-  <%= render '/chats/form', chat: @chat %>
+  <%= render '/chats/form', locals: {:tool => @tool, :chat => @chat} %>
 <% end %>
 
 <h2>Reviews</h2>
@@ -72,6 +76,12 @@ function initMap() {
     map: map
   });
 }
+
+$('#star').raty({
+  readOnly: true,
+  score: <%= @tool.average_rating %>,
+  path: '/assets'
+});
 </script>
 
 <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM&callback=initMap">
