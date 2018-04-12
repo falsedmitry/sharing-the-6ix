@@ -5,10 +5,11 @@ class ToolsController < ApplicationController
 
   def index
     if params[:tool]
-      @tools = Tool.search(params[:tool], params[:nbhd]).where('on_loan = ?', "false")
+      @tools = Tool.search(params[:tool], params[:nbhd])
     else
-      @tools = Tool.where('on_loan = ?', "false")
+      @tools = Tool.all.where('on_loan = ?', "false")
     end
+    @nbhd = Neighbourhood.find_by(name: params[:nbhd])
   end
 
   def new
@@ -82,10 +83,10 @@ class ToolsController < ApplicationController
       @rating = Rating.create(review: @review, score: 0)
     end
 
-    # owner_location = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{@tool.owner.postal_code.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM").body)["results"][0]["geometry"]["location"]
-    #
-    # @lat = owner_location["lat"]
-    # @lng = owner_location["lng"]
+    owner_location = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{@tool.owner.postal_code.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM").body)["results"][0]["geometry"]["location"]
+
+    @lat = owner_location["lat"]
+    @lng = owner_location["lng"]
   end
 
   def destroy
