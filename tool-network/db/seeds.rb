@@ -153,7 +153,7 @@ folding_chair = Tool.create!(
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_owner_images/foldingchair3.jpg"))
     ])
 food_processor = Tool.create!(
-  name: "Foor processor",
+  name: "Food processor",
   description: "I'm really not quite sure what it does.",
   condition: 5,
   owner: User.all.sample,
@@ -301,7 +301,7 @@ rollerblades = Tool.create!(
     File.new(File.join(Rails.root, "/app/assets/images/seed_data_images/temp_owner_images/rollerblades3.jpg"))
     ])
 stepper = Tool.create!(
-  name: "...Stepper?",
+  name: "Stepper",
   description: "For stepping on repeatedly.",
   condition: 5,
   owner: User.all.sample,

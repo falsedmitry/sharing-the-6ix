@@ -46,15 +46,15 @@ a {
   background: $lightyellow;
   color: black;
   width: 180px;
-  height: 70px;
   padding: 2px;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  position: relative;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 6px;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 1);
+  box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
   font-size: 20px;
+  font-weight: bold;
   text-shadow: none;
 
   &:hover {
@@ -209,7 +209,7 @@ footer ul li {
 }
 
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 695px) {
 
   #tool {
     border-color: #C03F49;
@@ -222,6 +222,10 @@ footer ul li {
 
   .nav-links {
     display: none;
+  }
+
+  #all-tools-btn {
+    padding: 10px;
   }
 
   .hero-section-text {
