@@ -5,7 +5,7 @@ $lightred: #C03F49;
 $offwhite: #F0F4F1;
 $lightblack: #282828;
 $lightyellow: #FFE180;
-$hero-height: 60vh;
+$hero-height: 50vh;
 
 
 * {
@@ -18,9 +18,49 @@ $hero-height: 60vh;
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
+  text-decoration: none;
 }
 
+a {
+  color: $lightblack;
+  &:hover {
+    color: $lightred;
+  }
+}
 
+#tool {
+  border-color: #C03F49;
+  border-style: solid;
+  border-width: 4px;
+  padding: 2px;
+  width: 600px;
+  border-radius: 5px;
+}
+
+.tool-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#all-tools-btn {
+  background: $lightyellow;
+  color: black;
+  width: 180px;
+  padding: 2px;
+  position: relative;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 6px;
+  box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
+  font-size: 20px;
+  font-weight: bold;
+  text-shadow: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
   .hero-section-text {
     font-family: 'Bitter', serif;
     line-height: 70px;
@@ -59,7 +99,11 @@ body {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
 }
 
+
 .nav-links {
+    & a {
+      padding: 15px;
+    }
   margin-left: 100px;
   display: inline-block;
   text-decoration: none;
@@ -72,7 +116,7 @@ body {
     & a:hover {
   padding: 14px 16px;
   text-decoration: none;
-  min-height: 80px;
+  min-height: 90px;
   background-color: $lightred;
   color: $offwhite;
   }
@@ -126,6 +170,7 @@ a:visited {
     visibility: hidden;
     position: absolute;
     top: 50%;
+    font-size: 20px;
     color: black;
     font-weight: bold;
   }
@@ -139,9 +184,6 @@ a:visited {
     }
   }
 }
-
-
-
 
 /* footer */
 
@@ -167,10 +209,23 @@ footer ul li {
 }
 
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 695px) {
+
+  #tool {
+    border-color: #C03F49;
+    border-style: solid;
+    border-width: 4px;
+    padding: 2px;
+    width: 75%;
+    border-radius: 5px;
+  }
 
   .nav-links {
     display: none;
+  }
+
+  #all-tools-btn {
+    padding: 10px;
   }
 
   .hero-section-text {
