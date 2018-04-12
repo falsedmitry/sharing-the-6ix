@@ -17,9 +17,10 @@
 <% end %>
 
 <p>Average rating</p>
-<div id="star"></div>
+<div id="star"></div>(<%= pluralize(@tool.reviews.count, "review") %>)
+
 <p>Max Loan Length (days): <%= @tool.loan_length %></p>
-<p>Condition: <%= @tool.condition %></p>
+<p>Condition: <%= @tool.condition %>/10</p>
 <p>Description: <%= @tool.description %></p>
 <% unless current_user == @tool.owner %>
   <p><strong>To borrow this tool, contact: <%= @tool.owner.email %></strong></p>
