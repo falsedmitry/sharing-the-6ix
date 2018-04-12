@@ -74,7 +74,7 @@ class ToolsController < ApplicationController
     if current_user
       Chat.where("tool_id = ?", @tool.id).where("user_id = ?", current_user.id).where("owner_reply = ?", true).update_all(unread: false)
 
-      @chats = Chat.where("user_id = ?", current_user.id).where("tool_id = ?", params[:id])
+      @chats = Chat.where("user_id = ?", current_user.id).where("tool_id = ?", params[:id]).order(created_at: :asc)
     end
     @chat = Chat.new
     @review = Review.new

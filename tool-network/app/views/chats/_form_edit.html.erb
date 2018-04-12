@@ -1,9 +1,9 @@
 <%= form_for(chat) do |f| %>
-  <p>
+  <p id="reply_chat_content">
     <%= f.text_area :content %>
   </p>
 
-  <p>
+  <p id="reply_chat">
     <%= f.submit "Send"%>
   </p>
 <% end %>
