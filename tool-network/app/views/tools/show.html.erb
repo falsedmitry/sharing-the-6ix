@@ -76,10 +76,12 @@ function initMap() {
     map: map
   });
 }
+</script>
 
+<script>
 $('#star').raty({
   readOnly: true,
-  score: <%= @tool.average_rating %>,
+  score: '<%= @tool.average_rating %>',
   path: '/assets'
 });
 </script>
