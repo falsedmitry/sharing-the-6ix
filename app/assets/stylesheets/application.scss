@@ -29,7 +29,7 @@ a {
 }
 
 #tool {
-  border-color: #C03F49;
+  border-color: $lightred;
   border-style: solid;
   border-width: 4px;
   padding: 2px;
@@ -44,7 +44,7 @@ a {
 
 #all-tools-btn {
   background: $lightyellow;
-  color: black;
+  color: $lightred;
   width: 180px;
   padding: 2px;
   position: relative;
@@ -209,15 +209,12 @@ footer ul li {
 }
 
 
-@media screen and (max-width: 695px) {
+@media screen and (max-width: 720px) {
 
   #tool {
-    border-color: #C03F49;
-    border-style: solid;
-    border-width: 4px;
     padding: 2px;
     width: 75%;
-    border-radius: 5px;
+    border-radius: 3px;
   }
 
   .nav-links {
