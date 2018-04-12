@@ -66,14 +66,14 @@ class Tool < ApplicationRecord
 
   def average_rating
     count = 0
-    total = 0
+    total = 0.0
     reviews.each do |review|
       total += review.rating.score
       count += 1
     end
 
     if count < 1
-      0
+      0.0
     else
       total / count
     end
