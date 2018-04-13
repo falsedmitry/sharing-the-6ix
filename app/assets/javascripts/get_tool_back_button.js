@@ -15,7 +15,7 @@ document.addEventListener('turbolinks:load', function() {
       var toolID = getBackToolButton.getAttribute('data-toolid');
 
       $.ajax({
-        url: 'https://limitless-dawn-77973.herokuapp.com/tools/' + toolID,
+        url: 'https://sharing-the-6ix.herokuapp.com/tools/' + toolID,
         method: 'PATCH',
         data: {},
         dataType: 'json'
