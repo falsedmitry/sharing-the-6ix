@@ -221,6 +221,11 @@ footer ul li {
     display: none;
   }
 
+  .dropdown-content {
+    position: fixed;
+    z-index: 100;
+  }
+
   #all-tools-btn {
     padding: 10px;
   }
