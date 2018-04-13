@@ -50,10 +50,12 @@
 <% if current_user && current_user != @tool.owner %>
   <h2>Messages</h2>
   <ul id="user_chat_box">
-    <% @chats.each do |chat| %>
-      <li id="user_chat_detail">
-        <%= render '/chats/chat', chat: chat %>
-      </li>
+    <% if @chats %>
+      <% @chats.each do |chat| %>
+        <li id="user_chat_detail">
+          <%= render '/chats/chat', chat: chat %>
+        </li>
+      <% end %>
     <% end %>
   </ul>
   <%= render '/chats/form', locals: {:tool => @tool, :chat => @chat} %>

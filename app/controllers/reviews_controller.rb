@@ -21,8 +21,8 @@ class ReviewsController < ApplicationController
         @rating.save
         redirect_to tool_url(@tool)
       else
-        puts @tool.errors.full_messages
-        flash[:alert] = "Something went wrong."
+        # puts @tool.errors.full_messages
+        # flash[:alert] = "Something went wrong."
         render "/tools/show.html.erb"
       end
     else
