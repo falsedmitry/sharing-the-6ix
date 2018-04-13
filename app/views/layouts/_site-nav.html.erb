@@ -20,14 +20,15 @@
           <%= link_to "Login", :login %>
         <% end %>
     </div>
+
     <div class="hamburger-menu">
       <%= image_tag "icon.png", id: "hamburger-menu" %>
     </div>
+
       <div class="dropdown-content">
         <% if current_user %>
 
           <%= link_to "My Profile", user_path(current_user) %>
-          <%= link_to 'Messages', chats_path %>
           <% if current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count + current_user.chats.where("unread = ?", true).where("owner_reply = ?", true).count > 0 %>
             <%= link_to "Messages (#{current_user.owned_chats.where('unread = ?', true).where('owner_reply = ?', false).count + current_user.chats.where('unread = ?', true).where('owner_reply = ?', true).count})", chats_path %>
           <% else %>
