@@ -14,7 +14,7 @@ class LoansController < ApplicationController
     @loan.due_date = params[:loan][:due_date]
     @loan.borrower = User.find_by(name: params[:loan][:borrower])
 
-    @tool = Tool.find_by(name: params[:loan][:tool])
+    @tool = Tool.find(params[:tool_id])
     @loan.tool = @tool
     @loan.active = true
 
