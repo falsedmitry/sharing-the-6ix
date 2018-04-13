@@ -385,7 +385,7 @@ tools_borrowed.each do |tool|
   available_users = User.all - [tool.owner]
   loan = Loan.create!(
     start_date: Date.today,
-    due_date: Date.today + rand(5) + 5,
+    due_date: Date.today,
     borrower: available_users.sample,
     tool: tool,
     active: false
