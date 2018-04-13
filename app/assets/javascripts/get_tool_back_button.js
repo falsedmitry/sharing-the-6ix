@@ -15,7 +15,7 @@ document.addEventListener('turbolinks:load', function() {
       var toolID = getBackToolButton.getAttribute('data-toolid');
 
       $.ajax({
-        url: 'http://localhost:3000/tools/' + toolID,
+        url: 'https://limitless-dawn-77973.herokuapp.com/tools/' + toolID,
         method: 'PATCH',
         data: {},
         dataType: 'json'

@@ -7,6 +7,7 @@ class Loan < ApplicationRecord
   validate :start_date_cannot_be_in_the_past
   validate :due_date_is_after_start_date
   validate :lender_cannot_be_borrower
+  validate :lend_length_limit
 
   def start_date_cannot_be_in_the_past
     if start_date && start_date < Date.today
@@ -27,6 +28,12 @@ class Loan < ApplicationRecord
   def lender_cannot_be_borrower
     if borrower == tool.owner
       errors[:this] << 'tool is yours'
+    end
+  end
+
+  def lend_length_limit
+    if due_date - start_date < loan.tool.loan_length
+      errors[:loan_length] << 'cannot be greater than max loan length'
     end
   end
 
