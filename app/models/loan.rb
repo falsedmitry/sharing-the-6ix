@@ -32,8 +32,10 @@ class Loan < ApplicationRecord
   end
 
   def lend_length_limit
-    unless due_date - start_date < tool.loan_length
-      errors[:loan_length] << 'cannot be greater than max loan length'
+    if due_date && start_date
+      unless due_date - start_date < tool.loan_length
+        errors[:loan_length] << 'cannot be greater than max loan length'
+      end
     end
   end
 
