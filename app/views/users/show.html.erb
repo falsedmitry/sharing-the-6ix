@@ -5,7 +5,6 @@
 <img src="<%= @user.avatar %>" alt="" class="avatar">
 
 <p>Name: <%= @user.name %></p>
-<p>Email: <%= @user.email %></p>
 <p>Location: <%= @user.neighbourhood.name %></p>
 <% if current_user == @user %>
   <%= link_to 'Add Tool', new_tool_path %>
