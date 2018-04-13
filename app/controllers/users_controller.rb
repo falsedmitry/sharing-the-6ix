@@ -2,6 +2,10 @@ class UsersController < ApplicationController
 
   before_action :load_user, only: [:show, :edit, :update, :destroy]
 
+  def index
+    redirect_to new_user_url
+  end
+
   def new
     @user = User.new
   end
