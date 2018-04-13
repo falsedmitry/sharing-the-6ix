@@ -5,20 +5,30 @@
   <img src="<%= @tool.owner_pictures[index] %>" alt="", class="avatar">
 <% end %>
 </br>
+</br>
+
+
+<p class="tool-name-link">Availability: </p>
+<% if @tool.on_loan == true %>
+  <%= image_tag('red.png', size: '10x10', class: "availability") %>
+<% else %>
+  <%= image_tag('green.png', size: '10x10', class: "availability") %>
+<% end %>
 
 <% if current_user == @tool.owner%>
-  <button type="button" name="lend-tool", data-loan="<%= @tool.on_loan %>", style="display:none">
+  <button type="button" class="get-back-or-lend" name="lend-tool", data-loan="<%= @tool.on_loan %>", style="display:none">
     <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
   </button>
 
-  <button type="button" name="get-tool-back" data-toolid="<%= @tool.id %>", style="display:none">
+  <button type="button" class="get-back-or-lend" name="get-tool-back" data-toolid="<%= @tool.id %>", style="display:none">
     Get Back Tool
   </button>
 <% end %>
+<br>
 
 <p>Average rating:</p>
 <div id="star"></div> (<%= pluralize(@tool.reviews.count, "review") %>)
-</br>
+<br>
 
 <% unless current_user == @tool.owner %>
 <p>Owner: <%= link_to("#{@tool.owner.name}", user_path(@tool.owner)) %></p>
@@ -27,15 +37,15 @@
 <p>Condition: <%= @tool.condition %>/10</p>
 <p>Description: <%= @tool.description %></p>
 
-<div id="map">
-</div>
-
 <%= link_to("Back to Browse", tools_path) %>
 
 <% if current_user == @tool.owner %>
   | <%= link_to("Edit", edit_tool_path(@tool)) %> | <%= link_to("Delete", tool_path(@tool), method: :delete, data: {confirm: "Are you sure you want to delete this tool?"}) %>
 <% end %>
-<hr>
+<br>
+<br>
+
+<div id="map"></div>
 
 <% if current_user && current_user != @tool.owner %>
   <h2>Messages</h2>

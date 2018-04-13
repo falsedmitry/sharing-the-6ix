@@ -76,6 +76,12 @@
     <p>
       <%= link_to(tool.name, tool_path(tool)) %>
     </p>
+    <p class="tool-name-link">Availability: </p>
+    <% if tool.on_loan == true %>
+      <%= image_tag('red.png', size: '10x10', class: "availability") %>
+    <% else %>
+      <%= image_tag('green.png', size: '10x10', class: "availability") %>
+    <% end %>
 
     <div id="tool<%= tool.id %>"></div>
     <p>Description: <%= tool.description %></p>

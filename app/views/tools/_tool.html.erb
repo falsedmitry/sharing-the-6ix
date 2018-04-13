@@ -8,11 +8,11 @@
 
   <p class="tool-name-link">Availability: </p>
   <% if tool.on_loan == true %>
-  <%= image_tag('red.png', size: '10x10', class: "availability") %>
+    <%= image_tag('red.png', size: '10x10', class: "availability") %>
   <% else %>
-  <%= image_tag('green.png', size: '10x10', class: "availability") %>
+    <%= image_tag('green.png', size: '10x10', class: "availability") %>
   <% end %>
-  
+
   <p>Owner: <%= link_to("#{tool.owner.name}", user_path(tool.owner)) %></p>
   <p>Location: <%= link_to("#{tool.owner.neighbourhood.name}", neighbourhood_path(tool.owner.neighbourhood)) %></p>
   <p>Description: <%= tool.description %></p>
