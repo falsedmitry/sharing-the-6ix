@@ -36,24 +36,5 @@ class User < ApplicationRecord
     end
 
     currently_borrowed_tools
-
   end
-
-  # def rating
-  #   rating = 0.0
-  #   number_of_reviews = 0
-  #
-  #   owned_tools.each do |tool|
-  #     tool.reviews.each do |review|
-  #       rating += review.rating
-  #       number_of_reviews += 1
-  #     end
-  #   end
-  #
-  #   if number_of_reviews < 5
-  #     0
-  #   else
-  #     rating / number_of_reviews
-  #   end
-  # end
 end
