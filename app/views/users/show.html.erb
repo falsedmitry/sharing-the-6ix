@@ -79,7 +79,7 @@
     <% end %>
 
     <p>
-      <%= link_to(tool.name, tool_path(tool)) %>
+      <strong><%= link_to(tool.name, tool_path(tool)) %></strong>
     </p>
     <p class="tool-name-link">Availability: </p>
     <% if tool.on_loan == true %>
