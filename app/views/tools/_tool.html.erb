@@ -5,6 +5,7 @@
 
   <p><%= link_to(tool.name, tool_path(tool)) %></p>
   <div id="tool<%= tool.id %>"></div>
+  <p>(<%= pluralize(tool.reviews.count, "review") %>)</p>
 
   <p class="tool-name-link">Availability: </p>
   <% if tool.on_loan == true %>
