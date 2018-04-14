@@ -9,28 +9,28 @@ User.destroy_all
 Neighbourhood.destroy_all
 
 neighbourhoods = [
-  {name: "The Annex", postal_codes: ["M5R", "M5S"]},
-  {name: "The Beaches", postal_codes: ["M4E", "M4L"]},
-  {name: "Cabbagetown", postal_codes: ["M4X"]},
-  {name: "Chinatown", postal_codes: ["M5T"]},
-  {name: "The Danforth", postal_codes: ["M4J", "M4K"]},
-  {name: "Distillery District", postal_codes: ["M5A"]},
-  {name: "Downtown", postal_codes: ["M5G", "M5H", "M5J", "M5K", "M5L", "M6G", "M5V"]},
-  {name: "Dundas West", postal_codes: ["M6J"]},
-  {name: "High Park", postal_codes: ["M6P"]},
-  {name: "The Junction", postal_codes: ["M6N", "M6P"]},
-  {name: "Kensington Market", postal_codes: ["M5T"]},
-  {name: "Leslieville", postal_codes: ["M4J", "M4L"]},
-  {name: "Liberty Village", postal_codes: ["M6K"]},
-  {name: "Little Italy", postal_codes: ["M5S"]},
-  {name: "North York", postal_codes: ["M2H", "M2J", "M2K", "M2L", "M2M", "M2N", "M2P", "M2R", "M3A", "M3B", "M3C", "M3H", "M3J", "M3K", "M3L", "M3M", "M3N", "M4A", "M5M", "M6A", "M6B", "M6L", "M9L", "M9M"]},
+  {name: "The Annex", postal_codes: ["M5R 1R2"]},
+  {name: "The Beaches", postal_codes: ["M4E 1E3"]},
+  {name: "Cabbagetown", postal_codes: ["M4X 1P8"]},
+  {name: "Chinatown", postal_codes: ["M5T 1K6"]},
+  {name: "The Danforth", postal_codes: ["M4C 1A1"]},
+  {name: "Distillery District", postal_codes: ["M5A 0E3"]},
+  {name: "Downtown", postal_codes: ["M5V 0L6"]},
+  {name: "Dundas West", postal_codes: ["M6J 1X8"]},
+  {name: "High Park", postal_codes: ["M6P 1A1"]},
+  {name: "The Junction", postal_codes: ["M6N 1E3"]},
+  {name: "Kensington Market", postal_codes: ["M5T 1S2"]},
+  {name: "Leslieville", postal_codes: ["M4J 1A7"]},
+  {name: "Liberty Village", postal_codes: ["M6K 3R3"]},
+  {name: "Little Italy", postal_codes: ["M6J 2T6"]},
+  {name: "North York", postal_codes: ["M2N 3B9"]},
   {name: "Parkdale", postal_codes: ["M6K 2N6", "M6K 2T8"]},
   {name: "Roncesvalles", postal_codes: ["M6R 1S1", "M6R 1G4"]},
-  {name: "Scarborough", postal_codes: ["M1E", "M1J", "M1L"]},
+  {name: "Scarborough", postal_codes: ["M1E 3C8"]},
   {name: "Trinity Bellwoods", postal_codes: ["M5T 2R7", "M6G 1A5"]},
   {name: "Yonge & Eglinton", postal_codes: ["M4P 0A2", "M4P 1G7"]},
-  {name: "Yorkville", postal_codes: ["M4W", "M5R"]},
-  {name: "Etobicoke", postal_codes: ["M9A"]}
+  {name: "Yorkville", postal_codes: ["M4W 3Y8"]},
+  {name: "Etobicoke", postal_codes: ["M9A 1A9"]}
 ]
 
 user_names = ["Alyx", "Gurjant", "Daniel", "Maneesha", "Harisree", "Melissa", "Connor", "Sean", "Devon", "Natalie", "Niels", "Fred", "Jesse", "Elvis", "Najwa", "Matt", "Sanborn"]
