@@ -23,7 +23,7 @@ class ToolsController < ApplicationController
     @tool.user_id = current_user.id
 
     if params[:tool][:owner_pictures] != nil
-      if @tool.save!
+      if @tool.save
         @tool_cat_ids = []
         write_tool_category
         redirect_to tool_url(@tool)
