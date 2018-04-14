@@ -51,15 +51,15 @@ class NeighbourhoodsController < ApplicationController
     puts address_body["resuts"]
 
     location = address_body["results"][0]["geometry"]["location"]
-    bounds = address_body["results"][0]["geometry"]["bounds"]
+    # bounds = address_body["results"][0]["geometry"]["bounds"]
 
-    northeast = bounds["northeast"]
-    southwest = bounds["southwest"]
-
-    @north = northeast["lat"]
-    @east = northeast["lng"]
-    @south = southwest["lat"]
-    @west = southwest["lng"]
+    # northeast = bounds["northeast"]
+    # southwest = bounds["southwest"]
+    #
+    # @north = northeast["lat"]
+    # @east = northeast["lng"]
+    # @south = southwest["lat"]
+    # @west = southwest["lng"]
 
     @lat = location["lat"]
     @lng = location["lng"]
