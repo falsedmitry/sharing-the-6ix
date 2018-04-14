@@ -13,6 +13,7 @@ class User < ApplicationRecord
   validates :name, :email, :postal_code, presence: true
   validates :password, length: { minimum: 8 }
   validates :email, uniqueness: true
+  validates :postal_code, zipcode: { country_code: :ca }
 
   def tools_out_on_loan
     out_on_loan = []

@@ -39,6 +39,7 @@ gem 'httparty'
 gem "figaro"
 gem 'carrierwave'
 gem "fog-aws"
+gem 'validates_zipcode'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
