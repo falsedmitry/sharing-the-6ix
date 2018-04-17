@@ -3,6 +3,8 @@ class ToolsController < ApplicationController
   before_action :require_login, except:[:index, :show]
   before_action :require_user_authority, only: [:edit, :update, :destroy]
 
+  impressionist actions: [:show]
+
   def index
     if params[:tool]
       @tools = Tool.search(params[:tool], params[:nbhd])
@@ -72,7 +74,6 @@ class ToolsController < ApplicationController
       Chat.where("tool_id = ?", @tool.id).where("user_id = ?", current_user.id).where("owner_reply = ?", true).update_all(unread: false)
 
       @chats = Chat.where("user_id = ?", current_user.id).where("tool_id = ?", params[:id]).order(created_at: :asc)
-
     end
 
     @chat = Chat.new
