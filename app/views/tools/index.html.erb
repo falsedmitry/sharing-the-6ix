@@ -1,11 +1,13 @@
 <% if params[:nbhd] != "" && @nbhd %>
   <h1>Tools in <%= @nbhd.name %></h1>
 <% else %>
-<h1>All Tools</h1>
   <% end %>
 
 <div class="container">
+  <h1>All Items</h1>
   <% @tools.each do |tool| %>
     <%= render 'tool', tool: tool %>
   <% end %>
 </div>
+
+<button onclick="topFunction()" id="back-to-top-btn" title="Back to Top">Top</button>
