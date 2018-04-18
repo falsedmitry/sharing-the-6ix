@@ -42,6 +42,21 @@ a {
   font-weight: bold;
 }
 
+// .all-tools {
+//   display: flex;
+//   flex-direction: row;
+//   flex-flow: wrap;
+//   justify-content: space-between;
+//   padding: 15px;
+//
+// }
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-flow: wrap;
+  justify-content: space-between;
+}
+
 #all-tools-btn {
   background: $lightyellow;
   color: $lightred;

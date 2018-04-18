@@ -1,9 +1,17 @@
 <% if params[:nbhd] != "" && @nbhd %>
   <h1>Tools in <%= @nbhd.name %></h1>
 <% else %>
-  <h1>All Tools</h1>
-<% end %>
+<h1>All Tools</h1>
+  <% end %>
 
-<% @tools.each do |tool| %>
-  <%= render 'tool', tool: tool %>
-<% end %>
+<div class="container">
+    <div class="all-tools">
+      <div class="row">
+      <% @tools.each do |tool| %>
+            <%= render 'tool', tool: tool %>
+      <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
