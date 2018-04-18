@@ -26,13 +26,20 @@
     <div class="hero-section">
       <div id="hero-section-text">
         <strong>Sharing the 6ix</strong> is a Toronto neighbourhood borrowing network <br>where communities share their stuff.
-
+      <div class="buttons">
         <%= link_to(tools_path) do %>
           <div id="all-tools-btn">
-            Start Borrowing!
+            Start Borrowing
+            <div id="start-lending-btn">
+              <% if current_user %>
+              <%= link_to "Add New Tool", tool_path(tool) %>
+              Start Lending
+            </div>
+            <% end %>
           </div>
         <% end %>
       </div>
+    </div>
     </div>
   </div>
 
