@@ -3,11 +3,13 @@ document.addEventListener("turbolinks:load", function(){
   var dropdownContent = document.querySelector('.dropdown-content')
   menu.addEventListener('click', function() {
     dropdownContent.style.display = 'block'
-    if (dropdownContent.style.visibility == 'hidden') {
+    console.log(dropdownContent.style.visibility);
+    if (dropdownContent.style.visibility !== 'visible') {
       dropdownContent.style.visibility = 'visible'
     }
     else {
       dropdownContent.style.visibility = 'hidden'
+
     }
   })
 })

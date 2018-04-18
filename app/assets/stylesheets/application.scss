@@ -42,6 +42,23 @@ a {
   font-weight: bold;
 }
 
+// .all-tools {
+//   display: flex;
+//   flex-direction: row;
+//   flex-flow: wrap;
+//   justify-content: space-between;
+//   padding: 15px;
+//
+// }
+
+.tool {
+    width: 30%;
+    float: left;
+    height: 300px;
+    margin: auto;
+}
+
+
 #all-tools-btn {
   background: $lightyellow;
   color: $lightred;
@@ -61,12 +78,13 @@ a {
     cursor: pointer;
   }
 }
-  .hero-section-text {
+  #hero-section-text {
     font-family: 'Bitter', serif;
     line-height: 70px;
     font-size: 40px;
-    color: black;
-    text-shadow: 1px 1px 2px $offwhite;
+    color: $offwhite;
+    text-shadow: 1px 1px 2px black;
+    z-index: 100;
   }
   .hero-section {
   background: image-url('toronto1.jpeg') 50% no-repeat;
@@ -76,7 +94,6 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.8;
 }
 
 .logo {
