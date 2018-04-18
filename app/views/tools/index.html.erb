@@ -5,13 +5,7 @@
   <% end %>
 
 <div class="container">
-    <div class="all-tools">
-      <div class="row">
-      <% @tools.each do |tool| %>
-            <%= render 'tool', tool: tool %>
-      <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <% @tools.each do |tool| %>
+    <%= render 'tool', tool: tool %>
+  <% end %>
 </div>
