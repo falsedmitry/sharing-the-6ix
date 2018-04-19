@@ -4,33 +4,37 @@
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
+  <br />
 
   <div>
-    <%= f.label :description %>
+    <%= f.label :description %> <br />
     <%= f.text_area :description %>
   </div>
+  <br />
 
   <div>
-    <%= f.label :loan_length %> (Days)
+    <%= f.label :loan_length, "Loan length (Days)" %>
     <%= f.number_field :loan_length %>
   </div>
+  <br />
 
   <div>
-    <%= f.label :condition %> (1 - 10)
-    <%= f.number_field :condition %>
+    <%= f.label :condition %>
+    <%= f.select :condition, ((1..10).map {|i| [i,i] }) %>
   </div>
+  <br />
 
   <div>
     <%= f.label :owner_pictures %>
     <%= f.file_field :owner_pictures, multiple: true %>
   </div>
+  <br />
 
   <div>
-    <p>
-      Select Categories:-
-      <%= f.collection_check_boxes(:category_ids, Category.all, :id,  :category_name) %>
-    </p>
+    <%= f.label :category_ids, "Select Categories" %> <br />
+    <%= f.collection_check_boxes(:category_ids, Category.all, :id,  :category_name) %>
   </div>
+  <br />
 
   <div>
     <%= f.submit %>
