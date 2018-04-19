@@ -13,8 +13,8 @@
   <br />
 
   <div>
-    <%= f.label :loan_length, "Loan length (Days)" %>
-    <%= f.number_field :loan_length %>
+    <%= f.label :loan_length %>
+    <%= f.select :loan_length, ([["1 day",1], ["2 days",2], ["3 days",3], ["4 days",4], ["5 days",5], ["6 days",6], ["1 week",7], ["2 weeks",14], ["1 month",30]]) %>
   </div>
   <br />
 

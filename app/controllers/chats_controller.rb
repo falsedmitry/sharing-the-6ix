@@ -41,28 +41,28 @@ class ChatsController < ApplicationController
   end
 
   def edit
-    if current_user == @chat0.tool.owner
-      Chat.where("tool_id = ?", @chat0.tool_id).where("user_id = ?", @chat0.user.id).where("owner_reply = ?", false).update_all(unread: false)
+    if current_user == @last_chat.tool.owner
+      Chat.where("tool_id = ?", @last_chat.tool_id).where("user_id = ?", @last_chat.user.id).where("owner_reply = ?", false).update_all(unread: false)
     else
-      Chat.where("tool_id = ?", @chat0.tool_id).where("user_id = ?", @chat0.user.id).where("owner_reply = ?", true).update_all(unread: false)
+      Chat.where("tool_id = ?", @last_chat.tool_id).where("user_id = ?", @last_chat.user.id).where("owner_reply = ?", true).update_all(unread: false)
     end
-    @chats = Chat.where("tool_id = ?", @chat0.tool_id).where("user_id = ?", @chat0.user.id).order(created_at: :asc)
-    @chat = @chats[-1]
+    @chats = Chat.where("tool_id = ?", @last_chat.tool_id).where("user_id = ?", @last_chat.user.id).order(created_at: :asc)
+    @chat = @last_chat
   end
 
   def update
     @chat = Chat.new
     @chat.content = params[:chat][:content]
-    @chat.tool = @chat0.tool
-    @chat.user = @chat0.user
+    @chat.tool = @last_chat.tool
+    @chat.user = @last_chat.user
     @chat.unread = true
-    if current_user == @chat0.tool.owner
+    if current_user == @last_chat.tool.owner
       @chat.owner_reply = true
     else
       @chat.owner_reply = false
     end
     if @chat.save
-      if current_user == @chat0.tool.owner
+      if current_user == @last_chat.tool.owner
         UserMailer.requester_chat(@chat).deliver_now
         flash[:notice] = "The message is sent to the requester with email notification."
       else
@@ -91,18 +91,13 @@ class ChatsController < ApplicationController
   end
 
   def load_chat
-    @chat0 = Chat.find(params[:id])
+    @last_chat = Chat.find(params[:id])
   end
 
   def require_user_authority
-    unless current_user == @chat0.user || current_user == @chat0.tool.owner
+    unless current_user == @last_chat.user || current_user == @last_chat.tool.owner
       flash[:alert] = "You are not authorized to modify this chat."
       redirect_to login_url
     end
   end
-
-  def ajax_update
-
-  end
-
 end
