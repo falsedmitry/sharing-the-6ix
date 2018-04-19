@@ -8,12 +8,12 @@
       <p>
         <%= link_to(chat.tool.name, edit_chat_path(chat)) %>
         <% if chat.tool.owner == current_user %>
-          <% if chat.user.chats.where("tool_id = ?", chat.tool.id).where("unread = ?", true).where("owner_reply = ?", false).count > 0 %>
-            (<%= chat.user.chats.where("tool_id = ?", chat.tool.id).where("unread = ?", true).where("owner_reply = ?", false).count %>)
+          <% if chat.unread_owner_message_count > 0 %>
+            (<%= chat.unread_owner_message_count %>)
           <% end %>
         <% else %>
-          <% if chat.user.chats.where("tool_id = ?", chat.tool.id).where("unread = ?", true).where("owner_reply = ?", true).count > 0 %>
-            (<%= chat.user.chats.where("tool_id = ?", chat.tool.id).where("unread = ?", true).where("owner_reply = ?", true).count %>)
+          <% if chat.unread_borrower_message_count > 0 %>
+            (<%= chat.unread_borrower_message_count %>)
           <% end %>
         <% end %>
       </p>

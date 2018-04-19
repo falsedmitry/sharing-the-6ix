@@ -8,8 +8,8 @@
 
         <% if current_user %>
           <%= link_to "My Profile", user_path(current_user) %>
-          <% if current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count + current_user.chats.where("unread = ?", true).where("owner_reply = ?", true).count > 0 %>
-            <%= link_to "Messages (#{current_user.owned_chats.where('unread = ?', true).where('owner_reply = ?', false).count + current_user.chats.where('unread = ?', true).where('owner_reply = ?', true).count})", chats_path %>
+          <% if unread_message_count > 0 %>
+            <%= link_to "Messages (#{unread_message_count})", chats_path %>
           <% else %>
             <%= link_to 'Messages', chats_path %>
           <% end %>
@@ -29,8 +29,8 @@
         <% if current_user %>
 
           <%= link_to "My Profile", user_path(current_user) %>
-          <% if current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count + current_user.chats.where("unread = ?", true).where("owner_reply = ?", true).count > 0 %>
-            <%= link_to "Messages (#{current_user.owned_chats.where('unread = ?', true).where('owner_reply = ?', false).count + current_user.chats.where('unread = ?', true).where('owner_reply = ?', true).count})", chats_path %>
+          <% if unread_message_count > 0 %>
+            <%= link_to "Messages (#{unread_message_count})", chats_path %>
           <% else %>
             <%= link_to 'Messages', chats_path %>
           <% end %>
