@@ -316,3 +316,17 @@ p.rating, div.review-rating {
 .tool-index-image {
   display: block
 }
+
+.get-tool-back-confirmation {
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+
+  width: 300px;
+  height: 180px;
+  z-index: 150;
+
+  border-radius: 6px;
+  background: red;
+}

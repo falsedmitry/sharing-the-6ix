@@ -8,12 +8,13 @@
 </br>
 
 
-<p class="tool-name-link">Availability: </p>
+<p class="tool-name-link" id="availability-indicator">Availability:
 <% if @tool.on_loan == true %>
-  <%= image_tag('red.png', size: '10x10', class: "availability") %>
+  <%= image_tag('red.png', size: '10x10', class: "availability", id: "red-circle") %>
 <% else %>
-  <%= image_tag('green.png', size: '10x10', class: "availability") %>
+  <%= image_tag('green.png', size: '10x10', class: "availability", id: "green-circle") %>
 <% end %>
+</p>
 
 <% if current_user == @tool.owner%>
   <button type="button" class="get-back-or-lend" name="lend-tool", data-loan="<%= @tool.on_loan %>", style="display:none">

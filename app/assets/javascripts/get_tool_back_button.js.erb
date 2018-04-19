@@ -1,0 +1,69 @@
+document.addEventListener('turbolinks:load', function() {
+  var body = document.querySelector('body');
+  var availabilityIndicator = document.querySelector('#availability-indicator');
+  var getBackToolButton = document.querySelector("[name=get-tool-back]");
+  var lendToolButton = document.querySelector("[name=lend-tool]");
+
+  if (getBackToolButton && lendToolButton) {
+    if (lendToolButton.getAttribute('data-loan') == 'true') {
+      lendToolButton.style.display = 'none';
+      getBackToolButton.style.display = 'block';
+    } else {
+      lendToolButton.style.display = 'block';
+      getBackToolButton.style.display = 'none';
+    }
+
+    getBackToolButton.addEventListener('click', function() {
+      var toolID = getBackToolButton.getAttribute('data-toolid');
+
+      if (confirmationDiv) {
+        confirmationDiv.style.display = 'block';
+      } else {
+        var confirmationDiv = document.createElement('div');
+        var confirmationParagraph = document.createElement('p');
+        var yesButton = document.createElement('div');
+        var noButton = document.createElement('div');
+
+        confirmationDiv.classList.add('get-tool-back-confirmation');
+        yesButton.classList.add('get-tool-back-confirmation-option');
+        noButton.classList.add('get-tool-back-confirmation-option');
+
+        confirmationParagraph.innerText = "Is the tool back in your possession?";
+        yesButton.innerHTML = "<p>Yes</p>";
+        noButton.innerHTML = "<p>No</p>";
+
+        confirmationDiv.appendChild(confirmationParagraph);
+        confirmationDiv.appendChild(yesButton);
+        confirmationDiv.appendChild(noButton);
+        body.appendChild(confirmationDiv);
+      }
+
+      yesButton.addEventListener('click', function() {
+        $.ajax({
+          // url: 'https://sharing-the-6ix.herokuapp.com/tools/' + toolID,
+          url: 'http://localhost:3000/tools/' + toolID,
+          method: 'PATCH',
+          data: {},
+          dataType: 'json'
+        }).done(function(data) {
+          console.log("done");
+          console.log(toolID);
+
+          getBackToolButton.style.display = 'none';
+          lendToolButton.style.display = 'block';
+          availabilityIndicator.innerHTML = 'Availability: <%= image_tag("green.png", size: "10x10", class: "availability", id: "green-circle") %>';
+          confirmationDiv.style.display = 'none';
+
+        }).fail(function() {
+          console.log("fail");
+          console.log(toolID);
+        });
+      });
+
+      noButton.addEventListener('click', function() {
+        confirmationDiv.style.display = 'none';
+      });
+
+    });
+  }
+});
