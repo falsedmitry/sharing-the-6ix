@@ -13,6 +13,12 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
 
+  def unread_message_count
+    current_user.owned_chats.where("unread = ?", true).where("owner_reply = ?", false).count + current_user.chats.where("unread = ?", true).where("owner_reply = ?", true).count
+  end
+
+  helper_method :unread_message_count
+
   private
   def not_authenticated
     redirect_to login_path, alert: "Please login first"
