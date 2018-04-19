@@ -42,15 +42,6 @@ a {
   font-weight: bold;
 }
 
-// .all-tools {
-//   display: flex;
-//   flex-direction: row;
-//   flex-flow: wrap;
-//   justify-content: space-between;
-//   padding: 15px;
-//
-// }
-
 .tool {
     width: 30%;
     float: left;
@@ -58,7 +49,7 @@ a {
     margin: 10px;
 }
 
-#main-buttons {
+.main-buttons {
   position: relative;
   top: 30%;
   display: flex;
@@ -269,10 +260,47 @@ footer ul li {
   margin-left: 15px;
 }
 
+@media screen and (max-width: 1024px) {
+
+  .main-buttons {
+    width: 70%;
+  }
+
+  #hero-section-text {
+    font-size: 3rem;
+  }
+
+  .search-bar {
+    width: 80%;
+  }
+
+}
+
+@media screen and (max-width: 768px) {
+  #all-tools-btn, #start-lending-btn{
+    margin-top: 20px;
+    padding-top: 5px;
+    width: 40%;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+}
 
 @media screen and (max-width: 720px) {
 
-  #tool {
+  #all-tools-btn, #start-lending-btn{
+    margin-top: 20px;
+    padding-top: 8px;
+    width: 40%;
+    height: 40px;
+    font-size: 15px;
+  }
+
+  .tool {
     padding: 2px;
     width: 75%;
     border-radius: 3px;
@@ -287,12 +315,12 @@ footer ul li {
     z-index: 100;
   }
 
-  #all-tools-btn {
-    padding: 10px;
+  .main-buttons {
+    width: 70%;
   }
 
-  .hero-section-text {
-    font-size: 1.5em;
+  #hero-section-text {
+    font-size: 3rem;
     line-height: inherit;
   }
   .hamburger-menu {
@@ -307,7 +335,55 @@ footer ul li {
   }
 }
 
-@media screen and (min-width: 375px) {
+@media screen and (max-width: 600px) {
+
+  form#search-form {
+    display: flex;
+    width: -webkit-fill-available;
+  }
+
+  #all-tools-btn, #start-lending-btn {
+    margin-top: 20px;
+    padding-top: 8px;
+    width: 40%;
+    height: 40px;
+    font-size: 13px;
+  }
+  .nav-links {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+
+  .site-nav {
+    width: 475px;
+  }
+
+  .hero-section {
+    height: 35vh;
+    width: 474px;
+  }
+
+  #hero-section-text {
+    font-size: 2.2rem;
+  }
+
+  form#search-form {
+    display: flex;
+    width: 300px;
+  }
+
+  #all-tools-btn, #start-lending-btn {
+    margin-top: 20px;
+    padding-top: 8px;
+    width: 40%;
+    height: 20px;
+    font-size: 10px;
+  }
+  .nav-links {
+    display: none;
+  }
   .nbhd-image
     .nbhd-name {
       visibility: hidden;
@@ -359,4 +435,17 @@ p.rating, div.review-rating {
 
 .tool-index-image {
   display: block
+}
+
+@media screen and (max-width: 320px) {
+
+  form#search-form {
+    display: flex;
+    width: 275px;
+  }
+  #hero-section-text {
+    font-size: 2.1rem;
+    position: absolute;
+    right: -152px;
+  }
 }
