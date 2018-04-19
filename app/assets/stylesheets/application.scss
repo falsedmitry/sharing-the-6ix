@@ -58,16 +58,19 @@ a {
     margin: 10px;
 }
 
+#main-buttons {
+  position: relative;
+  top: 30%;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
 
 #all-tools-btn {
   background: $lightyellow;
   color: $lightred;
   width: 180px;
   padding: 2px;
-  position: relative;
-  margin-top: 50px;
-  margin-left: auto;
-  margin-right: auto;
   border-radius: 6px;
   box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
   font-size: 20px;
@@ -80,12 +83,11 @@ a {
 }
 
 #start-lending-btn {
-  display: inline-flex;
+  height: 75px;
   background: $lightyellow;
   color: $lightred;
   width: 180px;
   padding: 2px;
-  position: absolute;
   border-radius: 6px;
   box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
   font-size: 20px;
@@ -97,6 +99,7 @@ a {
   }
 }
   #hero-section-text {
+    position: absolute;
     font-family: 'Bitter', serif;
     line-height: 70px;
     font-size: 40px;
@@ -219,6 +222,7 @@ a:visited {
     }
   }
 }
+
 
 #back-to-top-btn {
     display: none;
