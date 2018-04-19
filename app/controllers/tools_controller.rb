@@ -19,6 +19,7 @@ class ToolsController < ApplicationController
   end
 
   def create
+    byebug
     @tool = Tool.new(params.require(:tool).permit(:name, :description, :condition, :loan_length, {owner_pictures: []}, :category_ids, :image_ids))
 
     @tool.on_loan = false
