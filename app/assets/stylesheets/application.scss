@@ -62,15 +62,15 @@ a {
   position: relative;
   top: 30%;
   display: flex;
-  width: 100%;
-  justify-content: center;
+  width: 40%;
+  justify-content: space-evenly;
 }
 
 #all-tools-btn {
   background: $lightyellow;
   color: $lightred;
-  width: 180px;
-  padding: 2px;
+  width: 200px;
+  padding: 20px;
   border-radius: 6px;
   box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
   font-size: 20px;
@@ -86,8 +86,8 @@ a {
   height: 75px;
   background: $lightyellow;
   color: $lightred;
-  width: 180px;
-  padding: 2px;
+  width: 200px;
+  padding: 20px;
   border-radius: 6px;
   box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
   font-size: 20px;
