@@ -28,15 +28,20 @@
         <strong>Sharing the 6ix</strong> is a Toronto neighbourhood borrowing network <br>where communities share their stuff.
       </div>
 
-          <div id="main-buttons">
-            <div id="all-tools-btn">
+      <div id="main-buttons">
+        <div id="all-tools-btn">
             <%= link_to(tools_path) do %>
-              Start Borrowing
+                Start Borrowing
             <% end %>
-            </div>
-            <div id="start-lending-btn">Start Lending</div>
-            </div>
-          </div>
+        </div>
+        <div id="start-lending-btn">
+            <% if current_user %>
+                <%= link_to("Start Lending", new_tool_path) %>
+            <% else %>
+                <%= link_to("Start Lending", new_user_path) %>
+            <% end %>
+        </div>
+      </div>
     </div>
 
     <div class="container">
