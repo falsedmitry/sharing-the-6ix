@@ -20,7 +20,7 @@
     <% end %>
 
     <header class="site-header">
-        <%= render 'layouts/site-nav' %>
+      <%= render 'layouts/site-nav' %>
     </header>
 
     <div class="hero-section">
@@ -30,16 +30,16 @@
 
       <div class="main-buttons">
         <div id="all-tools-btn">
-            <%= link_to(tools_path) do %>
-                Start Borrowing
-            <% end %>
+          <%= link_to(tools_path) do %>
+            Start Borrowing
+          <% end %>
         </div>
         <div id="start-lending-btn">
-            <% if current_user %>
-                <%= link_to("Start Lending", new_tool_path) %>
-            <% else %>
-                <%= link_to("Start Lending", new_user_path) %>
-            <% end %>
+          <% if current_user %>
+            <%= link_to("Start Lending", new_tool_path) %>
+          <% else %>
+            <%= link_to("Start Lending", new_user_path) %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -47,8 +47,8 @@
       <div class = "search-bar">
           <%= form_tag(tools_path, :method => "get", id: "search-form") do %>
           <%= text_field_tag :tool, params[:tool], placeholder: "Search for an item you want to borrow! eg: hammer, bicycle, bouncy castle, etc. " %>
-            <%= collection_select(@table, :nbhd, Neighbourhood.all.order(:name), :name, :name, {:include_blank => "All Neighbourhoods", :selected => params[:nbhd]}) %>
-            <%= submit_tag "Find tool" %>
+          <%= collection_select(@table, :nbhd, Neighbourhood.all.order(:name), :name, :name, {:include_blank => "All Neighbourhoods", :selected => params[:nbhd]}) %>
+          <%= submit_tag "Find tool" %>
           <% end %>
       </div>
 
