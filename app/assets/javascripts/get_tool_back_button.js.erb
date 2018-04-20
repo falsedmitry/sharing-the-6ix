@@ -40,8 +40,8 @@ document.addEventListener('turbolinks:load', function() {
 
       yesButton.addEventListener('click', function() {
         $.ajax({
-          // url: 'https://sharing-the-6ix.herokuapp.com/tools/' + toolID,
-          url: 'http://localhost:3000/tools/' + toolID,
+          url: 'https://sharing-the-6ix.herokuapp.com/tools/' + toolID,
+          // url: 'http://localhost:3000/tools/' + toolID,
           method: 'PATCH',
           data: {},
           dataType: 'json'
