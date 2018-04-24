@@ -3,8 +3,8 @@
   <head>
     <title>Sharing the 6ix</title>
     <%= csrf_meta_tags %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
@@ -23,11 +23,11 @@
 
     <div class="hero-section">
       <div id="hero-section-text">
-        <strong>Sharing the 6ix</strong> <br>is a Toronto neighbourhood borrowing network where communities share their stuff.
+        <strong>Sharing the 6ix</strong> is a Toronto neighbourhood borrowing network <br>where communities share their stuff.
       </div>
 
       <div class="main-buttons">
-        <div id="start-borrowing">
+        <div id="start-borrowing-btn">
           <%= link_to(tools_path) do %>
             Start Borrowing
           <% end %>
@@ -42,9 +42,9 @@
       </div>
     </div>
 
-      <div class ="search-bar">
+      <div class = "search-bar">
           <%= form_tag(tools_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :tool, params[:tool], placeholder: "Search for an item you want to borrow! eg: hammer, bicycle, bouncy castle, etc. " %>
+          <%= text_field_tag :tool, params[:tool], placeholder: "Search for an item you want to borrow! eg: hammer, bicycle, bouncy castle, etc. ", id:"tool-search" %>
           <%= collection_select(@table, :nbhd, Neighbourhood.all.order(:name), :name, :name, {:include_blank => "All Neighbourhoods", :selected => params[:nbhd]}) %>
           <%= submit_tag "Find tool" %>
           <% end %>
