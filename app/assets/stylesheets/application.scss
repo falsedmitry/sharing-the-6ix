@@ -121,19 +121,20 @@ a {
 .main-buttons {
   position: absolute;
   top: 70%;
-  left: 30%;
   display: inline-flex;
-  width: 40%;
+  width: 100%;
   justify-content: space-evenly;
-    #all-tools-btn, #start-lending-btn {
+    #start-borrowing, #start-lending-btn {
       background: $lightyellow;
       color: $lightred;
-      width: 200px;
-      padding: 20px;
+      width: 15%;
+      padding: 15px;
       border-radius: 6px;
       box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
-      font-size: 20px;
+      font-size: 1.3vw;
       font-weight: bold;
+      display: inline-flex;
+      justify-content:center;
       text-shadow: none;
 
       &:hover {
