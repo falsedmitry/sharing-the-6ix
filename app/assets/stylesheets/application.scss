@@ -5,7 +5,7 @@ $lightred: #C03F49;
 $offwhite: #F0F4F1;
 $lightblack: #282828;
 $lightyellow: #FFE180;
-$hero-height: 60vh;
+$hero-height: 50vh;
 
 
 * {
@@ -95,14 +95,13 @@ a {
   height: $hero-height;
   position: relative;
     #hero-section-text {
-      width: 70%;
       position: relative;
       text-align: center;
       top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
       font-family: 'Bitter', serif;
-      font-size: 5.5vh;
+      font-size: 5rem;
       color: $offwhite;
       text-shadow: 1px 1px 2px black;
       z-index: 100;
@@ -122,7 +121,7 @@ a {
       padding: 15px;
       border-radius: 6px;
       box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
-      font-size: 1.3vw;
+      font-size: 2.5rem;
       font-weight: bold;
       display: inline-flex;
       justify-content:center;
@@ -140,20 +139,12 @@ a:visited {
   color: $lightred;
 }
 
+
 .search-bar {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-top: 30px;
+  padding: 5% 0 5% 0;
 }
 
-.search-form {
-  width: 60%;
-  border-color: $lightred;
-  border-style: solid;
-  border-width: 4px;
-  border-radius: 5px;
-}
 
 .tool-show {
   margin: 10px 30px 20px;
@@ -202,7 +193,6 @@ a:visited {
       text-align: center;
       left: 27%;
       color: white;
-      font-weight: bold;
     }
 }
 
@@ -250,4 +240,58 @@ footer ul {
 footer ul li {
   float: left;
   margin-left: 15px;
+}
+
+/*media queries*/
+
+@media screen and (max-width: 1024px) {
+
+#hero-section-text {
+    font-size: 75%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+
+  #all-tools-btn, #start-lending-btn{
+    margin-top: 20px;
+    padding-top: 8px;
+    width: 40%;
+    height: 40px;
+    font-size: 15px;
+  }
+
+  .tool {
+    padding: 2px;
+    width: 75%;
+    border-radius: 3px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .dropdown-content {
+    position: fixed;
+    z-index: 1000;
+  }
+
+  .main-buttons {
+    width: 70%;
+  }
+
+  #hero-section-text {
+    font-size: 2rem;
+    line-height: inherit;
+  }
+  .hamburger-menu {
+    top: 20px;
+    right: 10px;
+    position: fixed;
+    #hamburger-menu {
+      width: 30px;
+      height: 30px;
+      visibility: visible;
+    }
+  }
 }

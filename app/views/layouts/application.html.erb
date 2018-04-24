@@ -41,17 +41,17 @@
         </div>
       </div>
     </div>
-
-      <div class = "search-bar">
-          <%= form_tag(tools_path, :method => "get", id: "search-form") do %>
-          <%= text_field_tag :tool, params[:tool], placeholder: "Search for an item you want to borrow! eg: hammer, bicycle, bouncy castle, etc. ", id:"tool-search" %>
-          <%= collection_select(@table, :nbhd, Neighbourhood.all.order(:name), :name, :name, {:include_blank => "All Neighbourhoods", :selected => params[:nbhd]}) %>
-          <%= submit_tag "Find tool" %>
-          <% end %>
+      <div class="container">
+          <div class="search-bar">
+            <%= form_tag(tools_path, :method => "get") do %>
+            <%= text_field_tag :tool, params[:tool], placeholder: "Search for an item you want to borrow! eg: hammer, bicycle, bouncy castle, etc. ", id:"tool-search" %>
+            <%= collection_select(@table, :nbhd, Neighbourhood.all.order(:name), :name, :name, {:include_blank => "All Neighbourhoods", :selected => params[:nbhd]}) %>
+            <%= submit_tag "Find tool" %>
+            <% end %>
+          </div>
       </div>
 
       <%= yield %>
-    </div>
 
     <div class="container">
       <div class="footer">
