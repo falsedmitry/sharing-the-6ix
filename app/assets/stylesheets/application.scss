@@ -83,7 +83,7 @@ a {
 .tool {
     width: 30%;
     float: left;
-    height: 300px;
+    height: 100%;
     margin: 10px;
 }
 
@@ -145,13 +145,18 @@ a:visited {
   display: flex;
   justify-content: center;
   padding-top: 30px;
-    #tool-search {
-      width: 60%;
-      border-color: $lightred;
-      border-style: solid;
-      border-width: 4px;
-      border-radius: 5px;
-    }
+}
+
+.search-form {
+  width: 60%;
+  border-color: $lightred;
+  border-style: solid;
+  border-width: 4px;
+  border-radius: 5px;
+}
+
+.tool-show {
+  margin: 10px 30px 20px;
 }
 
 .dropdown-content {
@@ -179,32 +184,26 @@ a:visited {
 }
 
 .nbhd-image a img {
-  height: 176px;
+  position: relative;
+  width: 100%;
 }
+
 
 .nbhd-image {
   width: 100%;
   margin: 8px;
-}
-
-.nbhd-image {
-  .nbhd-name {
-    visibility: hidden;
-    position: absolute;
-    top: 50%;
-    font-size: 20px;
-    color: black;
-    font-weight: bold;
-  }
-
-  &:hover {
-    img {
-      opacity: 0.5;
+    .nbhd-name {
+      background-color: $lightred;
+      width: 50%;
+      position: absolute;
+      border-radius: 5px;
+      top: 40%;
+      font-size: 2rem;
+      text-align: center;
+      left: 27%;
+      color: white;
+      font-weight: bold;
     }
-   .nbhd-name {
-     visibility: visible;
-    }
-  }
 }
 
 
@@ -252,183 +251,3 @@ footer ul li {
   float: left;
   margin-left: 15px;
 }
-
-// @media screen and (max-width: 1024px) {
-//
-//   .main-buttons {
-//     width: 70%;
-//   }
-//
-//   #hero-section-text {
-//     font-size: 3rem;
-//   }
-//
-// }
-//
-// @media screen and (max-width: 768px) {
-//   #all-tools-btn, #start-lending-btn{
-//     margin-top: 20px;
-//     padding-top: 5px;
-//     width: 40%;
-//     height: 40px;
-//     font-size: 20px;
-//   }
-// }
-//
-// @media screen and (max-width: 720px) {
-//
-//   #all-tools-btn, #start-lending-btn{
-//     margin-top: 20px;
-//     padding-top: 8px;
-//     width: 40%;
-//     height: 40px;
-//     font-size: 15px;
-//   }
-//
-//   .tool {
-//     padding: 2px;
-//     width: 75%;
-//     border-radius: 3px;
-//   }
-//
-//   .nav-links {
-//     display: none;
-//   }
-//
-//   .dropdown-content {
-//     position: fixed;
-//     z-index: 100;
-//   }
-//
-//   .main-buttons {
-//     width: 70%;
-//   }
-//
-//   #hero-section-text {
-//     font-size: 3rem;
-//     line-height: inherit;
-//   }
-//   .hamburger-menu {
-//     top: 20px;
-//     right: 10px;
-//     position: fixed;
-//     #hamburger-menu {
-//       width: 30px;
-//       height: 30px;
-//       visibility: visible;
-//     }
-//   }
-// }
-//
-// @media screen and (max-width: 600px) {
-//
-//   form#search-form {
-//     display: flex;
-//     width: -webkit-fill-available;
-//   }
-//
-//   #all-tools-btn, #start-lending-btn {
-//     margin-top: 20px;
-//     padding-top: 8px;
-//     width: 40%;
-//     height: 40px;
-//     font-size: 13px;
-//   }
-//   .nav-links {
-//     display: none;
-//   }
-// }
-//
-// @media screen and (max-width: 425px) {
-//
-//   .site-nav {
-//     width: 475px;
-//   }
-//
-//   .hero-section {
-//     height: 35vh;
-//     width: 474px;
-//   }
-//
-//   #hero-section-text {
-//     font-size: 2.2rem;
-//   }
-//
-//   form#search-form {
-//     display: flex;
-//     width: 300px;
-//   }
-//
-//   #all-tools-btn, #start-lending-btn {
-//     margin-top: 20px;
-//     padding-top: 8px;
-//     width: 40%;
-//     height: 20px;
-//     font-size: 10px;
-//   }
-//   .nav-links {
-//     display: none;
-//   }
-//   .nbhd-image
-//     .nbhd-name {
-//       visibility: hidden;
-//       position: absolute;
-//       top: 45%;
-//       left: 33%;
-//       color: black;
-//     }
-// }
-//
-// #map {
-//   height: 300px;
-//   width: 70%;
-//   margin-left: auto;
-//   margin-right: auto
-// }
-//
-// .avatar {
-//   height: 250px;
-// }
-//
-// .review-image {
-//   height: 250px;
-// }
-//
-// a:hover {
-//   text-decoration: none;
-// }
-//
-// button > a:visited {
-//   color: $lightblack;
-// }
-//
-// ul {
-//   list-style: none
-// }
-//
-// #star, .rating-div {
-//   display: inline;
-// }
-//
-// p.rating, div.review-rating {
-//   display: inline
-// }
-//
-// .availability, .tool-name-link {
-//   display: inline
-// }
-//
-// .tool-index-image {
-//   display: block
-// }
-//
-// @media screen and (max-width: 320px) {
-//
-//   form#search-form {
-//     display: flex;
-//     width: 275px;
-//   }
-//   #hero-section-text {
-//     font-size: 1.3rem;
-//   }
-// }

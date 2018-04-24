@@ -1,43 +1,78 @@
-<% unless @user == current_user %>
-  <h2><%= @user.name %>'s Profile:</h2>
-<% end %>
+<div class="container">
 
-<img src="<%= @user.avatar %>" alt="" class="avatar">
+  <% unless @user == current_user %>
+    <h2><%= @user.name %>'s Profile:</h2>
+  <% end %>
 
-<p>Name: <%= @user.name %></p>
-<p>Location: <%= @user.neighbourhood.name %></p>
-<% if current_user == @user %>
-  <%= link_to 'Add Tool', new_tool_path %>
-<% end %>
-<hr>
+  <img src="<%= @user.avatar %>" alt="" class="avatar">
 
-<% if @user == current_user && !@currently_borrowed_tools.empty? %>
-  <h3>Active Loans</h3>
-    <% @currently_borrowed_tools.each do |tool| %>
-      <% if tool.owner_pictures[0] %>
-        <%= link_to(tool_path(tool)) do %>
-          <%= image_tag("#{tool.owner_pictures[0]}", size: "120x100", alt: "No Image") %>
+  <p>Name: <%= @user.name %></p>
+  <p>Location: <%= @user.neighbourhood.name %></p>
+  <% if current_user == @user %>
+    <%= link_to 'Add Tool', new_tool_path %>
+  <% end %>
+  <hr>
+
+  <% if @user == current_user && !@currently_borrowed_tools.empty? %>
+    <h3>Active Loans</h3>
+      <% @currently_borrowed_tools.each do |tool| %>
+        <% if tool.owner_pictures[0] %>
+          <%= link_to(tool_path(tool)) do %>
+            <%= image_tag("#{tool.owner_pictures[0]}", size: "120x100", alt: "No Image") %>
+          <% end %>
         <% end %>
+
+        <p><strong><%= link_to("#{tool.name}", tool_path(tool)) %></strong></p>
+
+        <% if tool.active_loan.overdue? %>
+          (OVERDUE)
+        <% end %>
+
+        <p>Owner: <%= link_to("#{tool.owner.name}", user_path(tool.owner)) %></p>
+        <p>Borrowed on: <%= tool.active_loan.start_date.strftime('%A, %B %d, %Y') %></p>
+        <p>Due: <%= tool.active_loan.due_date.strftime('%A, %B %d, %Y') %></p>
+        <hr>
       <% end %>
+  <% end %>
 
-      <p><strong><%= link_to("#{tool.name}", tool_path(tool)) %></strong></p>
+  <% if current_user == @user %>
+    <% unless @tools_out_on_loan.empty? %>
+      <h3>Tools Out On Loan</h3>
 
-      <% if tool.active_loan.overdue? %>
-        (OVERDUE)
+      <% @tools_out_on_loan.each do |tool| %>
+        <% if tool.owner_pictures[0] %>
+          <%= link_to(tool_path(tool)) do %>
+            <%= image_tag("#{tool.owner_pictures[0]}", size: "120x100", alt: "No Image") %>
+          <% end %>
+        <% end %>
+
+        <p>
+          <strong><%= link_to("#{tool.name}", tool_path(tool)) %></strong>
+          <% if tool.active_loan.overdue? %>
+            (OVERDUE)
+          <% end %>
+        </p>
+
+        <p>Borrower: <%= link_to("#{tool.current_borrower.name}", user_path(tool.current_borrower)) %></p>
+        <p>Lent on: <%= tool.active_loan.start_date.strftime('%A, %B %d, %Y') %></p>
+        <p>Due on: <%= tool.active_loan.due_date.strftime('%A, %B %d, %Y') %></p>
+        <hr>
       <% end %>
-
-      <p>Owner: <%= link_to("#{tool.owner.name}", user_path(tool.owner)) %></p>
-      <p>Borrowed on: <%= tool.active_loan.start_date.strftime('%A, %B %d, %Y') %></p>
-      <p>Due: <%= tool.active_loan.due_date.strftime('%A, %B %d, %Y') %></p>
-      <hr>
     <% end %>
-<% end %>
+  <% end %>
 
-<% if current_user == @user %>
-  <% unless @tools_out_on_loan.empty? %>
-    <h3>Tools Out On Loan</h3>
+  <% unless @current_tools.empty? %>
+    <% if @user == current_user %>
+      <h3>My Inventory:</h3>
+    <% else %>
+      <p><%= @user.name %>'s Inventory:</p>
+    <% end %>
+  <% end %>
 
-    <% @tools_out_on_loan.each do |tool| %>
+
+  <% @current_tools.each do |tool| %>
+    <div class=“tools”>
+
       <% if tool.owner_pictures[0] %>
         <%= link_to(tool_path(tool)) do %>
           <%= image_tag("#{tool.owner_pictures[0]}", size: "120x100", alt: "No Image") %>
@@ -45,58 +80,27 @@
       <% end %>
 
       <p>
-        <strong><%= link_to("#{tool.name}", tool_path(tool)) %></strong>
-        <% if tool.active_loan.overdue? %>
-          (OVERDUE)
-        <% end %>
+        <strong><%= link_to(tool.name, tool_path(tool)) %></strong>
       </p>
-
-      <p>Borrower: <%= link_to("#{tool.current_borrower.name}", user_path(tool.current_borrower)) %></p>
-      <p>Lent on: <%= tool.active_loan.start_date.strftime('%A, %B %d, %Y') %></p>
-      <p>Due on: <%= tool.active_loan.due_date.strftime('%A, %B %d, %Y') %></p>
-      <hr>
-    <% end %>
-  <% end %>
-<% end %>
-
-<% unless @current_tools.empty? %>
-  <% if @user == current_user %>
-    <h3>My Inventory:</h3>
-  <% else %>
-    <p><%= @user.name %>'s Inventory:</p>
-  <% end %>
-<% end %>
-
-
-<% @current_tools.each do |tool| %>
-  <div class=“tools”>
-
-    <% if tool.owner_pictures[0] %>
-      <%= link_to(tool_path(tool)) do %>
-        <%= image_tag("#{tool.owner_pictures[0]}", size: "120x100", alt: "No Image") %>
+      <p class="tool-name-link">Availability: </p>
+      <% if tool.on_loan == true %>
+        <%= image_tag('red.png', size: '10x10', class: "availability") %>
+      <% else %>
+        <%= image_tag('green.png', size: '10x10', class: "availability") %>
       <% end %>
-    <% end %>
 
-    <p>
-      <strong><%= link_to(tool.name, tool_path(tool)) %></strong>
-    </p>
-    <p class="tool-name-link">Availability: </p>
-    <% if tool.on_loan == true %>
-      <%= image_tag('red.png', size: '10x10', class: "availability") %>
-    <% else %>
-      <%= image_tag('green.png', size: '10x10', class: "availability") %>
-    <% end %>
+      <div id="tool<%= tool.id %>"></div>
+      <p>Description: <%= tool.description %></p>
+      <hr>
+    </div>
 
-    <div id="tool<%= tool.id %>"></div>
-    <p>Description: <%= tool.description %></p>
-    <hr>
-  </div>
+    <script>
+      $('#tool<%= tool.id %>').raty({
+        readOnly: true,
+        score: '<%= tool.average_rating %>',
+        path: '/assets'
+      });
+    </script>
+  <% end %>
 
-  <script>
-    $('#tool<%= tool.id %>').raty({
-      readOnly: true,
-      score: '<%= tool.average_rating %>',
-      path: '/assets'
-    });
-  </script>
-<% end %>
+</div>

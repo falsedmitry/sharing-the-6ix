@@ -1,16 +1,14 @@
-
-<h2>Browse by Neighbourhood:</h2>
-
 <div class="container">
-  <div class="row">
-  <% @neighbourhoods.each do |nbhd| %>
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3">
-        <div class="nbhd-image">
-          <%= link_to(neighbourhood_url(nbhd)) do %>
-            <%= image_tag(nbhd.nbhd_image.url, border: 0, class: "img-responsive", data: {name: nbhd.name}) %>
-            <div class="nbhd-name">
-              <%= nbhd.name %>
-            </div>
+  <h2>Browse by Neighbourhood:</h2>
+    <div class="row">
+    <% @neighbourhoods.each do |nbhd| %>
+        <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-offset-0 col-md-3">
+          <div class="nbhd-image">
+            <%= link_to(neighbourhood_url(nbhd)) do %>
+              <%= image_tag(nbhd.nbhd_image.url, border: 0, data: {name: nbhd.name}) %>
+                <div class="nbhd-name">
+                  <%= nbhd.name %>
+                </div>
           <% end %>
         </div>
       </div>

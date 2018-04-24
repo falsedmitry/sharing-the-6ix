@@ -1,6 +1,9 @@
-<h3>Edit Tool</h3>
+<div class="container">
+    
+  <h3>Edit Tool</h3>
 
-<p> <%= link_to("Back", "/tools/#{@tool.id}") %></p>
+  <p> <%= link_to("Back", "/tools/#{@tool.id}") %></p>
 
-<%= render 'shared/error', object: @tool %>
-<%= render 'form', tool: @tool %>
+  <%= render 'shared/error', object: @tool %>
+  <%= render 'form', tool: @tool %>
+</div>

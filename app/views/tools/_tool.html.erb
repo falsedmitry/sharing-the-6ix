@@ -1,28 +1,29 @@
-<div class="tool">
-  <% if tool.owner_pictures[0] %>
-    <%= image_tag("#{tool.owner_pictures[0]}", size: "120x100", alt: "No Image", class: "tool-index-image") %>
-  <% end %>
 
-  <p><%= link_to(tool.name, tool_path(tool)) %></p>
-  <div id="tool<%= tool.id %>" class="rating-div"></div> (<%= pluralize(tool.reviews.count, "review") %>)
-  <p></p>
+  <div class="tool">
+    <% if tool.owner_pictures[0] %>
+      <%= image_tag("#{tool.owner_pictures[0]}", size: "120x100", alt: "No Image", class: "tool-index-image") %>
+    <% end %>
 
-  <p class="tool-name-link">Availability: </p>
-  <% if tool.on_loan == true %>
-    <%= image_tag('red.png', size: '10x10', class: "availability") %>
-  <% else %>
-    <%= image_tag('green.png', size: '10x10', class: "availability") %>
-  <% end %>
+    <p><%= link_to(tool.name, tool_path(tool)) %></p>
+    <div id="tool<%= tool.id %>" class="rating-div"></div> (<%= pluralize(tool.reviews.count, "review") %>)
+    <p></p>
 
-  <p>Owner: <%= link_to("#{tool.owner.name}", user_path(tool.owner)) %></p>
-  <p>Location: <%= link_to("#{tool.owner.neighbourhood.name}", neighbourhood_path(tool.owner.neighbourhood)) %></p>
-  <p>Description: <%= tool.description %></p>
-</div>
+    <p class="tool-name-link">Availability: </p>
+    <% if tool.on_loan == true %>
+      <%= image_tag('red.png', size: '10x10', class: "availability") %>
+    <% else %>
+      <%= image_tag('green.png', size: '10x10', class: "availability") %>
+    <% end %>
 
-<script>
-  $('#tool<%= tool.id %>').raty({
-    readOnly: true,
-    score: '<%= tool.average_rating %>',
-    path: '/assets'
-  });
-</script>
+    <p>Owner: <%= link_to("#{tool.owner.name}", user_path(tool.owner)) %></p>
+    <p>Location: <%= link_to("#{tool.owner.neighbourhood.name}", neighbourhood_path(tool.owner.neighbourhood)) %></p>
+    <p>Description: <%= tool.description %></p>
+  </div>
+
+  <script>
+    $('#tool<%= tool.id %>').raty({
+      readOnly: true,
+      score: '<%= tool.average_rating %>',
+      path: '/assets'
+    });
+  </script>
