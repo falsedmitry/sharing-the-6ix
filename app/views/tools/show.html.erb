@@ -1,103 +1,107 @@
-<p class="tool-name"><%= @tool.name %></p>
-<br>
+<div class="tool-show">
+  
+  <p class="tool-name"><%= @tool.name %></p>
+  <br>
 
-<% @tool.owner_pictures.each_with_index do |picture, index| %>
-  <img src="<%= @tool.owner_pictures[index] %>" alt="", class="avatar">
-<% end %>
-</br>
-</br>
+  <% @tool.owner_pictures.each_with_index do |picture, index| %>
+    <img src="<%= @tool.owner_pictures[index] %>" alt="", class="avatar">
+  <% end %>
+  </br>
+  </br>
 
 
-<p class="tool-name-link" id="availability-indicator">Availability:
-<% if @tool.on_loan == true %>
-  <%= image_tag('red.png', size: '10x10', class: "availability", id: "red-circle") %>
-<% else %>
-  <%= image_tag('green.png', size: '10x10', class: "availability", id: "green-circle") %>
-<% end %>
-</p>
+  <p class="tool-name-link" id="availability-indicator">Availability:
+  <% if @tool.on_loan == true %>
+    <%= image_tag('red.png', size: '10x10', class: "availability", id: "red-circle") %>
+  <% else %>
+    <%= image_tag('green.png', size: '10x10', class: "availability", id: "green-circle") %>
+  <% end %>
+  </p>
 
-<% if current_user == @tool.owner%>
-  <button type="button" class="get-back-or-lend" name="lend-tool", data-loan="<%= @tool.on_loan %>", style="display:none">
-    <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
-  </button>
+  <% if current_user == @tool.owner%>
+    <button type="button" class="get-back-or-lend" name="lend-tool", data-loan="<%= @tool.on_loan %>", style="display:none">
+      <%= link_to("Lend This Tool", new_tool_loan_path(@tool, @loan)) %>
+    </button>
 
-  <button type="button" class="get-back-or-lend" name="get-tool-back" data-toolid="<%= @tool.id %>", style="display:none">
-    Get Back Tool
-  </button>
-<% end %>
-<br>
+    <button type="button" class="get-back-or-lend" name="get-tool-back" data-toolid="<%= @tool.id %>", style="display:none">
+      Get Back Tool
+    </button>
+  <% end %>
+  <br>
 
-<p>Average rating:</p>
-<div id="star"></div> (<%= pluralize(@tool.reviews.count, "review") %>)
-<br>
+  <p>Average rating:</p>
+  <div id="star"></div> (<%= pluralize(@tool.reviews.count, "review") %>)
+  <br>
 
-<% unless current_user == @tool.owner %>
-<p>Owner: <%= link_to("#{@tool.owner.name}", user_path(@tool.owner)) %></p>
-<% end %>
-<p>Max Loan Length (days): <%= @tool.loan_length %></p>
-<p>Condition: <%= @tool.condition %>/10</p>
-<p>Description: <%= @tool.description %></p>
+  <% unless current_user == @tool.owner %>
+  <p>Owner: <%= link_to("#{@tool.owner.name}", user_path(@tool.owner)) %></p>
+  <% end %>
+  <p>Max Loan Length (days): <%= @tool.loan_length %></p>
+  <p>Condition: <%= @tool.condition %>/10</p>
+  <p>Description: <%= @tool.description %></p>
 
-<%= link_to("Back to Browse", tools_path) %>
+  <%= link_to("Back to Browse", tools_path) %>
 
-<% if current_user == @tool.owner %>
-  | <%= link_to("Edit", edit_tool_path(@tool)) %> | <%= link_to("Delete", tool_path(@tool), method: :delete, data: {confirm: "Are you sure you want to delete this tool?"}) %>
-<% end %>
-<p>(Views: <%= @tool.impressionist_count(filter: :user_id) %>)</p>
-<br>
-<br>
+  <% if current_user == @tool.owner %>
+    | <%= link_to("Edit", edit_tool_path(@tool)) %> | <%= link_to("Delete", tool_path(@tool), method: :delete, data: {confirm: "Are you sure you want to delete this tool?"}) %>
+  <% end %>
+  <p>(Views: <%= @tool.impressionist_count(filter: :user_id) %>)</p>
+  <br>
+  <br>
 
-<div id="map"></div>
+  <div id="map"></div>
 
-<% if current_user && current_user != @tool.owner %>
-  <h2>Messages</h2>
-  <ul id="user_chat_box">
-    <% if @chats %>
-      <% @chats.each do |chat| %>
-        <li id="user_chat_detail">
-          <%= render '/chats/chat', chat: chat %>
-        </li>
+  <% if current_user && current_user != @tool.owner %>
+    <h2>Messages</h2>
+    <ul id="user_chat_box">
+      <% if @chats %>
+        <% @chats.each do |chat| %>
+          <li id="user_chat_detail">
+            <%= render '/chats/chat', chat: chat %>
+          </li>
+        <% end %>
       <% end %>
-    <% end %>
-  </ul>
-  <%= render '/chats/form', locals: {:tool => @tool, :chat => @chat} %>
-<% end %>
+    </ul>
+    <%= render '/chats/form', locals: {:tool => @tool, :chat => @chat} %>
+  <% end %>
 
-<h2>Reviews</h2>
-<% if current_user != @tool.owner && (@tool.borrowers && @tool.borrowers.include?(current_user)) %>
-  <%= render "shared/error", object: @review %>
-  <%= render 'reviews/form', review: @review %>
-<% end %>
-<hr>
+  <h2>Reviews</h2>
+  <% if current_user != @tool.owner && (@tool.borrowers && @tool.borrowers.include?(current_user)) %>
+    <%= render "shared/error", object: @review %>
+    <%= render 'reviews/form', review: @review %>
+  <% end %>
+  <hr>
 
-<% @tool.reviews.order(created_at: :desc).each do |review| %>
-  <%= render 'reviews/review', review: review %>
-<% end %>
+  <% @tool.reviews.order(created_at: :desc).each do |review| %>
+    <%= render 'reviews/review', review: review %>
+  <% end %>
 
-<script>
-function initMap() {
-  var centerOfMap = {lat: <%= @lat %>, lng: <%= @lng %>};
+  <script>
+  function initMap() {
+    var centerOfMap = {lat: <%= @lat %>, lng: <%= @lng %>};
 
-  var map = new google.maps.Map(
-    document.querySelector('#map'), {
-    zoom: 14,
-    center: centerOfMap
+    var map = new google.maps.Map(
+      document.querySelector('#map'), {
+      zoom: 14,
+      center: centerOfMap
+    });
+
+    var marker = new google.maps.Marker({
+      position: centerOfMap,
+      map: map
+    });
+  }
+  </script>
+
+  <script>
+  $('#star').raty({
+    readOnly: true,
+    score: '<%= @tool.average_rating %>',
+    path: '/assets'
   });
+  </script>
 
-  var marker = new google.maps.Marker({
-    position: centerOfMap,
-    map: map
-  });
-}
-</script>
+  <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM&callback=initMap">
+  </script>
 
-<script>
-$('#star').raty({
-  readOnly: true,
-  score: '<%= @tool.average_rating %>',
-  path: '/assets'
-});
-</script>
-
-<script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM&callback=initMap">
-</script>
+</div>

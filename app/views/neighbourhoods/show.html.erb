@@ -1,26 +1,32 @@
-<h2><%= @neighbourhood.name %></h2>
+<div class="container">
 
-<h4>Popular tools in <%= @neighbourhood.name %>:</h4>
-<% if @neighbourhood.tools.any? %>
-  <% @neighbourhood.tools.each do |tool| %>
-    <%= render '/tools/tool', tool: tool %>
+  <h2><%= @neighbourhood.name %></h2>
+
+  <h4>Popular tools in <%= @neighbourhood.name %>:</h4>
+  <% if @neighbourhood.tools.any? %>
+    <% @neighbourhood.tools.each do |tool| %>
+      <%= render '/tools/tool', tool: tool %>
+    <% end %>
+  <% else %>
+    <p>Be the first to share a tool here!</p>
   <% end %>
-<% else %>
-  <p>Be the first to share a tool here!</p>
-<% end %>
+</div>
 
-<h4>Users in <%= @neighbourhood.name %>:</h4>
-<% if @users_in_neighbourhood.any? %>
-  <% @users_in_neighbourhood.each do |user| %>
-    <% if user.avatar.url %>
-      <%= link_to(user_path(user)) do %>
-        <%= image_tag(user.avatar.url, border: 1, class: "img-responsive", size: "120x100" ) %>
+<div class="container">
+
+  <h4>Users in <%= @neighbourhood.name %>:</h4>
+  <% if @users_in_neighbourhood.any? %>
+    <% @users_in_neighbourhood.each do |user| %>
+      <% if user.avatar.url %>
+        <%= link_to(user_path(user)) do %>
+          <%= image_tag(user.avatar.url, border: 1, class: "img-responsive", size: "120x100" ) %>
+        <% end %>
       <% end %>
     <% end %>
+  <% else %>
+    <p>There are no users here yet.</p>
   <% end %>
-<% else %>
-  <p>There are no users here yet.</p>
-<% end %>
+</div>
 
 <div id="map">
 </div>

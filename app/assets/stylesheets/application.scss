@@ -15,97 +15,20 @@ $hero-height: 50vh;
 /* mixins, variables, etc. */
 
 
-body {
+body, html {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
   font-family: 'Open Sans', sans-serif, Helvetica, Arial;
-  text-decoration: none;
 }
 
 a {
+  text-decoration: none;
   color: $lightblack;
   &:hover {
     color: $lightred;
   }
-}
-
-#tool {
-  border-color: $lightred;
-  border-style: solid;
-  border-width: 4px;
-  padding: 2px;
-  width: 600px;
-  border-radius: 5px;
-}
-
-.tool-name {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.tool {
-    width: 30%;
-    float: left;
-    height: 300px;
-    margin: 10px;
-}
-
-.main-buttons {
-  position: relative;
-  top: 30%;
-  display: flex;
-  width: 40%;
-  justify-content: space-evenly;
-}
-
-#all-tools-btn {
-  background: $lightyellow;
-  color: $lightred;
-  width: 200px;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
-  font-size: 20px;
-  font-weight: bold;
-  text-shadow: none;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-#start-lending-btn {
-  height: 75px;
-  background: $lightyellow;
-  color: $lightred;
-  width: 200px;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
-  font-size: 20px;
-  font-weight: bold;
-  text-shadow: none;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-  #hero-section-text {
-    position: absolute;
-    font-family: 'Bitter', serif;
-    line-height: 70px;
-    font-size: 40px;
-    color: $offwhite;
-    text-shadow: 1px 1px 2px black;
-    z-index: 100;
-  }
-  .hero-section {
-  background: image-url('toronto1.jpeg') 50% no-repeat;
-  background-size: cover;
-  height: $hero-height;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .logo {
@@ -128,11 +51,14 @@ a {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
 }
 
+img#hamburger-menu.hamburger-menu {
+  z-index: 1000;
+}
 
 .nav-links {
-    & a {
-      padding: 15px;
-    }
+  & a {
+    padding: 15px;
+  }
   margin-left: 100px;
   display: inline-block;
   text-decoration: none;
@@ -142,23 +68,106 @@ a {
 }
 
 .nav-links {
-    & a:hover {
-  padding: 14px 16px;
-  text-decoration: none;
-  min-height: 90px;
-  background-color: $lightred;
-  color: $offwhite;
+  & a:hover {
+    padding: 14px 16px;
+    text-decoration: none;
+    min-height: 90px;
+    background-color: $lightred;
+    color: $offwhite;
   }
 }
+
+
+.tool-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tool {
+    width: 30%;
+    float: left;
+    height: 100%;
+    margin: 10px;
+}
+
+
+.hero-section {
+  width: 100%;
+  z-index: -1;
+  background: image-url('toronto1.jpeg') no-repeat;
+  background-size: cover;
+  height: $hero-height;
+  position: relative;
+    #hero-section-text {
+      position: relative;
+      text-align: center;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Bitter', serif;
+      font-size: 5rem;
+      color: $offwhite;
+      text-shadow: 1px 1px 2px black;
+      z-index: 100;
+    }
+}
+
+.empty {
+  width: 15%;
+}
+
+.main-buttons {
+  position: absolute;
+  top: 70%;
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-evenly;
+    #start-borrowing-btn, #start-lending-btn {
+      background: $lightyellow;
+      color: $lightred;
+      width: 15%;
+      padding: 15px;
+      border-radius: 6px;
+      box-shadow: 0px 8px 5px rgba(0, 0, 0, .7);
+      font-size: 2.5rem;
+      font-weight: bold;
+      display: inline-flex;
+      justify-content:center;
+      text-shadow: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+}
+
+
 
 a:visited {
   color: $lightred;
 }
 
+
 .search-bar {
-  display: flex;
-  justify-content: center;
-  padding: 60px;
+  width: 100%;
+  padding: 5% 0 5% 0;
+}
+
+#search-form {
+  margin: 0 0 0 12%;
+}
+
+#tool-search {
+  width: 60%;
+  border-color: #C03F49;
+  border-width: 3px;
+  border-radius: 5px;
+  border-style: solid;
+  padding: 5px;
+}
+
+.tool-show {
+  margin: 10px 30px 20px;
 }
 
 .dropdown-content {
@@ -186,32 +195,26 @@ a:visited {
 }
 
 .nbhd-image a img {
-  height: 176px;
+  z-index: -1;
+  position: relative;
+  width: 100%;
 }
+
 
 .nbhd-image {
   width: 100%;
   margin: 8px;
-}
-
-.nbhd-image {
-  .nbhd-name {
-    visibility: hidden;
-    position: absolute;
-    top: 50%;
-    font-size: 20px;
-    color: black;
-    font-weight: bold;
-  }
-
-  &:hover {
-    img {
-      opacity: 0.5;
+    .nbhd-name {
+      background-color: $lightred;
+      width: 50%;
+      position: absolute;
+      border-radius: 5px;
+      top: 40%;
+      font-size: 2rem;
+      text-align: center;
+      left: 27%;
+      color: white;
     }
-   .nbhd-name {
-     visibility: visible;
-    }
-  }
 }
 
 
@@ -234,164 +237,6 @@ a:visited {
 #back-to-top-btn:hover {
     background-color: $lightyellow;
     color: $lightblack;
-}
-
-
-/* footer */
-
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777;
-}
-
-footer small {
-  float: left;
-}
-
-footer ul {
-  float: right;
-  list-style: none;
-}
-
-footer ul li {
-  float: left;
-  margin-left: 15px;
-}
-
-@media screen and (max-width: 1024px) {
-
-  .main-buttons {
-    width: 70%;
-  }
-
-  #hero-section-text {
-    font-size: 3rem;
-  }
-
-  .search-bar {
-    width: 80%;
-  }
-
-}
-
-@media screen and (max-width: 768px) {
-  #all-tools-btn, #start-lending-btn{
-    margin-top: 20px;
-    padding-top: 5px;
-    width: 40%;
-    height: 40px;
-    font-size: 20px;
-  }
-
-  .search-bar {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 720px) {
-
-  #all-tools-btn, #start-lending-btn{
-    margin-top: 20px;
-    padding-top: 8px;
-    width: 40%;
-    height: 40px;
-    font-size: 15px;
-  }
-
-  .tool {
-    padding: 2px;
-    width: 75%;
-    border-radius: 3px;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .dropdown-content {
-    position: fixed;
-    z-index: 100;
-  }
-
-  .main-buttons {
-    width: 70%;
-  }
-
-  #hero-section-text {
-    font-size: 3rem;
-    line-height: inherit;
-  }
-  .hamburger-menu {
-    top: 20px;
-    right: 10px;
-    position: fixed;
-    #hamburger-menu {
-      width: 30px;
-      height: 30px;
-      visibility: visible;
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
-
-  form#search-form {
-    display: flex;
-    width: -webkit-fill-available;
-  }
-
-  #all-tools-btn, #start-lending-btn {
-    margin-top: 20px;
-    padding-top: 8px;
-    width: 40%;
-    height: 40px;
-    font-size: 13px;
-  }
-  .nav-links {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 425px) {
-
-  .site-nav {
-    width: 475px;
-  }
-
-  .hero-section {
-    height: 35vh;
-    width: 474px;
-  }
-
-  #hero-section-text {
-    font-size: 2.2rem;
-  }
-
-  form#search-form {
-    display: flex;
-    width: 300px;
-  }
-
-  #all-tools-btn, #start-lending-btn {
-    margin-top: 20px;
-    padding-top: 8px;
-    width: 40%;
-    height: 20px;
-    font-size: 10px;
-  }
-  .nav-links {
-    display: none;
-  }
-  .nbhd-image
-    .nbhd-name {
-      visibility: hidden;
-      position: absolute;
-      top: 45%;
-      left: 33%;
-      color: black;
-    }
 }
 
 #map {
@@ -437,29 +282,155 @@ p.rating, div.review-rating {
   display: block
 }
 
-@media screen and (max-width: 320px) {
 
-  form#search-form {
-    display: flex;
-    width: 275px;
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+footer small {
+  float: left;
+}
+
+footer ul {
+  float: right;
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 15px;
+}
+
+/*media queries*/
+
+@media screen and (max-width: 1423px) and (min-width: 1036px) {
+
+.hero-section {
+      #hero-section-text {
+        font-size: 3.5rem;
+      }
   }
-  #hero-section-text {
-    font-size: 2.1rem;
-    position: absolute;
-    right: -152px;
+  .main-buttons {
+    #start-borrowing-btn, #start-lending-btn {
+      font-size: 1.7rem;
+    }
   }
 }
 
-.get-tool-back-confirmation {
-  position: absolute;
-  display: block;
-  left: 50%;
-  top: 50%;
+@media screen and (max-width: 1035px) and (min-width: 960px) {
 
-  width: 300px;
-  height: 180px;
-  z-index: 150;
+  .hero-section {
+        #hero-section-text {
+          font-size: 3.2rem;
+          padding: 0 10px 0 10px;
+        }
+    }
+    .main-buttons {
+      #start-borrowing-btn, #start-lending-btn {
+        font-size: 1.5rem;
+      }
+    }
+}
 
-  border-radius: 6px;
-  background: red;
+
+@media screen and (max-width: 959px) and (min-width: 768px) {
+
+  .hero-section {
+        #hero-section-text {
+          font-size: 3.2rem;
+          padding: 0 10px 0 10px;
+        }
+    }
+    .main-buttons {
+      #start-borrowing-btn, #start-lending-btn {
+        width: 19%;
+        font-size: 1.5rem;
+        padding: 8px;
+      }
+    }
+}
+
+
+@media screen and (max-width: 767px) and (min-width: 426px) {
+
+.hero-section {
+  #hero-section-text {
+    font-size: 3rem;
+    padding: 0 7px 0 7px;
+  }
+}
+
+.main-buttons {
+  #start-borrowing-btn, #start-lending-btn {
+    width: 20%;
+    font-size: 1.3rem;
+    padding: 1.8rem;
+    text-align: center;
+  }
+}
+
+  .nav-links {
+    display: none;
+  }
+
+  .dropdown-content {
+    position: fixed;
+    z-index: 1000;
+  }
+
+  .hamburger-menu {
+    top: 20px;
+    right: 10px;
+    position: fixed;
+    #hamburger-menu {
+      width: 30px;
+      height: 30px;
+      visibility: visible;
+    }
+  }
+}
+
+
+@media screen and (max-width: 425px) {
+
+  .hero-section {
+    #hero-section-text {
+      font-size: 2.5rem;
+      padding: 0 5px 0 5px;
+    }
+  }
+
+  .main-buttons {
+    #start-borrowing-btn, #start-lending-btn {
+      width: 22%;
+      font-size: 1rem;
+      padding: 1rem;
+      text-align: center;
+    }
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .dropdown-content {
+    position: fixed;
+    z-index: 1000;
+  }
+
+  .hamburger-menu {
+    top: 20px;
+    right: 10px;
+    position: fixed;
+      #hamburger-menu {
+        width: 30px;
+        height: 30px;
+        visibility: visible;
+    }
+  }
 }

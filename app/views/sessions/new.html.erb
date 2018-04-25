@@ -1,17 +1,20 @@
-<h3>Log In</h3>
+<div class="container">
 
-<%= form_for :session, url: login_path do |f| %>
+  <h3>Log In</h3>
 
-  <div class='field'>
-    <%= f.label :email %>
-    <%= f.email_field :email %>
-  </div>
-  <br>
-  <div class='field'>
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
+  <%= form_for :session, url: login_path do |f| %>
 
-  <%= f.submit 'Login' %>
-
-<% end %>
+    <div class='field'>
+      <%= f.label :email %>  <br />
+      <%= f.email_field :email %>
+    </div>
+    <div class='field'>
+      <%= f.label :password %>  <br />
+      <%= f.password_field :password %>
+    </div>
+      <br />
+    <div class='field'>
+      <%= f.submit 'Login' %>
+    </div>
+  <% end %>
+</div>

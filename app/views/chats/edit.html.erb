@@ -1,13 +1,15 @@
-<h1>Messages</h1>
+<div class="container">
+  <h1>Messages</h1>
 
-<ul id="owner_chat_box">
-  <% @chats.each do |chat| %>
-    <li id="owner_chat_detail">
-      <%= render 'chat', chat: chat %>
-    </li>
-  <% end %>
-</ul>
+  <ul id="owner_chat_box">
+    <% @chats.each do |chat| %>
+      <li id="owner_chat_detail">
+        <%= render 'chat', chat: chat %>
+      </li>
+    <% end %>
+  </ul>
 
-<% @chat.content = nil %>
-<%= render 'form_edit', chat: @chat %>
-<%= link_to 'Back', chats_path %>
+  <% @chat.content = nil %>
+  <%= render 'form_edit', chat: @chat %>
+  <%= link_to 'Back', chats_path %>
+</div>
