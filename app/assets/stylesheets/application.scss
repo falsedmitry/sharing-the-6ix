@@ -51,6 +51,9 @@ a {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.4);
 }
 
+img#hamburger-menu.hamburger-menu {
+  z-index: 1000;
+}
 
 .nav-links {
   & a {
@@ -90,6 +93,7 @@ a {
 
 .hero-section {
   width: 100%;
+  z-index: -1;
   background: image-url('toronto1.jpeg') no-repeat;
   background-size: cover;
   height: $hero-height;
@@ -106,6 +110,10 @@ a {
       text-shadow: 1px 1px 2px black;
       z-index: 100;
     }
+}
+
+.empty {
+  width: 15%;
 }
 
 .main-buttons {
@@ -145,6 +153,18 @@ a:visited {
   padding: 5% 0 5% 0;
 }
 
+#search-form {
+  margin: 0 0 0 12%;
+}
+
+#tool-search {
+  width: 60%;
+  border-color: #C03F49;
+  border-width: 3px;
+  border-radius: 5px;
+  border-style: solid;
+  padding: 5px;
+}
 
 .tool-show {
   margin: 10px 30px 20px;
@@ -175,6 +195,7 @@ a:visited {
 }
 
 .nbhd-image a img {
+  z-index: -1;
   position: relative;
   width: 100%;
 }
@@ -218,6 +239,49 @@ a:visited {
     color: $lightblack;
 }
 
+#map {
+  height: 300px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto
+}
+
+.avatar {
+  height: 250px;
+}
+
+.review-image {
+  height: 250px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+button > a:visited {
+  color: $lightblack;
+}
+
+ul {
+  list-style: none
+}
+
+#star, .rating-div {
+  display: inline;
+}
+
+p.rating, div.review-rating {
+  display: inline
+}
+
+.availability, .tool-name-link {
+  display: inline
+}
+
+.tool-index-image {
+  display: block
+}
+
 
 /* footer */
 
@@ -247,7 +311,6 @@ footer ul li {
 @media screen and (max-width: 1423px) and (min-width: 1036px) {
 
 .hero-section {
-    width: 100%;
       #hero-section-text {
         font-size: 3.5rem;
       }
@@ -262,7 +325,6 @@ footer ul li {
 @media screen and (max-width: 1035px) and (min-width: 960px) {
 
   .hero-section {
-      width: 100%;
         #hero-section-text {
           font-size: 3.2rem;
           padding: 0 10px 0 10px;
@@ -279,7 +341,6 @@ footer ul li {
 @media screen and (max-width: 959px) and (min-width: 768px) {
 
   .hero-section {
-      width: 100%;
         #hero-section-text {
           font-size: 3.2rem;
           padding: 0 10px 0 10px;
@@ -297,73 +358,79 @@ footer ul li {
 
 @media screen and (max-width: 767px) and (min-width: 426px) {
 
-  .hero-section {
-      width: 100%;
-        #hero-section-text {
-          font-size: 3rem;
-          padding: 0 7px 0 7px;
-        }
+.hero-section {
+  #hero-section-text {
+    font-size: 3rem;
+    padding: 0 7px 0 7px;
+  }
+}
+
+.main-buttons {
+  #start-borrowing-btn, #start-lending-btn {
+    width: 20%;
+    font-size: 1.3rem;
+    padding: 1.8rem;
+    text-align: center;
+  }
+}
+
+  .nav-links {
+    display: none;
+  }
+
+  .dropdown-content {
+    position: fixed;
+    z-index: 1000;
+  }
+
+  .hamburger-menu {
+    top: 20px;
+    right: 10px;
+    position: fixed;
+    #hamburger-menu {
+      width: 30px;
+      height: 30px;
+      visibility: visible;
     }
-    .main-buttons {
-      #start-borrowing-btn, #start-lending-btn {
-        width: 15%;
-        font-size: 1.2rem;
-        padding: 6px;
-        text-align: center;
-      }
-    }
+  }
 }
 
 
 @media screen and (max-width: 425px) {
 
   .hero-section {
-      width: 100%;
-        #hero-section-text {
-          font-size: 2.5rem;
-          padding: 0 5px 0 5px;
-        }
+    #hero-section-text {
+      font-size: 2.5rem;
+      padding: 0 5px 0 5px;
     }
-    .main-buttons {
-      #start-borrowing-btn, #start-lending-btn {
-        width: 22%;
-        font-size: 1rem;
-        padding: 5px;
-        text-align: center;
-      }
+  }
+
+  .main-buttons {
+    #start-borrowing-btn, #start-lending-btn {
+      width: 22%;
+      font-size: 1rem;
+      padding: 1rem;
+      text-align: center;
     }
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .dropdown-content {
+    position: fixed;
+    z-index: 1000;
+  }
+
+  .hamburger-menu {
+    top: 20px;
+    right: 10px;
+    position: fixed;
+      #hamburger-menu {
+        width: 30px;
+        height: 30px;
+        visibility: visible;
+    }
+  }
 }
-//   .tool {
-//     padding: 2px;
-//     width: 75%;
-//     border-radius: 3px;
-//   }
-//
-//   .nav-links {
-//     display: none;
-//   }
-//
-//   .dropdown-content {
-//     position: fixed;
-//     z-index: 1000;
-//   }
-//
-//   .main-buttons {
-//     width: 70%;
-//   }
-//
-//   #hero-section-text {
-//     font-size: 2rem;
-//     line-height: inherit;
-//   }
-//   .hamburger-menu {
-//     top: 20px;
-//     right: 10px;
-//     position: fixed;
-//     #hamburger-menu {
-//       width: 30px;
-//       height: 30px;
-//       visibility: visible;
-//     }
-//   }
-// }
