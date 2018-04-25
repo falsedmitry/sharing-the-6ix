@@ -244,54 +244,126 @@ footer ul li {
 
 /*media queries*/
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1423px) and (min-width: 1036px) {
 
-#hero-section-text {
-    font-size: 75%;
+.hero-section {
+    width: 100%;
+      #hero-section-text {
+        font-size: 3.5rem;
+      }
   }
-}
-
-@media screen and (max-width: 720px) {
-
-  #all-tools-btn, #start-lending-btn{
-    margin-top: 20px;
-    padding-top: 8px;
-    width: 40%;
-    height: 40px;
-    font-size: 15px;
-  }
-
-  .tool {
-    padding: 2px;
-    width: 75%;
-    border-radius: 3px;
-  }
-
-  .nav-links {
-    display: none;
-  }
-
-  .dropdown-content {
-    position: fixed;
-    z-index: 1000;
-  }
-
   .main-buttons {
-    width: 70%;
-  }
-
-  #hero-section-text {
-    font-size: 2rem;
-    line-height: inherit;
-  }
-  .hamburger-menu {
-    top: 20px;
-    right: 10px;
-    position: fixed;
-    #hamburger-menu {
-      width: 30px;
-      height: 30px;
-      visibility: visible;
+    #start-borrowing-btn, #start-lending-btn {
+      font-size: 1.7rem;
     }
   }
 }
+
+@media screen and (max-width: 1035px) and (min-width: 960px) {
+
+  .hero-section {
+      width: 100%;
+        #hero-section-text {
+          font-size: 3.2rem;
+          padding: 0 10px 0 10px;
+        }
+    }
+    .main-buttons {
+      #start-borrowing-btn, #start-lending-btn {
+        font-size: 1.5rem;
+      }
+    }
+}
+
+
+@media screen and (max-width: 959px) and (min-width: 768px) {
+
+  .hero-section {
+      width: 100%;
+        #hero-section-text {
+          font-size: 3.2rem;
+          padding: 0 10px 0 10px;
+        }
+    }
+    .main-buttons {
+      #start-borrowing-btn, #start-lending-btn {
+        width: 19%;
+        font-size: 1.5rem;
+        padding: 8px;
+      }
+    }
+}
+
+
+@media screen and (max-width: 767px) and (min-width: 426px) {
+
+  .hero-section {
+      width: 100%;
+        #hero-section-text {
+          font-size: 3rem;
+          padding: 0 7px 0 7px;
+        }
+    }
+    .main-buttons {
+      #start-borrowing-btn, #start-lending-btn {
+        width: 15%;
+        font-size: 1.2rem;
+        padding: 6px;
+        text-align: center;
+      }
+    }
+}
+
+
+@media screen and (max-width: 425px) {
+
+  .hero-section {
+      width: 100%;
+        #hero-section-text {
+          font-size: 2.5rem;
+          padding: 0 5px 0 5px;
+        }
+    }
+    .main-buttons {
+      #start-borrowing-btn, #start-lending-btn {
+        width: 22%;
+        font-size: 1rem;
+        padding: 5px;
+        text-align: center;
+      }
+    }
+}
+//   .tool {
+//     padding: 2px;
+//     width: 75%;
+//     border-radius: 3px;
+//   }
+//
+//   .nav-links {
+//     display: none;
+//   }
+//
+//   .dropdown-content {
+//     position: fixed;
+//     z-index: 1000;
+//   }
+//
+//   .main-buttons {
+//     width: 70%;
+//   }
+//
+//   #hero-section-text {
+//     font-size: 2rem;
+//     line-height: inherit;
+//   }
+//   .hamburger-menu {
+//     top: 20px;
+//     right: 10px;
+//     position: fixed;
+//     #hamburger-menu {
+//       width: 30px;
+//       height: 30px;
+//       visibility: visible;
+//     }
+//   }
+// }
