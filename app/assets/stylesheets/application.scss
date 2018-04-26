@@ -93,7 +93,7 @@ img#hamburger-menu.hamburger-menu {
 
 .hero-section {
   width: 100%;
-  z-index: -1;
+  z-index: 1;
   background: image-url('toronto1.jpeg') no-repeat;
   background-size: cover;
   height: $hero-height;
