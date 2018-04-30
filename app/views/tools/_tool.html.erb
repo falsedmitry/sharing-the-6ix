@@ -17,7 +17,7 @@
 
     <p>Owner: <%= link_to("#{tool.owner.name}", user_path(tool.owner)) %></p>
     <p>Location: <%= link_to("#{tool.owner.neighbourhood.name}", neighbourhood_path(tool.owner.neighbourhood)) %></p>
-    <p>Description: <%= tool.description %></p>
+    <p><%= tool.description %></p>
   </div>
 
   <script>

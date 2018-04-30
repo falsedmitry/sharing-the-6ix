@@ -84,10 +84,14 @@ img#hamburger-menu.hamburger-menu {
 }
 
 .tool {
-    width: 30%;
-    float: left;
-    height: 100%;
-    margin: 10px;
+  float: left;
+  width: 30%;
+  height: 35rem;
+  margin: 10px;
+  padding: 1%;
+
+  border: 1px solid #9E9E9E;
+  border-radius: 5%;
 }
 
 
@@ -403,6 +407,11 @@ footer ul li {
       font-size: 2.5rem;
       padding: 0 5px 0 5px;
     }
+  }
+
+  .tool {
+    height: 37rem;
+    width: 40%
   }
 
   .main-buttons {

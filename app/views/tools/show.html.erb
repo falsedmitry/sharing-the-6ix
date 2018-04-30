@@ -1,5 +1,5 @@
 <div class="tool-show">
-  
+
   <p class="tool-name"><%= @tool.name %></p>
   <br>
 
@@ -38,7 +38,7 @@
   <% end %>
   <p>Max Loan Length (days): <%= @tool.loan_length %></p>
   <p>Condition: <%= @tool.condition %>/10</p>
-  <p>Description: <%= @tool.description %></p>
+  <p><%= @tool.description %></p>
 
   <%= link_to("Back to Browse", tools_path) %>
 
