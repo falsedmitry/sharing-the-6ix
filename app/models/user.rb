@@ -19,9 +19,7 @@ class User < ApplicationRecord
     out_on_loan = []
 
     owned_tools.each do |tool|
-      if tool.on_loan == true
-        out_on_loan << tool
-      end
+      out_on_loan << tool if tool.on_loan == true
     end
 
     out_on_loan
