@@ -29,8 +29,8 @@ document.addEventListener('turbolinks:load', function() {
         noButton.classList.add('get-tool-back-confirmation-option');
 
         confirmationParagraph.innerText = "Is the tool back in your possession?";
-        yesButton.innerHTML = "<p>Yes</p>";
-        noButton.innerHTML = "<p>No</p>";
+        yesButton.innerHTML = "<a>Yes</a>";
+        noButton.innerHTML = "<a>No</a>";
 
         confirmationDiv.appendChild(confirmationParagraph);
         confirmationDiv.appendChild(yesButton);
