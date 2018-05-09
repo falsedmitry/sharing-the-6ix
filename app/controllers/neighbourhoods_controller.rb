@@ -10,7 +10,7 @@ class NeighbourhoodsController < ApplicationController
 
     @coords = []
     @all_users.each do |user|
-      postal_code = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{user.postal_code.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM").body)["results"][0]["geometry"]["location"]
+      postal_code = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{user.postal_code.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=#{ENV["GOOGLE_MAPS_KEY"]}").body)["results"][0]["geometry"]["location"]
 
       lat = postal_code["lat"]
       lng = postal_code["lng"]

@@ -86,7 +86,7 @@ class ToolsController < ApplicationController
       @rating = Rating.create(review: @review, score: 0)
     end
 
-    owner_location = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{@tool.owner.postal_code.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=AIzaSyA4smff7b389AgWQAZkI1CqrR2nB7cs0xM").body)["results"][0]["geometry"]["location"]
+    owner_location = JSON.parse(HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?address=#{@tool.owner.postal_code.split.join('+')},Toronto&bounds=43.855458,-79.002481|43.458297,-79.639219&key=#{ENV['GOOGLE_MAPS_KEY']}").body)["results"][0]["geometry"]["location"]
 
     @lat = owner_location["lat"]
     @lng = owner_location["lng"]
